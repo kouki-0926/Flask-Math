@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form  action='{{url_for("integral_view")}}' method="post" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="InputFormula">被積分関数</label>
+    <input type="text" name="formula" class="form-control" id="InputFormula">
+  </div>
+
+  <button type="submit" class="btn btn-primary">計算</button>
+  <br>
+  <br>
+  <h1>{{anser}}</h1>
+
+</form>
+{% endblock %}
