@@ -25,11 +25,19 @@
         <a class="navbar-brand" href="/">Flask Math</a>
       </nav>
 
+      <!-- flash -->
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-info" role="alert">
+        {{message}}
+      </div>
+      {% endfor %}
+
       <!--本文 -->
       <div class="blog-body">
         {% block body %}
 
         {% endblock%}
+
       </div>
 
     </div>
