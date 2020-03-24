@@ -1,6 +1,8 @@
 from sympy import *
 from flask import flash
 
+x=symbols("x")
+
 def integral(formula):
     try:
         A=str(integrate(formula))
@@ -29,7 +31,6 @@ def derivative(formula):
 
 def taylor(formula,a,b):
     try:
-        x=symbols("x")
         a=int(a)
         b=float(b)
         f=integrate(formula)
@@ -46,4 +47,22 @@ def taylor(formula,a,b):
     except:
         anser="Error"
         flash("エラー　もう一度入力してください")
+    return anser
+
+
+def lim(formula,a):
+    anser=[]
+    try:
+        a=float(a)
+
+        A=str(limit(formula, x, a))
+
+        a=str(a)
+        formula=str(formula)
+        anser.append("lim  "+formula+ " = "+A)
+        anser.append("x→"+a)
+    except:
+        anser.append("Error")
+        anser.append(" ")
+        flash("エラー　もう一度関数を入力してください")
     return anser

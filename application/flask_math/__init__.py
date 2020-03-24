@@ -1,6 +1,10 @@
 from flask import Flask
 
-app=Flask(__name__)
-app.config.from_object("flask_math.config")
+def create_app():
+    app=Flask(__name__)
+    app.config.from_object("flask_math.config")
 
-import flask_math.views
+    from flask_math.views import view
+    app.register_blueprint(view)
+
+    return app

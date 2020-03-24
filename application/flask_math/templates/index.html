@@ -3,19 +3,25 @@
 {% block body %}
   <div class="card">
     <h1 class="card-body">
-      <a class="card-link" href="/integral">積分</a>
+      <a class="card-link" href="{{url_for('view.integral_view')}}">積分</a>
     </h1>
   </div>
 
   <div class="card">
     <h1 class="card-body">
-      <a class="card-link" href="/derivative">微分</a>
+      <a class="card-link" href="{{url_for('view.derivative_view')}}">微分</a>
     </h1>
   </div>
 
   <div class="card">
     <h1 class="card-body">
-      <a class="card-link" href="/taylor">テイラー展開</a>
+      <a class="card-link" href="{{url_for('view.taylor_view')}}">テイラー展開</a>
+    </h1>
+  </div>
+
+  <div class="card">
+    <h1 class="card-body">
+      <a class="card-link" href="{{url_for('view.limit_view')}}">極限</a>
     </h1>
   </div>
 {% endblock %}
