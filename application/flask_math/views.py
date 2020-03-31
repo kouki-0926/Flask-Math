@@ -1,6 +1,6 @@
 from flask import request, redirect, url_for, render_template, flash, session
 from flask import current_app as app
-from flask_math.math import integral, derivative, taylor ,lim
+from flask_math.calculation import *
 from flask import Blueprint
 
 view=Blueprint("view",__name__)
@@ -13,32 +13,36 @@ def index_view():
 def  integral_view():
     if request.method=="POST":
         formula=request.form.get("formula")
-        anser=integral(formula)
-        return render_template("integral.html",formula=formula,anser=anser)
+        upper_end=request.form.get("upper_end")
+        lower_end=request.form.get("lower_end")
+        type=request.form.get("type")
+        anser=integral.integral(formula,upper_end,lower_end,type)
+        return render_template("integral.html",formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,anser=anser)
     else:
-        return render_template("integral.html")
+        return render_template("integral.html",type=0)
 
 
 @view.route("/derivative",methods=["GET","POST"])
 def  derivative_view():
     if request.method=="POST":
         formula=request.form.get("formula")
-        anser=derivative(formula)
-        return render_template("derivative.html",formula=formula,anser=anser)
+        a=request.form.get("a")
+        anser=derivative.derivative(formula,a)
+        return render_template("derivative.html",formula=formula,a=a,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2])
     else:
-        return render_template("derivative.html")
+        return render_template("derivative.html",a="x")
 
 
 @view.route("/taylor",methods=["GET","POST"])
 def  taylor_view():
     if request.method=="POST":
         formula=request.form.get("formula")
-        a=request.form.get("a")
-        b=request.form.get("b")
-        anser=taylor(formula,a,b)
-        return render_template("taylor.html",formula=formula,anser=anser,a=a,b=b)
+        dimension=request.form.get("dimension")
+        center=request.form.get("center")
+        anser=taylor.taylor(formula,dimension,center)
+        return render_template("taylor.html",formula=formula,dimension=dimension,center=center,anser=anser)
     else:
-        return render_template("taylor.html")
+        return render_template("taylor.html",dimension=10,center=0)
 
 
 @view.route("/limit",methods=["GET","POST"])
@@ -46,12 +50,12 @@ def  limit_view():
     if request.method=="POST":
         formula=request.form.get("formula")
         a=request.form.get("a")
-        anser=lim(formula,a)
+        anser=lim.lim(formula,a)
         return render_template("limit.html",formula=formula,anser_1=anser[0],anser_2=anser[1],a=a)
     else:
-        return render_template("limit.html")
+        return render_template("limit.html",a=0)
 
 
 @view.app_errorhandler(404)
 def non_existant_route(error):
-    return redirect(url_for("view.index_view"))        
+    return redirect(url_for("view.index_view"))
