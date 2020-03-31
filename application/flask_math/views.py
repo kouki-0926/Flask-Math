@@ -28,7 +28,7 @@ def  derivative_view():
         formula=request.form.get("formula")
         a=request.form.get("a")
         anser=derivative.derivative(formula,a)
-        return render_template("derivative.html",formula=formula,a=a,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2])
+        return render_template("derivative.html",formula=formula,a=a,anser=anser)
     else:
         return render_template("derivative.html",a="x")
 
@@ -54,6 +54,31 @@ def  limit_view():
         return render_template("limit.html",formula=formula,anser_1=anser[0],anser_2=anser[1],a=a)
     else:
         return render_template("limit.html",a=0)
+
+
+@view.route("/base_conversion",methods=["GET","POST"])
+def  base_conversion_view():
+    if request.method=="POST":
+        try:
+            if request.form.get("bin")!="":
+                base="binary"
+                before_conversion=request.form.get("bin")
+            elif request.form.get("oct")!="":
+                base="octal"
+                before_conversion=request.form.get("oct")
+            elif request.form.get("dec")!="":
+                base="decimal"
+                before_conversion=request.form.get("dec")
+            elif request.form.get("hex")!="":
+                base="hexadecimal"
+                before_conversion=request.form.get("hex")
+            anser=base_conversion.base_conversion(base,before_conversion)
+        except:
+            anser=["Error","Error","Error","Error"]
+            flash("エラー：もう一度入力してください")
+        return render_template("base_conversion.html",bin=anser[0],oct=anser[1],dec=anser[2],hex=anser[3])
+    else:
+        return render_template("base_conversion.html")
 
 
 @view.app_errorhandler(404)
