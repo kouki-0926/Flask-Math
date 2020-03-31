@@ -3,19 +3,59 @@
 {% block body %}
 <h2>積分</h2>
 <br>
+<!-- 定積分、不定積分の選択 -->
+<form action='{{url_for("view.integral_view")}}' method="get" enctype="multipart/form-data">
+{% if TYPE=="definite_1" %}
+  <select class="form-group" name="TYPE">
+    <option value="definite_1">定積分</option>
+    <option value="definite_2">定積分(小数表記)</option>
+    <option value="indefinite">不定積分</option>
+  </select>
+{% elif TYPE=="definite_2" %}
+  <select class="form-group" name="TYPE">
+    <option value="definite_1">定積分</option>
+    <option value="definite_2" selected>定積分(小数表記)</option>
+    <option value="indefinite">不定積分</option>
+  </select>
+{% else %}
+  <select class="form-group" name="TYPE">
+    <option value="definite_1" selected>定積分</option>
+    <option value="definite_2">定積分(小数表記)</option>
+    <option value="indefinite">不定積分</option>
+  </select>
+{% endif %}
+  <input type="submit" value="送信する">
+</form>
 
-<form  action='{{url_for("view.integral_view")}}' method="post" enctype="multipart/form-data">
+<br>
 
+{% if TYPE=="indefinite" %}
+<form action='{{url_for("view.integral_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="InputFormula">被積分関数を入力してください</label>
     <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}">
   </div>
+{% else %}
+<form action='{{url_for("view.integral_view")}}' method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="InputFormula">被積分関数を入力してください</label>
+    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}">
+  </div>
+  <div class="form-group">
+    <label for="InputUpperEND">上端を入力してください</label>
+    <input type="text" name="upperend" class="form-control" id="InputUpperEND" value="{{upperend}}">
+  </div>
+  <div class="form-group">
+    <label for="InputLowerEND">下端を入力してください</label>
+    <input type="text" name="lowerend" class="form-control" id="InputLowerEND" value="{{lowerend}}">
+  </div>
+{% endif %}
 
   <br>
   <button type="submit" class="btn btn-primary">計算</button>
   <br><br><br>
-
 </form>
+
 
 <h1>{{anser}}</h1>
 {% endblock %}
