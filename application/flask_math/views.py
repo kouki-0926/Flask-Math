@@ -96,12 +96,24 @@ def  Factorial_view():
 def  equation_view():
     if request.method=="POST":
         formula=request.form.get("formula")
-        anser=equation.equation(formula)
-        return render_template("equation.html",formula=formula,anser=anser)
+        Anser=equation.equation(formula)
+        return render_template("equation.html",formula=formula,Anser=Anser)
     else:
         return render_template("equation.html")
 
 
+@view.route("/BMI",methods=["GET","POST"])
+def  BMI_view():
+    if request.method=="POST":
+        height=request.form.get("height")
+        weight=request.form.get("weight")
+        anser=BMI.BMI(height,weight)
+        return render_template("BMI.html",height=height,weight=weight,anser_0=anser[0],anser_1=anser[1])
+    else:
+        return render_template("BMI.html")
+
+
 @view.app_errorhandler(404)
 def non_existant_route(error):
+    flash("404 NOT FOUND")
     return redirect(url_for("view.index_view"))
