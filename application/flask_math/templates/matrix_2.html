@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>行列の演算</h2>
+<br>
+
+<form  action='{{url_for("view.matrix_2_view")}}' method="post" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="InputFormula">式を入力してください</label>
+    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}">
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary">計算</button>
+  <br><br><br>
+
+</form>
+
+<h2>{{anser}}</h2>
+
+{% endblock %}

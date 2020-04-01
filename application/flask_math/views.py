@@ -2,6 +2,7 @@ from flask import request, redirect, url_for, render_template, flash, session
 from flask import current_app as app
 from flask_math.calculation import *
 from flask import Blueprint
+import tkinter
 
 view=Blueprint("view",__name__)
 
@@ -45,15 +46,15 @@ def  taylor_view():
         return render_template("taylor.html",dimension=10,center=0)
 
 
-@view.route("/limit",methods=["GET","POST"])
-def  limit_view():
+@view.route("/lim",methods=["GET","POST"])
+def  lim_view():
     if request.method=="POST":
         formula=request.form.get("formula")
         a=request.form.get("a")
         anser=lim.lim(formula,a)
-        return render_template("limit.html",formula=formula,anser_1=anser[0],anser_2=anser[1],a=a)
+        return render_template("lim.html",formula=formula,anser_1=anser[0],anser_2=anser[1],a=a)
     else:
-        return render_template("limit.html",a=0)
+        return render_template("lim.html",a=0)
 
 
 @view.route("/base_conversion",methods=["GET","POST"])
@@ -112,6 +113,37 @@ def  BMI_view():
     else:
         return render_template("BMI.html")
 
+
+@view.route("/factorization",methods=["GET","POST"])
+def  factorization_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        anser=factorization.factorization(formula)
+        return render_template("factorization.html",formula=formula,anser=anser)
+    else:
+        return render_template("factorization.html")
+
+
+@view.route("/matrix_view",methods=["GET","POST"])
+def  matrix_view():
+    if request.method=="POST":
+        return render_template("matrix.html")
+    else:
+        return render_template("matrix.html")
+
+@view.route("/matrix_2_view",methods=["GET","POST"])
+def  matrix_2_view():
+    if request.method=="POST":
+        return render_template("matrix_2.html")
+    else:
+        return render_template("matrix_2.html")
+
+@view.route("/equations",methods=["GET","POST"])
+def  equations_view():
+    if request.method=="POST":
+        return render_template("equations.html")
+    else:
+        return render_template("equations.html")
 
 @view.app_errorhandler(404)
 def non_existant_route(error):

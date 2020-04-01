@@ -1,4 +1,5 @@
 from sympy import *
+from flask import flash
 
 def factorization(formula):
     try:
@@ -11,4 +12,5 @@ def factorization(formula):
         anser=formula+"="+A
     except:
         anser="Error"
-    return anser    
+        flash("エラー：もう一度入力してください")
+    return anser
