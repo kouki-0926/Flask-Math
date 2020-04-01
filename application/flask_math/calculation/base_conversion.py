@@ -1,3 +1,5 @@
+from flask import flash
+
 def base_conversion(base,before_conversion):
     try:
         if base=="binary":
@@ -23,4 +25,5 @@ def base_conversion(base,before_conversion):
         anser=[bin,oct,dec,hex]
     except:
         anser=["Error","Error","Error","Error"]
+        flash("エラー：もう一度入力してください")
     return anser

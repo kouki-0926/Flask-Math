@@ -2,6 +2,7 @@ from flask import request, redirect, url_for, render_template, flash, session
 from flask import current_app as app
 from flask_math.calculation import *
 from flask import Blueprint
+import tkinter
 
 view=Blueprint("view",__name__)
 
@@ -28,7 +29,7 @@ def  derivative_view():
         formula=request.form.get("formula")
         a=request.form.get("a")
         anser=derivative.derivative(formula,a)
-        return render_template("derivative.html",formula=formula,a=a,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2])
+        return render_template("derivative.html",formula=formula,a=a,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2],anser_3=anser[3])
     else:
         return render_template("derivative.html",a="x")
 
@@ -45,17 +46,106 @@ def  taylor_view():
         return render_template("taylor.html",dimension=10,center=0)
 
 
-@view.route("/limit",methods=["GET","POST"])
-def  limit_view():
+@view.route("/lim",methods=["GET","POST"])
+def  lim_view():
     if request.method=="POST":
         formula=request.form.get("formula")
         a=request.form.get("a")
         anser=lim.lim(formula,a)
-        return render_template("limit.html",formula=formula,anser_1=anser[0],anser_2=anser[1],a=a)
+        return render_template("lim.html",formula=formula,anser_1=anser[0],anser_2=anser[1],a=a)
     else:
-        return render_template("limit.html",a=0)
+        return render_template("lim.html",a=0)
 
+
+@view.route("/base_conversion",methods=["GET","POST"])
+def  base_conversion_view():
+    if request.method=="POST":
+        try:
+            if request.form.get("bin")!="":
+                base="binary"
+                before_conversion=request.form.get("bin")
+            elif request.form.get("oct")!="":
+                base="octal"
+                before_conversion=request.form.get("oct")
+            elif request.form.get("dec")!="":
+                base="decimal"
+                before_conversion=request.form.get("dec")
+            elif request.form.get("hex")!="":
+                base="hexadecimal"
+                before_conversion=request.form.get("hex")
+            anser=base_conversion.base_conversion(base,before_conversion)
+        except:
+            anser=["Error","Error","Error","Error"]
+            flash("エラー：もう一度入力してください")
+        return render_template("base_conversion.html",bin=anser[0],oct=anser[1],dec=anser[2],hex=anser[3])
+    else:
+        return render_template("base_conversion.html")
+
+
+@view.route("/Factorial",methods=["GET","POST"])
+def  Factorial_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        anser=Factorial.Factorial(formula)
+        return render_template("Factorial.html",formula=formula,anser=anser)
+    else:
+        return render_template("Factorial.html")
+
+
+
+@view.route("/equation",methods=["GET","POST"])
+def  equation_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        Anser=equation.equation(formula)
+        return render_template("equation.html",formula=formula,Anser=Anser)
+    else:
+        return render_template("equation.html")
+
+
+@view.route("/BMI",methods=["GET","POST"])
+def  BMI_view():
+    if request.method=="POST":
+        height=request.form.get("height")
+        weight=request.form.get("weight")
+        anser=BMI.BMI(height,weight)
+        return render_template("BMI.html",height=height,weight=weight,anser_0=anser[0],anser_1=anser[1])
+    else:
+        return render_template("BMI.html")
+
+
+@view.route("/factorization",methods=["GET","POST"])
+def  factorization_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        anser=factorization.factorization(formula)
+        return render_template("factorization.html",formula=formula,anser=anser)
+    else:
+        return render_template("factorization.html")
+
+
+@view.route("/matrix_view",methods=["GET","POST"])
+def  matrix_view():
+    if request.method=="POST":
+        return render_template("matrix.html")
+    else:
+        return render_template("matrix.html")
+
+@view.route("/matrix_2_view",methods=["GET","POST"])
+def  matrix_2_view():
+    if request.method=="POST":
+        return render_template("matrix_2.html")
+    else:
+        return render_template("matrix_2.html")
+
+@view.route("/equations",methods=["GET","POST"])
+def  equations_view():
+    if request.method=="POST":
+        return render_template("equations.html")
+    else:
+        return render_template("equations.html")
 
 @view.app_errorhandler(404)
 def non_existant_route(error):
+    flash("404 NOT FOUND")
     return redirect(url_for("view.index_view"))

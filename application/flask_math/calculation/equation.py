@@ -1,10 +1,12 @@
 from sympy import *
+from flask import flash
 
 x = Symbol('x')
 
 def equation(formula):
     try:
-        anser= solve(formula, dict = True)
+        Anser= solve(formula, dict = True)
     except:
-        anser=["Error"]
-    return anser
+        Anser=["Error"]
+        flash("エラー：もう一度入力してください")
+    return Anser

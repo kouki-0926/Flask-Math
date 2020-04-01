@@ -9,12 +9,12 @@ def integral(formula,upper_end,lower_end,type):
         A=g.subs(x,upper_end)-g.subs(x,lower_end)
 
         if type=="0":
-            anser=A
+            anser="∫["+str(lower_end)+"→"+str(upper_end)+"]"+formula+" = "+str(A)
         elif type=="1":
-            anser=A.evalf()
+            anser="∫["+str(lower_end)+"→"+str(upper_end)+"]"+formula+" = "+str(A.evalf())
         elif type=="2":
             g=str(g)
-            anser=g.replace("**","A").replace("*","").replace("A","^")
+            anser="∫"+formula+" = "+g.replace("**","A").replace("*","").replace("A","^")+"+C"
         return anser
     except:
         anser="Error"
