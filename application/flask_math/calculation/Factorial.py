@@ -1,8 +1,11 @@
 import math
+from flask import flash
 
 def Factorial(formula):
     try:
-        anser=math.factorial(formula)
+        A=math.factorial(int(formula))
+        anser=str(formula)+"! = "+str(A)
     except:
-        anser="Error"    
+        anser="Error"
+        flash("エラー：もう一度入力してください")
     return anser

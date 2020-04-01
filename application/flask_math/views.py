@@ -28,7 +28,7 @@ def  derivative_view():
         formula=request.form.get("formula")
         a=request.form.get("a")
         anser=derivative.derivative(formula,a)
-        return render_template("derivative.html",formula=formula,a=a,anser=anser)
+        return render_template("derivative.html",formula=formula,a=a,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2],anser_3=anser[3])
     else:
         return render_template("derivative.html",a="x")
 
@@ -79,6 +79,27 @@ def  base_conversion_view():
         return render_template("base_conversion.html",bin=anser[0],oct=anser[1],dec=anser[2],hex=anser[3])
     else:
         return render_template("base_conversion.html")
+
+
+@view.route("/Factorial",methods=["GET","POST"])
+def  Factorial_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        anser=Factorial.Factorial(formula)
+        return render_template("Factorial.html",formula=formula,anser=anser)
+    else:
+        return render_template("Factorial.html")
+
+
+
+@view.route("/equation",methods=["GET","POST"])
+def  equation_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        anser=equation.equation(formula)
+        return render_template("equation.html",formula=formula,anser=anser)
+    else:
+        return render_template("equation.html")
 
 
 @view.app_errorhandler(404)

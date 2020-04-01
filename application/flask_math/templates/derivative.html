@@ -7,11 +7,14 @@
 <form  action='{{url_for("view.derivative_view")}}' method="post" enctype="multipart/form-data">
 
   <div class="form-group">
-    <label for="InputFormula">被微分関数を入力してください</label>
+    <label for="InputFormula">被微分関数 f を入力してください</label>
     <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}">
   </div>
   <div class="form-group">
-    <label for="InputA"></label>
+    <label for="InputA">
+      f<sub>x</sub>⇒x　　f<sub>y</sub>⇒y　　f<sub>xx</sub>⇒xx　　f<sub>xy</sub>⇒xy　　
+      f<sub>yx</sub>⇒yx　　f<sub>yy</sub>⇒yy　　を入力してください
+    </label>
     <input type="text" name="a" class="form-control" id="InputA" value="{{a}}">
   </div>
 
@@ -21,6 +24,6 @@
 
 </form>
 
-<h2>{{anser}}</h2>
+<h2>{{anser_0}}<br><br>{{anser_1}}<sub>{{anser_2}}</sub>{{anser_3}}</h2>
 
 {% endblock %}
