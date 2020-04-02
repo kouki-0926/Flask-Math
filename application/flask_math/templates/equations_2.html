@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>連立方程式</h2>
+<br>
+
+<form  action='{{url_for("view.equations_2_view")}}' method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="InputFormula_1">式を入力してください</label>
+    <h2>
+      <input type="text" name="formula_1" class="form-control" id="InputFormula_1" value="{{formula_1}}">=0
+    </h2>
+  </div>
+{% if number==2 %}
+  <div class="form-group">
+    <label for="InputFormula_2">式を入力してください</label>
+    <h2>
+      <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}">=0
+    </h2>
+  </div>
+{% endif %}
+
+{% if number==3 %}
+<div class="form-group">
+  <label for="InputFormula_2">式を入力してください</label>
+  <h2>
+    <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}">=0
+  </h2>
+</div>
+<div class="form-group">
+  <label for="InputFormula_3">式を入力してください</label>
+  <h2>
+    <input type="text" name="formula_3" class="form-control" id="InputFormula_3" value="{{formula_3}}">=0
+  </h2>
+</div>
+{% endif %}
+
+
+  <br>
+  <button type="submit" class="btn btn-primary">計算</button>
+
+  <div  hidden class="form-group">
+    <label for="InputNumber">式を入力してください</label>
+    <h2>
+      <input type="text" name="number" class="form-control" id="InputNumber" value="{{number}}">=0
+    </h2>
+  </div>
+
+</form>
+
+<br><br>
+<h2>{{anser}}</h2>
+
+{% endblock %}

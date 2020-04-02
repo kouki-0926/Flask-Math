@@ -2,13 +2,13 @@ from flask import request, redirect, url_for, render_template, flash, session
 from flask import current_app as app
 from flask_math.calculation import *
 from flask import Blueprint
-import tkinter
 
 view=Blueprint("view",__name__)
 
 @view.route("/")
 def index_view():
     return render_template("index.html")
+
 
 @view.route("/integral",methods=["GET","POST"])
 def  integral_view():
@@ -92,7 +92,6 @@ def  Factorial_view():
         return render_template("Factorial.html")
 
 
-
 @view.route("/equation",methods=["GET","POST"])
 def  equation_view():
     if request.method=="POST":
@@ -124,28 +123,70 @@ def  factorization_view():
         return render_template("factorization.html")
 
 
-@view.route("/matrix_view",methods=["GET","POST"])
+@view.route("/equations",methods=["GET","POST"])
+def  equations_view():
+    if request.method=="POST":
+        try:
+            number=int(request.form.get("number"))
+            if number>=1 and number<=3:
+                return render_template("equations_2.html",number=number)
+            else:
+                flash("エラー:3以下の自然数を入力してください")
+                return render_template("equations.html")
+        except:
+            flash("エラー：もう一度入力してください")
+            return render_template("equations.html")
+    else:
+        return render_template("equations.html")
+
+
+@view.route("/equations_2",methods=["GET","POST"])
+def  equations_2_view():
+    if request.method=="POST":
+        number=request.form.get("number")
+        if number=="1":
+            formula_1=request.form.get("formula_1")
+            Formula=[formula_1]
+            anser=equations.equations(Formula)
+            return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=int(number))
+        elif number=="2":
+            formula_1=request.form.get("formula_1")
+            formula_2=request.form.get("formula_2")
+            Formula=[formula_1,formula_2]
+            anser=equations.equations(Formula)
+            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=int(number))
+        elif number=="3":
+            formula_1=request.form.get("formula_1")
+            formula_2=request.form.get("formula_2")
+            formula_3=request.form.get("formula_3")
+            Formula=[formula_1,formula_2,formula_3]
+            anser=equations.equations(Formula)
+            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=int(number))
+    else:
+        return render_template("equations_2.html")
+
+
+@view.app_errorhandler(404)
+def non_existant_route(error):
+    flash("404 NOT FOUND")
+    return redirect(url_for("view.index_view"))
+
+
+
+
+
+
+@view.route("/matrix",methods=["GET","POST"])
 def  matrix_view():
     if request.method=="POST":
         return render_template("matrix.html")
     else:
         return render_template("matrix.html")
 
-@view.route("/matrix_2_view",methods=["GET","POST"])
+
+@view.route("/matrix_2",methods=["GET","POST"])
 def  matrix_2_view():
     if request.method=="POST":
         return render_template("matrix_2.html")
     else:
         return render_template("matrix_2.html")
-
-@view.route("/equations",methods=["GET","POST"])
-def  equations_view():
-    if request.method=="POST":
-        return render_template("equations.html")
-    else:
-        return render_template("equations.html")
-
-@view.app_errorhandler(404)
-def non_existant_route(error):
-    flash("404 NOT FOUND")
-    return redirect(url_for("view.index_view"))

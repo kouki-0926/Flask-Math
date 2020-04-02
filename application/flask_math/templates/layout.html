@@ -1,44 +1,89 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Flask Math</title>
 
-    <!-- bootstrapのインポート -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Flask Math</title>
 
-    <!-- スタイルシート -->
-    <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
-    <link rel=stylesheet href="static/style.css">
+  <!-- bootstrapのインポート -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  </head>
+  <!-- スタイルシート -->
+  <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
+  <link rel=stylesheet href="static/style.css">
+
+</head>
 
 
-  <body>
-    <div class="container">
-
-      <!-- ナビゲーションバー -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{url_for('view.index_view')}}">Flask Math</a>
-      </nav>
-
-      <!-- flash -->
-      {% for message in get_flashed_messages() %}
-      <div class="alert alert-info" role="alert">
-        {{message}}
+<body>
+  <div class="container">
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{url_for('view.index_view')}}">Flask Math</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.integral_view') }}">積分</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.derivative_view') }}">微分</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.lim_view') }}">極限</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.Factorial_view') }}">階乗</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.matrix_view') }}">行列</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.matrix_2_view') }}">行列の演算</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.equation_view') }}">方程式</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.equations_view') }}">連立方程式</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.base_conversion_view') }}">進数変換</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.factorization_view') }}">因数分解</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.taylor_view') }}">テイラー展開</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('view.BMI_view') }}">BMI</a>
+          </li>
+        </ul>
       </div>
-      {% endfor %}
+    </nav>
 
-      <!--本文 -->
-      <div class="blog-body">
-        {% block body %}
 
-        {% endblock%}
-      </div>
-
+    <!-- flash -->
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" role="alert">
+      {{message}}
     </div>
-  </body>
+    {% endfor %}
+
+    <!--本文 -->
+    <div class="blog-body">
+      {% block body %}
+
+      {% endblock%}
+    </div>
+
+  </div>
+</body>
+
 </html>
