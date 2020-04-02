@@ -5,16 +5,13 @@
 <br>
 
 <form  action='{{url_for("view.equations_view")}}' method="post" enctype="multipart/form-data">
-
   <div class="form-group">
     <label for="InputNumber">式の数(1~3の整数)を入力してください</label>
-    <input type="text" name="number" class="form-control" id="InputNumber" value="{{number}}">
+    <input type="text" name="number" class="form-control" id="InputNumber" value="{{number}}" placeholder="natural number of 3 or less">
   </div>
 
   <br>
-  <button type="submit" class="btn btn-primary">実行</button>
-  <br><br><br>
-
+  <button type="submit" class="btn btn-primary btn-block">実行</button>
 </form>
 
 {% endblock %}

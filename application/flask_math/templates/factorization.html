@@ -5,18 +5,16 @@
 <br>
 
 <form  action='{{url_for("view.factorization_view")}}' method="post" enctype="multipart/form-data">
-
   <div class="form-group">
     <label for="InputFormula">式を入力してください</label>
-    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}">
+    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="formula">
   </div>
 
   <br>
-  <button type="submit" class="btn btn-primary">計算</button>
-  <br><br><br>
-
+  <button type="submit" class="btn btn-primary btn-block">計算</button>
 </form>
 
+<br><br><br>
 <h2>{{anser}}</h2>
 
 {% endblock %}

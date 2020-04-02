@@ -9,7 +9,8 @@ def factorization(formula):
         formula=str(formula)
         A=A.replace("**","C").replace("*","").replace("C","^")
         formula=formula.replace("**","C").replace("*","").replace("C","^")
-        anser=formula+"="+A
+
+        anser=formula+" = "+A
     except:
         anser="Error"
         flash("エラー：もう一度入力してください")
