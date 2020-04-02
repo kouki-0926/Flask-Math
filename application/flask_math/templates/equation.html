@@ -5,16 +5,18 @@
 <br>
 
 <form action='{{url_for("view.equation_view")}}' method="post" enctype="multipart/form-data">
-
   <div class="form-group">
     <label for="InputFormula">方程式を入力してください</label><br>
-    <h2>
-      <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}">=0
-    </h2>
+    <div class="input-group">
+      <input type="text" name="formula" id="formula" value="{{formula}}" placeholder="equation" class="form-control"  aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2">=0</span>
+      </div>
+    </div>
   </div>
 
   <br>
-  <button type="submit" class="btn btn-primary">計算</button>
+  <button type="submit" class="btn btn-primary btn-block">計算</button>
   <br><br><br>
 
 </form>

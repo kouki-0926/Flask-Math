@@ -1,44 +1,66 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Flask Math</title>
 
-    <!-- bootstrapのインポート -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Flask Math</title>
 
-    <!-- スタイルシート -->
-    <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
-    <link rel=stylesheet href="static/style.css">
+  <!-- bootstrapのインポート -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  </head>
+  <!-- スタイルシート -->
+  <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
+  <link rel=stylesheet href="static/style.css">
 
+</head>
 
-  <body>
-    <div class="container">
+<body>
+  <div class="container">
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand" href="{{url_for('view.index_view')}}">Flask Math</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MENU</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ url_for('view.integral_view') }}">積分</a>
+            <a class="dropdown-item" href="{{ url_for('view.derivative_view') }}">微分</a>
+            <a class="dropdown-item" href="{{ url_for('view.lim_view') }}">極限</a>
+            <a class="dropdown-item" href="{{ url_for('view.Factorial_view') }}">階乗</a>
+            <a class="dropdown-item" href="{{ url_for('view.matrix_view') }}">行列</a>
+            <a class="dropdown-item" href="{{ url_for('view.matrix_2_view') }}">行列の演算</a>
+            <a class="dropdown-item" href="{{ url_for('view.equation_view') }}">方程式</a>
+            <a class="dropdown-item" href="{{ url_for('view.equations_view') }}">連立方程式</a>
+            <a class="dropdown-item" href="{{ url_for('view.base_conversion_view') }}">進数変換</a>
+            <a class="dropdown-item" href="{{ url_for('view.factorization_view') }}">因数分解</a>
+            <a class="dropdown-item" href="{{ url_for('view.taylor_view') }}">テイラー展開</a>
+            <a class="dropdown-item" href="{{ url_for('view.BMI_view') }}">BMI</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
 
-      <!-- ナビゲーションバー -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{url_for('view.index_view')}}">Flask Math</a>
-      </nav>
-
-      <!-- flash -->
-      {% for message in get_flashed_messages() %}
-      <div class="alert alert-info" role="alert">
-        {{message}}
-      </div>
-      {% endfor %}
-
-      <!--本文 -->
-      <div class="blog-body">
-        {% block body %}
-
-        {% endblock%}
-      </div>
-
+    <!-- flash -->
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  </body>
+    {% endfor %}
+
+    <!--本文 -->
+    <div class="blog-body">
+      {% block body %}
+
+      {% endblock%}
+    </div>
+
+  </div>
+</body>
+
 </html>
