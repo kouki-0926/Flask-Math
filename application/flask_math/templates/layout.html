@@ -13,7 +13,7 @@
 
   <!-- スタイルシート -->
   <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
-  <link rel=stylesheet href="static/style.css">
+  <link rel=stylesheet href="static/css/style.css">
 
 </head>
 
@@ -22,25 +22,32 @@
     <!-- ナビゲーションバー -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="{{url_for('view.index_view')}}">Flask Math</a>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MENU</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ url_for('view.integral_view') }}">積分</a>
-            <a class="dropdown-item" href="{{ url_for('view.derivative_view') }}">微分</a>
-            <a class="dropdown-item" href="{{ url_for('view.lim_view') }}">極限</a>
-            <a class="dropdown-item" href="{{ url_for('view.Factorial_view') }}">階乗</a>
-            <a class="dropdown-item" href="{{ url_for('view.matrix_view') }}">行列</a>
-            <a class="dropdown-item" href="{{ url_for('view.matrix_2_view') }}">行列の演算</a>
-            <a class="dropdown-item" href="{{ url_for('view.equation_view') }}">方程式</a>
-            <a class="dropdown-item" href="{{ url_for('view.equations_view') }}">連立方程式</a>
-            <a class="dropdown-item" href="{{ url_for('view.base_conversion_view') }}">進数変換</a>
-            <a class="dropdown-item" href="{{ url_for('view.factorization_view') }}">因数分解</a>
-            <a class="dropdown-item" href="{{ url_for('view.taylor_view') }}">テイラー展開</a>
-            <a class="dropdown-item" href="{{ url_for('view.BMI_view') }}">BMI</a>
-          </div>
-        </li>
-      </ul>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/kouki7910/Flask-Math">
+              <img src="static/images/GitHub-Mark-64px.png" width="30" height="30" alt="GitHub">
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MENU</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('view.integral_view') }}">積分</a>
+              <a class="dropdown-item" href="{{ url_for('view.derivative_view') }}">微分</a>
+              <a class="dropdown-item" href="{{ url_for('view.lim_view') }}">極限</a>
+              <a class="dropdown-item" href="{{ url_for('view.Factorial_view') }}">階乗</a>
+              <a class="dropdown-item" href="{{ url_for('view.matrix_view') }}">行列</a>
+              <a class="dropdown-item" href="{{ url_for('view.matrix_2_view') }}">行列の演算</a>
+              <a class="dropdown-item" href="{{ url_for('view.equation_view') }}">方程式</a>
+              <a class="dropdown-item" href="{{ url_for('view.equations_view') }}">連立方程式</a>
+              <a class="dropdown-item" href="{{ url_for('view.base_conversion_view') }}">進数変換</a>
+              <a class="dropdown-item" href="{{ url_for('view.factorization_view') }}">因数分解</a>
+              <a class="dropdown-item" href="{{ url_for('view.taylor_view') }}">テイラー展開</a>
+              <a class="dropdown-item" href="{{ url_for('view.BMI_view') }}">BMI</a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- flash -->

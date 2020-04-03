@@ -2,5 +2,68 @@
 
 {% block body %}
 <h2>行列</h2>
-<h4>開発中</h4>
+<br>
+
+<form action='{{url_for("view.matrix_view")}}' method="post" enctype="multipart/form-data">
+  <!-- 行列の入力 -->
+  <div class="form-group">
+    <label for="InputMatrix">行列Aを入力してください</label>
+    <textarea class="form-control" id="InputMatrix" name=matrix rows="6">{{matrix}}</textarea>
+  </div>
+
+  <!-- 演算の選択 -->
+  <div align="center">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="0" checked="checked">
+      <label class="form-check-label" for="inlineRadio0">A</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="1">
+      <label class="form-check-label" for="inlineRadio1">n乗</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="2">
+      <label class="form-check-label" for="inlineRadio2">転置</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="3">
+      <label class="form-check-label" for="inlineRadio3">逆行列</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="4">
+      <label class="form-check-label" for="inlineRadio4">余因子行列</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="5">
+      <label class="form-check-label" for="inlineRadio5">行列式</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio6" value="6">
+      <label class="form-check-label" for="inlineRadio6">階数</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio7" value="7">
+      <label class="form-check-label" for="inlineRadio7">トレース</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio8" value="8">
+      <label class="form-check-label" for="inlineRadio8">固有値</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio9" value="9">
+      <label class="form-check-label" for="inlineRadio9">対角化行列</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio10" value="10">
+      <label class="form-check-label" for="inlineRadio10">対角行列</label>
+    </div>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary btn-block">計算</button>
+</form>
+
+<br><br><br>
+<h1>{{anser_3}}{{anser_0}}</h1>
+
 {% endblock %}

@@ -7,7 +7,7 @@ def calculation(A,Ar,Ac,c):
             anser=A
             anser_r=Ar
             anser_c=Ac
-            type="A"
+            type="A = "
             d=0
 
         elif c==1:
@@ -20,49 +20,49 @@ def calculation(A,Ar,Ac,c):
             anser=P*A*P.inv()
             anser_r=Ar
             anser_c=Ac
-            type="A^n"
+            type="A^n = "
             d=0
 
         elif c==2:
             anser=A.transpose()
             anser_r=Ac
             anser_c=Ar
-            type="A^t"
+            type="A^t = "
             d=0
 
         elif c==3:
             anser=A.inv()
             anser_r=Ar
             anser_c=Ac
-            type="A^-1"
+            type="A^-1 = "
             d=0
 
         elif c==4:
             anser=A.adjugate()
             anser_r=Ar
             anser_c=Ac
-            type="A~"
+            type="A~ = "
             d=0
 
         elif c==5:
             anser=A.det()
             anser_r=Ar
             anser_c=Ac
-            type="det(A)"
+            type="det(A) = "
             d=1
 
         elif c==6:
             anser=A.rank()
             anser_r=Ar
             anser_c=Ac
-            type="rank(A)"
+            type="rank(A) = "
             d=1
 
         elif c==7:
             anser=A.trace()
             anser_r=Ar
             anser_c=Ac
-            type="tr(A)"
+            type="tr(A) = "
             d=1
 
         elif c==8:
@@ -70,7 +70,7 @@ def calculation(A,Ar,Ac,c):
             anser=list(A)
             anser_r=Ar
             anser_c=Ac
-            type="λ"
+            type="λ = "
             d=1
 
         elif c==9:
@@ -79,7 +79,7 @@ def calculation(A,Ar,Ac,c):
             anser=A[0]
             anser_r=Ar
             anser_c=Ac
-            type="P"
+            type="P = "
             d=0
 
         elif c==10:
@@ -88,11 +88,13 @@ def calculation(A,Ar,Ac,c):
             anser=A[1]
             anser_r=Ar
             anser_c=Ac
-            type="P^-1AP"
+            type="P^-1AP = "
             d=0
     except:
-        A="Error"
-        D="Error"
+        anser="Error"
+        anser_r=""
+        anser_c=""
+        type=""
         d=1
 
     Anser=[anser,anser_r,anser_c,type,d]

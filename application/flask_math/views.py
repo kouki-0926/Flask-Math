@@ -2,6 +2,7 @@ from flask import request, redirect, url_for, render_template, flash, session
 from flask import current_app as app
 from flask_math.calculation import *
 from flask import Blueprint
+from sympy import *
 
 view=Blueprint("view",__name__)
 
@@ -179,7 +180,13 @@ def non_existant_route(error):
 @view.route("/matrix",methods=["GET","POST"])
 def  matrix_view():
     if request.method=="POST":
-        return render_template("matrix.html")
+        #A=request.form.get("matrix")
+        A=Matrix([[2,1],[1,2]])
+        Ar=2
+        Ac=2
+        type=int(request.form.get("type"))
+        Anser=matrix.calculation(A,Ar,Ac,type)
+        return render_template("matrix.html",matrix=A,anser_0=Anser[0],anser_3=Anser[3])
     else:
         return render_template("matrix.html")
 
@@ -187,6 +194,20 @@ def  matrix_view():
 @view.route("/matrix_2",methods=["GET","POST"])
 def  matrix_2_view():
     if request.method=="POST":
-        return render_template("matrix_2.html")
+        #matrixA=request.form.get("matrixA")
+        #A=sympy.Matrix([matrixA])
+        #matrixB=request.form.get("matrixB")
+        #B=sympy.Matrix([matrixB])
+        matrixA=Matrix([[2,1],[1,2]])
+        matrixB=Matrix([[3,4],[5,6]])
+        Ar=2
+        Ac=2
+        Br=2
+        Bc=2
+        type=int(request.form.get("type"))
+        k=request.form.get("k")
+        l=request.form.get("l")
+        anser=matrix_2.calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l)
+        return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,k=k,l=l,anser_0=anser[0],anser_1=anser[1])
     else:
-        return render_template("matrix_2.html")
+        return render_template("matrix_2.html",k=2,l=2)

@@ -2,5 +2,69 @@
 
 {% block body %}
 <h2>行列の演算</h2>
-<h4>開発中</h4>
+<br>
+
+<form action='{{url_for("view.matrix_2_view")}}' method="post" enctype="multipart/form-data">
+  <!-- 行列の入力 -->
+  <div class="form-group">
+    <label for="InputMatrixA">行列Aを入力してください</label>
+    <textarea class="form-control" id="InputMatrixA" name=matrixA rows="6">{{matrixA}}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="InputMatrixB">行列Bを入力してください</label>
+    <textarea class="form-control" id="InputMatrixB" name=matrixB rows="6">{{matrixB}}</textarea>
+  </div>
+
+  <!-- k,lの入力 -->
+  <div class="form-row align-items-center">
+    <div class="col-6">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">k</div>
+        </div>
+        <input type="text" name="k" class="form-control" value="{{k}}" placeholder="integer" id="inlineFormInputGroupUsername">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">l</div>
+        </div>
+        <input type="text" name="l" class="form-control" value="{{l}}" placeholder="integer" id="inlineFormInputGroupUsername">
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <!-- 演算の選択 -->
+  <div align="center">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="0" checked="checked">
+      <label class="form-check-label" for="inlineRadio0">A</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="1">
+      <label class="form-check-label" for="inlineRadio1">B</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="2">
+      <label class="form-check-label" for="inlineRadio2">kA+lB</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="3">
+      <label class="form-check-label" for="inlineRadio3">AB</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="4">
+      <label class="form-check-label" for="inlineRadio4">BA</label>
+    </div>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary btn-block">計算</button>
+</form>
+
+<br><br><br>
+<h1>{{anser_1}}{{anser_0}}</h1>
+
 {% endblock %}
