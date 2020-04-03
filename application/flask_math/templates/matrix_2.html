@@ -8,11 +8,11 @@
   <!-- 行列の入力 -->
   <div class="form-group">
     <label for="InputMatrixA">行列Aを入力してください</label>
-    <textarea class="form-control" id="InputMatrixA" name=matrixA rows="6">{{matrixA}}</textarea>
+    <textarea class="form-control" id="InputMatrixA" name=matrixA rows="4">{{matrixA}}</textarea>
   </div>
   <div class="form-group">
     <label for="InputMatrixB">行列Bを入力してください</label>
-    <textarea class="form-control" id="InputMatrixB" name=matrixB rows="6">{{matrixB}}</textarea>
+    <textarea class="form-control" id="InputMatrixB" name=matrixB rows="4">{{matrixB}}</textarea>
   </div>
 
   <!-- k,lの入力 -->
@@ -65,6 +65,15 @@
 </form>
 
 <br><br><br>
-<h1>{{anser_1}}{{anser_0}}</h1>
+<div style="display:inline-flex">
+  <div class="">
+  <h1>{{anser_1}}</h1>
+  </div>
+  <div>
+  {% for anser in anser_0 %}
+  <h1>{{ anser }}</h1>
+  {% endfor %}
+  </div>
+</div>
 
 {% endblock %}

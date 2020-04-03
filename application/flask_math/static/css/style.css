@@ -1,12 +1,9 @@
-.card{
-  margin:0.25rem;
-  text-align:center;
+@charset "UTF-8";
+
+.blog-body {
+  padding: 1.25em;
 }
 
-.blog-body{
-  padding:1.25em;
-}
-
-*{
-  font-family:"Mplus 1p";
+* {
+  font-family: "Mplus 1p";
 }

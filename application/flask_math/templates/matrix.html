@@ -64,6 +64,15 @@
 </form>
 
 <br><br><br>
-<h1>{{anser_3}}{{anser_0}}</h1>
+<div style="display:inline-flex">
+  <div class="">
+  <h1>{{anser_3}}</h1>
+  </div>
+  <div>
+  {% for anser in anser_0 %}
+  <h1>{{ anser }}</h1>
+  {% endfor %}
+  </div>
+</div>
 
 {% endblock %}
