@@ -1,7 +1,22 @@
 from sympy import *
 
-def calculation(A,Ar,Ac,c):
+def calculation(matrixA,Ar,Ac,c):
     try:
+        matrixA_list=list(matrixA)
+        List=[]
+        for k in range(Ar):
+            List.append([])
+
+        for j in range(0,Ar,1):
+            for i in range(j*(3*Ac+1),(j+1)*(3*Ac+1)-3,3):
+                if matrixA_list[i]==" ":
+                    m=int(matrixA_list[i+1])
+                else:
+                    m=-int(matrixA_list[i+1])
+                List[j].append(m)
+
+        A=Matrix(List)
+
         Anser=[]
         if c==0:
             anser=A

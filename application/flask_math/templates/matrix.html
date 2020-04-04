@@ -5,13 +5,13 @@
 <br>
 
 <form action='{{url_for("view.matrix_view")}}' method="post" enctype="multipart/form-data">
-  <!-- 行列の入力 -->
+  <!-- 行列Aの入力 -->
   <div class="form-group">
     <label for="InputMatrix">行列Aを入力してください</label>
     <textarea class="form-control" id="InputMatrix" name=matrix rows="6">{{matrix}}</textarea>
   </div>
 
-  <!-- r,cの入力 -->
+  <!-- Ar,Acの入力 -->
   <div class="form-row align-items-center">
     <div class="col-6">
       <div class="input-group">
@@ -87,7 +87,7 @@
 
 <br><br><br>
 <div style="display:inline-flex">
-  <div class="">
+  <div>
     <h1>{{anser_3}}</h1>
   </div>
   <div>
