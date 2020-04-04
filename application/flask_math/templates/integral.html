@@ -4,6 +4,7 @@
 <h2>積分</h2>
 <br>
 
+<!-- 関数などの入力 -->
 <form action='{{url_for("view.integral_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="InputFormula">被積分関数を入力してください</label>
@@ -17,9 +18,21 @@
     <label for="InputLowerEnd">下端を入力してください</label>
     <input type="text" name="lower_end" class="form-control" id="InputLowerEnd" value="{{lower_end}}" placeholder="lower end">
   </div>
-  <div class="form-group">
-    <label for="InputType">0→定積分 1→定積分(浮動小数点数)　2→不定積分</label>
-    <input type="text" name="type" class="form-control" id="InputType" value="{{type}}">
+
+  <!-- 演算の選択 -->
+  <div align="center">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="0" checked="checked">
+      <label class="form-check-label" for="inlineRadio0">定積分　　</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="1">
+      <label class="form-check-label" for="inlineRadio1">定積分(浮動小数点数)　　</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="2">
+      <label class="form-check-label" for="inlineRadio2">不定積分　　</label>
+    </div>
   </div>
 
   <br>

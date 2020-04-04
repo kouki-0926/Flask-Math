@@ -4,17 +4,38 @@
 <h2>微分</h2>
 <br>
 
-<form  action='{{url_for("view.derivative_view")}}' method="post" enctype="multipart/form-data">
+<form action='{{url_for("view.derivative_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="InputFormula">被微分関数 f を入力してください</label>
     <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="function">
   </div>
-  <div class="form-group">
-    <label for="InputA">
-      f<sub>x</sub>⇒x　　f<sub>y</sub>⇒y　　f<sub>xx</sub>⇒xx　　f<sub>xy</sub>⇒xy　　
-      f<sub>yx</sub>⇒yx　　f<sub>yy</sub>⇒yy　　を入力してください
-    </label>
-    <input type="text" name="a" class="form-control" id="InputA" value="{{a}}">
+
+  <!-- 演算の選択 -->
+  <div align="center">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="x" checked="checked">
+      <label class="form-check-label" for="inlineRadio0">f<sub>x</sub>　　</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="y">
+      <label class="form-check-label" for="inlineRadio1">f<sub>y</sub>　　</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="xx">
+      <label class="form-check-label" for="inlineRadio2">f<sub>xx</sub>　　</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="xy">
+      <label class="form-check-label" for="inlineRadio3">f<sub>xy</sub>　　</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yx">
+      <label class="form-check-label" for="inlineRadio4">f<sub>yx</sub>　　</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yy">
+      <label class="form-check-label" for="inlineRadio4">f<sub>yy</sub>　　</label>
+    </div>
   </div>
 
   <br>

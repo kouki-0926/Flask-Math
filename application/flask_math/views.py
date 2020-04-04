@@ -51,11 +51,11 @@ def  BMI_view():
 def  derivative_view():
     if request.method=="POST":
         formula=request.form.get("formula")
-        a=request.form.get("a")
-        anser=derivative.derivative(formula,a)
-        return render_template("derivative.html",formula=formula,a=a,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2],anser_3=anser[3])
+        type=request.form.get("type")
+        anser=derivative.derivative(formula,type)
+        return render_template("derivative.html",formula=formula,type=type,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2],anser_3=anser[3])
     else:
-        return render_template("derivative.html",a="x")
+        return render_template("derivative.html")
 
 
 @view.route("/equation",methods=["GET","POST"])
@@ -180,34 +180,91 @@ def non_existant_route(error):
 @view.route("/matrix",methods=["GET","POST"])
 def  matrix_view():
     if request.method=="POST":
-        #A=request.form.get("matrix")
-        A=Matrix([[2,1],[1,2]])
-        Ar=2
-        Ac=2
+        Ar=int(request.form.get("Ar"))
+        Ac=int(request.form.get("Ac"))
+        matrixA=str(request.form.get("matrix"))
+
+        matrixA_list=list(matrixA)
+        List=[]
+        for k in range(Ar):
+            List.append([])
+
+        for j in range(0,Ar,1):
+            for i in range(j*(3*Ac+1),(j+1)*(3*Ac+1)-3,3):
+                if matrixA_list[i]==" ":
+                    m=int(matrixA_list[i+1])
+                else:
+                    m=-int(matrixA_list[i+1])
+                List[j].append(m)
+
+        A=Matrix(List)
+
         type=int(request.form.get("type"))
         Anser=matrix.calculation(A,Ar,Ac,type)
-        return render_template("matrix.html",matrix=A,anser_0=Anser[0],anser_3=Anser[3])
+        if Anser[4]==0:
+            anser=[]
+            for i in range(Anser[1]):
+                A=str(Anser[0].row(i))
+                A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
+                anser.append(A)
+        elif Anser[4]==1:
+            anser=[Anser[0]]
+        return render_template("matrix.html",matrix=matrixA,Ar=Ar,Ac=Ac,anser_0=anser,anser_3=Anser[3])
     else:
-        return render_template("matrix.html")
+        return render_template("matrix.html",Ar=2,Ac=2)
 
 
 @view.route("/matrix_2",methods=["GET","POST"])
 def  matrix_2_view():
     if request.method=="POST":
-        #matrixA=request.form.get("matrixA")
-        #A=sympy.Matrix([matrixA])
-        #matrixB=request.form.get("matrixB")
-        #B=sympy.Matrix([matrixB])
-        matrixA=Matrix([[2,1],[1,2]])
-        matrixB=Matrix([[3,4],[5,6]])
-        Ar=2
-        Ac=2
-        Br=2
-        Bc=2
+        Ar=int(request.form.get("Ar"))
+        Ac=int(request.form.get("Ac"))
+        matrixA=str(request.form.get("matrixA"))
+
+        matrixA_list=list(matrixA)
+        List_A=[]
+        for k in range(Ar):
+            List_A.append([])
+
+        for j in range(0,Ar,1):
+            for i in range(j*(3*Ac+1),(j+1)*(3*Ac+1)-3,3):
+                if matrixA_list[i]==" ":
+                    m=int(matrixA_list[i+1])
+                else:
+                    m=-int(matrixA_list[i+1])
+                List_A[j].append(m)
+
+        A=Matrix(List_A)
+
+
+        Br=int(request.form.get("Br"))
+        Bc=int(request.form.get("Bc"))
+        matrixB=str(request.form.get("matrixB"))
+
+        matrixB_list=list(matrixB)
+        List_B=[]
+        for k in range(Br):
+            List_B.append([])
+
+        for j in range(0,Br,1):
+            for i in range(j*(3*Bc+1),(j+1)*(3*Bc+1)-3,3):
+                if matrixB_list[i]==" ":
+                    m=int(matrixB_list[i+1])
+                else:
+                    m=-int(matrixB_list[i+1])
+                List_B[j].append(m)
+
+        B=Matrix(List_B)
+
         type=int(request.form.get("type"))
         k=request.form.get("k")
         l=request.form.get("l")
-        anser=matrix_2.calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l)
-        return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,k=k,l=l,anser_0=anser[0],anser_1=anser[1])
+        Anser=matrix_2.calculation(A,B,Ar,Ac,Br,Bc,type,k,l)
+        anser=[]
+        for i in range(Anser[2]):
+            A=str(Anser[0].row(i))
+            A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
+            anser.append(A)
+        return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,k=k,l=l,anser_0=anser,anser_1=Anser[1])
     else:
-        return render_template("matrix_2.html",k=2,l=2)
+        return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,k=2,l=2)

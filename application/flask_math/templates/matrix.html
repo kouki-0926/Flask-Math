@@ -11,6 +11,28 @@
     <textarea class="form-control" id="InputMatrix" name=matrix rows="6">{{matrix}}</textarea>
   </div>
 
+  <!-- r,cの入力 -->
+  <div class="form-row align-items-center">
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="Ar" value="{{Ar}}" placeholder="integer" class="form-control" aria-describedby="Ar">
+        <div class="input-group-append">
+          <span class="input-group-text" id="Ar">行</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="Ac" value="{{Ac}}" placeholder="integer" class="form-control" aria-describedby="Ac">
+        <div class="input-group-append">
+          <span class="input-group-text" id="Ac">列</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
   <!-- 演算の選択 -->
   <div align="center">
     <div class="form-check form-check-inline">
@@ -66,12 +88,12 @@
 <br><br><br>
 <div style="display:inline-flex">
   <div class="">
-  <h1>{{anser_3}}</h1>
+    <h1>{{anser_3}}</h1>
   </div>
   <div>
-  {% for anser in anser_0 %}
-  <h1>{{ anser }}</h1>
-  {% endfor %}
+    {% for anser in anser_0 %}
+    <h1>{{ anser }}</h1>
+    {% endfor %}
   </div>
 </div>
 

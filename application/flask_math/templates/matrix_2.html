@@ -5,15 +5,60 @@
 <br>
 
 <form action='{{url_for("view.matrix_2_view")}}' method="post" enctype="multipart/form-data">
-  <!-- 行列の入力 -->
+
+  <!-- Aの入力 -->
   <div class="form-group">
     <label for="InputMatrixA">行列Aを入力してください</label>
     <textarea class="form-control" id="InputMatrixA" name=matrixA rows="4">{{matrixA}}</textarea>
   </div>
+  <!-- r,cの入力 -->
+  <div class="form-row align-items-center">
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="Ar" id="formula" value="{{Ar}}" placeholder="integer" class="form-control" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">行</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="Ac" id="formula" value="{{Ac}}" placeholder="integer" class="form-control" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">列</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Bの入力 -->
   <div class="form-group">
     <label for="InputMatrixB">行列Bを入力してください</label>
     <textarea class="form-control" id="InputMatrixB" name=matrixB rows="4">{{matrixB}}</textarea>
   </div>
+  <!-- r,cの入力 -->
+  <div class="form-row align-items-center">
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="Br" id="formula" value="{{Br}}" placeholder="integer" class="form-control" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">行</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="Bc" id="formula" value="{{Bc}}" placeholder="integer" class="form-control" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">列</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
 
   <!-- k,lの入力 -->
   <div class="form-row align-items-center">
@@ -67,12 +112,12 @@
 <br><br><br>
 <div style="display:inline-flex">
   <div class="">
-  <h1>{{anser_1}}</h1>
+    <h1>{{anser_1}}</h1>
   </div>
   <div>
-  {% for anser in anser_0 %}
-  <h1>{{ anser }}</h1>
-  {% endfor %}
+    {% for anser in anser_0 %}
+    <h1>{{ anser }}</h1>
+    {% endfor %}
   </div>
 </div>
 
