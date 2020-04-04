@@ -15,6 +15,6 @@ def BMI(height,weight):
         degree="肥満度:"+str(degree)
         anser=[BMI,degree]
     except:
-        anser=["Error","Error"]
+        anser=["Error",""]
         flash("エラー：もう一度入力してください")
     return anser
