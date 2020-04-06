@@ -8,11 +8,11 @@ def integral(formula,upper_end,lower_end,type):
         g=integrate(formula)
         A=g.subs(x,upper_end)-g.subs(x,lower_end)
 
-        if type=="0":
+        if type=="definite_integral":
             anser="∫["+str(lower_end)+"→"+str(upper_end)+"]"+formula+" = "+str(A)
-        elif type=="1":
+        elif type=="indefinite_integral_1":
             anser="∫["+str(lower_end)+"→"+str(upper_end)+"]"+formula+" = "+str(A.evalf())
-        elif type=="2":
+        elif type=="indefinite_integral_2":
             g=str(g)
             anser="∫"+formula+" = "+g.replace("**","A").replace("*","").replace("A","^")+"+C"
         return anser

@@ -55,7 +55,7 @@ def derivative_view():
         anser=derivative.derivative(formula,type)
         return render_template("derivative.html",formula=formula,type=type,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2],anser_3=anser[3])
     else:
-        return render_template("derivative.html")
+        return render_template("derivative.html",type="x")
 
 
 @view.route("/equation",methods=["GET","POST"])
@@ -141,7 +141,7 @@ def integral_view():
         anser=integral.integral(formula,upper_end,lower_end,type)
         return render_template("integral.html",formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,anser=anser)
     else:
-        return render_template("integral.html",type=0)
+        return render_template("integral.html",type="definite_integral")
 
 
 @view.route("/lim",methods=["GET","POST"])
@@ -162,7 +162,7 @@ def matrix_view():
             matrixA=str(request.form.get("matrix"))
             Ar=int(request.form.get("Ar"))
             Ac=int(request.form.get("Ac"))
-            type=int(request.form.get("type"))
+            type=request.form.get("type")
 
             Anser=matrix.calculation(matrixA,Ar,Ac,type)
 
@@ -174,12 +174,12 @@ def matrix_view():
                     anser.append(A)
             elif Anser[4]==1:
                 anser=[Anser[0]]
-            return render_template("matrix.html",matrix=matrixA,Ar=Ar,Ac=Ac,anser_0=anser,anser_3=Anser[3])
+            return render_template("matrix.html",matrix=matrixA,Ar=Ar,Ac=Ac,type=type,anser_0=anser,anser_3=Anser[3])
         except:
             flash("エラー：もう一度入力してください")
-            return render_template("matrix.html",Ar=2,Ac=2)
+            return render_template("matrix.html",matrix=matrixA,type=type,Ar=2,Ac=2)
     else:
-        return render_template("matrix.html",Ar=2,Ac=2)
+        return render_template("matrix.html",Ar=2,Ac=2,type="A")
 
 
 @view.route("/matrix_2",methods=["GET","POST"])
@@ -192,7 +192,7 @@ def  matrix_2_view():
             Ac=int(request.form.get("Ac"))
             Br=int(request.form.get("Br"))
             Bc=int(request.form.get("Bc"))
-            type=int(request.form.get("type"))
+            type=request.form.get("type")
             k=int(request.form.get("k"))
             l=int(request.form.get("l"))
 
@@ -203,12 +203,12 @@ def  matrix_2_view():
                 A=str(Anser[0].row(i))
                 A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
                 anser.append(A)
-            return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,k=k,l=l,anser_0=anser,anser_1=Anser[1])
+            return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,anser_0=anser,anser_1=Anser[1])
         except:
             flash("エラー：もう一度入力してください")
-            return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,k=2,l=2)
+            return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=2,Ac=2,Br=2,Bc=2,type=type,k=2,l=2)
     else:
-        return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,k=2,l=2)
+        return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
 
 
 @view.route("/taylor",methods=["GET","POST"])

@@ -1,12 +1,12 @@
-# FLASK MATH  ver.1.5
+# FLASK MATH  ver.1.6
 
 ## 利用方法
 
-### 1.  下の[URL](https://github.com/kouki7910/Flask-Math/archive/v1.5.zip)からコードをダウンロード、展開する
-        https://github.com/kouki7910/Flask-Math/archive/v1.5.zip
+### 1.  下の[URL](https://github.com/kouki7910/Flask-Math/archive/v1.6.zip)からコードをダウンロード、展開する
+        https://github.com/kouki7910/Flask-Math/archive/v1.6.zip
 
 ### 2. コマンドプロンプトを開き、applicationフォルダに移動する
-        cd Downloads\Flask-Math-1.5\Flask-Math-1.5\application
+        cd Downloads\Flask-Math-1.6\Flask-Math-1.6\application
 
 ### 3. pipenvをインストールする
         pip install pipenv
