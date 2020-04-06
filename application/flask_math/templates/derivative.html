@@ -12,36 +12,85 @@
 
   <!-- 演算の選択 -->
   <div align="center">
+    {% if type=="x" %}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="x" checked="checked">
       <label class="form-check-label" for="inlineRadio0">f<sub>x</sub>　　</label>
     </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="x">
+      <label class="form-check-label" for="inlineRadio0">f<sub>x</sub>　　</label>
+    </div>
+    {% endif %}
+
+    {% if type=="y" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="y" checked="checked">
+      <label class="form-check-label" for="inlineRadio1">f<sub>y</sub>　　</label>
+    </div>
+    {% else %}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="y">
       <label class="form-check-label" for="inlineRadio1">f<sub>y</sub>　　</label>
     </div>
+    {% endif %}
+
+    {% if type=="xx"%}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="xx" checked="checked">
+      <label class="form-check-label" for="inlineRadio2">f<sub>xx</sub>　　</label>
+    </div>
+    {% else %}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="xx">
       <label class="form-check-label" for="inlineRadio2">f<sub>xx</sub>　　</label>
     </div>
+    {% endif %}
+
+    {% if type=="xy" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="xy" checked="checked">
+      <label class="form-check-label" for="inlineRadio3">f<sub>xy</sub>　　</label>
+    </div>
+    {% else %}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="xy">
       <label class="form-check-label" for="inlineRadio3">f<sub>xy</sub>　　</label>
     </div>
+    {% endif %}
+
+    {% if type=="yx" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yx" checked="checked">
+      <label class="form-check-label" for="inlineRadio4">f<sub>yx</sub>　　</label>
+    </div>
+    {% else %}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yx">
       <label class="form-check-label" for="inlineRadio4">f<sub>yx</sub>　　</label>
     </div>
+    {% endif %}
+
+    {% if type=="yy" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yy" checked="checked">
+      <label class="form-check-label" for="inlineRadio4">f<sub>yy</sub>　　</label>
+    </div>
+    {% else %}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yy">
       <label class="form-check-label" for="inlineRadio4">f<sub>yy</sub>　　</label>
     </div>
+    {% endif %}
   </div>
 
   <br>
+
   <button type="submit" class="btn btn-primary btn-block">計算</button>
-  <br><br><br>
 </form>
+
+<br><br><br>
 
 <h2>{{anser_0}}<br><br>{{anser_1}}<sub>{{anser_2}}</sub>{{anser_3}}</h2>
 
