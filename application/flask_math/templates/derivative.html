@@ -5,11 +5,11 @@
 <br>
 
 <form action='{{url_for("view.derivative_view")}}' method="post" enctype="multipart/form-data">
+  <!-- 関数の入力 -->
   <div class="form-group">
     <label for="InputFormula">被微分関数 f を入力してください</label>
     <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="function">
   </div>
-
   <!-- 演算の選択 -->
   <div align="center">
     {% if type=="x" %}
@@ -74,19 +74,18 @@
 
     {% if type=="yy" %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yy" checked="checked">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="yy" checked="checked">
       <label class="form-check-label" for="inlineRadio4">f<sub>yy</sub>　　</label>
     </div>
     {% else %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yy">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="yy">
       <label class="form-check-label" for="inlineRadio4">f<sub>yy</sub>　　</label>
     </div>
     {% endif %}
   </div>
 
   <br>
-
   <button type="submit" class="btn btn-primary btn-block">計算</button>
 </form>
 

@@ -1,5 +1,4 @@
 from flask import request, redirect, url_for, render_template, flash, session
-from flask import current_app as app
 from flask_math.calculation import *
 from flask import Blueprint
 from sympy import *
@@ -88,25 +87,25 @@ def equations_view():
 @view.route("/equations_2",methods=["GET","POST"])
 def equations_2_view():
     if request.method=="POST":
-        number=request.form.get("number")
-        if number=="1":
+        number=int(request.form.get("number"))
+        if number==1:
             formula_1=request.form.get("formula_1")
             Formula=[formula_1]
             anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=int(number))
-        elif number=="2":
+            return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=number)
+        elif number==2:
             formula_1=request.form.get("formula_1")
             formula_2=request.form.get("formula_2")
             Formula=[formula_1,formula_2]
             anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=int(number))
-        elif number=="3":
+            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=number)
+        elif number==3:
             formula_1=request.form.get("formula_1")
             formula_2=request.form.get("formula_2")
             formula_3=request.form.get("formula_3")
             Formula=[formula_1,formula_2,formula_3]
             anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=int(number))
+            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
     else:
         return render_template("equations_2.html")
 
