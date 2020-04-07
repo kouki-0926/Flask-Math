@@ -10,6 +10,11 @@ def index_view():
     return render_template("index.html")
 
 
+@view.route("/instructions")
+def instructions_view():
+    return render_template("instructions.html")
+
+
 @view.route("/base_conversion",methods=["GET","POST"])
 def base_conversion_view():
     if request.method=="POST":
@@ -208,6 +213,16 @@ def  matrix_2_view():
             return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=2,Ac=2,Br=2,Bc=2,type=type,k=2,l=2)
     else:
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
+
+
+@view.route("/prime_factorization",methods=["GET","POST"])
+def  prime_factorization_view():
+    if request.method=="POST":
+        number=request.form.get("number")
+        anser=prime_factorization.prime_factorization(number)
+        return render_template("prime_factorization.html",number=number,anser=anser)
+    else:
+        return render_template("prime_factorization.html")
 
 
 @view.route("/taylor",methods=["GET","POST"])
