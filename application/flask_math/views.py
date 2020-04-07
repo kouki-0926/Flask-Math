@@ -115,6 +115,16 @@ def equations_2_view():
         return render_template("equations_2.html")
 
 
+@view.route("/Expand",methods=["GET","POST"])
+def Expand_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        anser=Expand.Expand(formula)
+        return render_template("Expand.html",formula=formula,anser=anser)
+    else:
+        return render_template("Expand.html")
+
+
 @view.route("/Factorial",methods=["GET","POST"])
 def Factorial_view():
     if request.method=="POST":

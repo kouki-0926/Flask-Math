@@ -1,6 +1,7 @@
 from . import BMI
 from . import lim
 from . import taylor
+from . import Expand
 from . import matrix
 from . import matrix_2
 from . import integral
