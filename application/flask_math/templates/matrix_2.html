@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>行列の演算</h2>
+<h2><a href="{{url_for('view.matrix_2_view')}}" class="heading">行列の演算</a></h2>
 <br>
 
 <form action='{{url_for("view.matrix_2_view")}}' method="post" enctype="multipart/form-data">

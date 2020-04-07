@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>階乗</h2>
+<h2><a href="{{url_for('view.Factorial_view')}}" class="heading">階乗</a></h2>
 <br>
 
 <form  action='{{url_for("view.Factorial_view")}}' method="post" enctype="multipart/form-data">

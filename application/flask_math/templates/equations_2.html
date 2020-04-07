@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>連立方程式</h2>
+<h2><a href="{{url_for('view.equations_view')}}" class="heading">連立方程式</a></h2>
 <br>
 
 <form action='{{url_for("view.equations_2_view")}}' method="post" enctype="multipart/form-data">

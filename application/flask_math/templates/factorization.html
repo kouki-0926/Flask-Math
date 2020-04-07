@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>因数分解</h2>
+<h2><a href="{{url_for('view.factorization_view')}}" class="heading">因数分解</a></h2>
 <br>
 
 <form  action='{{url_for("view.factorization_view")}}' method="post" enctype="multipart/form-data">

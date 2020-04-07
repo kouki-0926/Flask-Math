@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>進数変換</h2>
+<h2><a href='{{url_for("view.base_conversion_view")}}' class="heading">進数変換</a></h2>
 <br>
 
 <form action='{{url_for("view.base_conversion_view")}}' method="post" enctype="multipart/form-data">
@@ -21,7 +21,7 @@
     <label for="InputHex">16進数</label>
     <input type="text" name="hex" class="form-control" id="InputHex" value="{{hex}}" placeholder="hex">
   </div>
-  
+
   <br>
   <button type="submit" class="btn btn-primary btn-block">計算</button>
 </form>
