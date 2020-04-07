@@ -10,7 +10,7 @@ def lim(formula,a):
 
         a=str(a)
         formula=str(formula)
-        anser=["lim  "+formula+ " = "+A,"x→"+a]
+        anser=["lim  "+formula+" = "+A,"x→"+a]
     except:
         anser=["Error",""]
         flash("エラー:もう一度関数を入力してください")

@@ -3,6 +3,7 @@
 {% block body %}
 <h2>進数変換</h2>
 <br>
+
 <form action='{{url_for("view.base_conversion_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="InputBin">2進数</label>
@@ -20,10 +21,13 @@
     <label for="InputHex">16進数</label>
     <input type="text" name="hex" class="form-control" id="InputHex" value="{{hex}}" placeholder="hex">
   </div>
+  
   <br>
   <button type="submit" class="btn btn-primary btn-block">計算</button>
 </form>
+
 <br>
+
 <form action='{{url_for("view.base_conversion_view")}}' method="get" enctype="multipart/form-data">
   <button type="submit" class="btn btn-danger btn-block">全削除</button>
 </form>

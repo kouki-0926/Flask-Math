@@ -4,31 +4,31 @@ from flask import flash
 x = Symbol('x')
 y = Symbol('y')
 
-def derivative(formula,a):
+def derivative(formula,type):
     try:
-        if a=="x":
+        if type=="x":
             A = diff(formula,x)
-        elif a=="y":
+        elif type=="y":
             A = diff(formula,y)
-        elif a=="xx":
+        elif type=="xx":
             f = diff(formula,x)
             A = diff(f,x)
-        elif a=="xy":
+        elif type=="xy":
             f = diff(formula,x)
             A = diff(f,y)
-        elif a=="yx":
+        elif type=="yx":
             f = diff(formula,y)
             A = diff(f,x)
-        elif a=="yy":
+        elif type=="yy":
             f = diff(formula,y)
             A = diff(f,y)
 
         formula=str(formula)
-        formula="f = "+formula.replace("**","A").replace("*","").replace("A","^")
         A=str(A)
+        formula="f = "+formula.replace("**","A").replace("*","").replace("A","^")
         A=" = "+A.replace("**","A").replace("*","").replace("A","^")
 
-        anser=[formula,"f",a,A]
+        anser=[formula,"f",type,A]
     except:
         anser=["Error","","",""]
         flash("エラー：もう一度入力してください")

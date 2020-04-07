@@ -15,8 +15,7 @@ def integral(formula,upper_end,lower_end,type):
         elif type=="indefinite_integral_2":
             g=str(g)
             anser="∫"+formula+" = "+g.replace("**","A").replace("*","").replace("A","^")+"+C"
-        return anser
     except:
         anser="Error"
         flash("エラー:もう一度入力してください")
-        return anser
+    return anser
