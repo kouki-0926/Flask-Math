@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>極限</h2>
+<h2><a href="{{url_for('view.lim_view')}}" class="heading">極限</a></h2>
 <br>
 
 <form  action='{{url_for("view.lim_view")}}' method="post" enctype="multipart/form-data">

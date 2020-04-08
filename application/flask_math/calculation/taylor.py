@@ -5,8 +5,7 @@ x = Symbol('x')
 
 def taylor(formula,dimension,center):
     try:
-        f=integrate(formula)
-        f=diff(f)
+        f=sympify(formula)
         center=float(center)
 
         A=f.subs(x,center)

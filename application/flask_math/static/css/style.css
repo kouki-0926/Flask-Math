@@ -7,3 +7,17 @@
 * {
   font-family: "Mplus 1p";
 }
+
+.heading:link {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.heading:hover {
+  color: rgb(85, 85, 85);
+  text-decoration: none;
+}
+
+.heading2:link {
+  text-decoration: none;
+}

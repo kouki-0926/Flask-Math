@@ -11,17 +11,13 @@ def derivative(formula,type):
         elif type=="y":
             A = diff(formula,y)
         elif type=="xx":
-            f = diff(formula,x)
-            A = diff(f,x)
+            A = diff(formula,x,x)
         elif type=="xy":
-            f = diff(formula,x)
-            A = diff(f,y)
+            A = diff(formula,x,y)
         elif type=="yx":
-            f = diff(formula,y)
-            A = diff(f,x)
+            A = diff(formula,y,x)
         elif type=="yy":
-            f = diff(formula,y)
-            A = diff(f,y)
+            A = diff(formula,y,y)
 
         formula=str(formula)
         A=str(A)

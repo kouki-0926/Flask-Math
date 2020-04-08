@@ -10,6 +10,11 @@ def index_view():
     return render_template("index.html")
 
 
+@view.route("/instructions")
+def instructions_view():
+    return render_template("instructions.html")
+
+
 @view.route("/base_conversion",methods=["GET","POST"])
 def base_conversion_view():
     if request.method=="POST":
@@ -69,45 +74,55 @@ def equation_view():
 
 @view.route("/equations",methods=["GET","POST"])
 def equations_view():
-    if request.method=="POST":
-        try:
+    return render_template("equations.html")
+
+
+@view.route("/equations2",methods=["GET","POST"])
+def equations_2_view():
+    try:
+        if request.method=="POST":
             number=int(request.form.get("number"))
+            if number==1:
+                formula_1=request.form.get("formula_1")
+                Formula=[formula_1]
+                anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=number)
+            elif number==2:
+                formula_1=request.form.get("formula_1")
+                formula_2=request.form.get("formula_2")
+                Formula=[formula_1,formula_2]
+                anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=number)
+            elif number==3:
+                formula_1=request.form.get("formula_1")
+                formula_2=request.form.get("formula_2")
+                formula_3=request.form.get("formula_3")
+                Formula=[formula_1,formula_2,formula_3]
+                anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
+            else:
+                flash("エラー")
+                return redirect(url_for("view.equations_view"))
+        elif request.method=="GET":
+            number=int(request.args.get("number"))
             if number>=1 and number<=3:
                 return render_template("equations_2.html",number=number)
             else:
                 flash("エラー:3以下の自然数を入力してください")
-                return render_template("equations.html")
-        except:
-            flash("エラー：もう一度入力してください")
-            return render_template("equations.html")
-    else:
-        return render_template("equations.html")
+                return redirect(url_for("view.equations_view"))
+    except:
+        flash("エラー:もう一度入力してください")
+        return redirect(url_for("view.equations_view"))
 
 
-@view.route("/equations_2",methods=["GET","POST"])
-def equations_2_view():
+@view.route("/Expand",methods=["GET","POST"])
+def Expand_view():
     if request.method=="POST":
-        number=int(request.form.get("number"))
-        if number==1:
-            formula_1=request.form.get("formula_1")
-            Formula=[formula_1]
-            anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=number)
-        elif number==2:
-            formula_1=request.form.get("formula_1")
-            formula_2=request.form.get("formula_2")
-            Formula=[formula_1,formula_2]
-            anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=number)
-        elif number==3:
-            formula_1=request.form.get("formula_1")
-            formula_2=request.form.get("formula_2")
-            formula_3=request.form.get("formula_3")
-            Formula=[formula_1,formula_2,formula_3]
-            anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
+        formula=request.form.get("formula")
+        anser=Expand.Expand(formula)
+        return render_template("Expand.html",formula=formula,anser=anser)
     else:
-        return render_template("equations_2.html")
+        return render_template("Expand.html")
 
 
 @view.route("/Factorial",methods=["GET","POST"])
@@ -208,6 +223,16 @@ def  matrix_2_view():
             return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=2,Ac=2,Br=2,Bc=2,type=type,k=2,l=2)
     else:
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
+
+
+@view.route("/prime_factorization",methods=["GET","POST"])
+def  prime_factorization_view():
+    if request.method=="POST":
+        number=request.form.get("number")
+        anser=prime_factorization.prime_factorization(number)
+        return render_template("prime_factorization.html",number=number,anser=anser)
+    else:
+        return render_template("prime_factorization.html")
 
 
 @view.route("/taylor",methods=["GET","POST"])

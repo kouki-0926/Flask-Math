@@ -1,19 +1,22 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<br><br>
+<br>
 <div class="list-group">
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.integral_view')}}">積分</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.derivative_view')}}">微分</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.lim_view')}}">極限</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.Factorial_view')}}">階乗</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.matrix_view')}}">行列</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.matrix_2_view')}}">行列の演算</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.equation_view')}}">方程式</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.equations_view')}}">連立方程式</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.base_conversion_view')}}">進数変換</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.factorization_view')}}">因数分解</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.taylor_view')}}">テイラー展開</a>
-  <a class="list-group-item list-group-item-action list-group-item-light" href="{{url_for('view.BMI_view')}}">BMI</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.integral_view')}}">積分</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.derivative_view')}}">微分</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.lim_view')}}">極限</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.Factorial_view')}}">階乗</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.matrix_view')}}">行列</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.matrix_2_view')}}">行列の演算</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.equation_view')}}">方程式</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.equations_view')}}">連立方程式</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.base_conversion_view')}}">進数変換</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.Expand_view')}}">展開</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.factorization_view')}}">因数分解</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.prime_factorization_view')}}">素因数分解</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.taylor_view')}}">テイラー展開</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.BMI_view')}}">BMI</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.instructions_view')}}">入力上の注意</a>
 </div>
 {% endblock %}
