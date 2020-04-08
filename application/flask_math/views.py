@@ -74,45 +74,45 @@ def equation_view():
 
 @view.route("/equations",methods=["GET","POST"])
 def equations_view():
-    if request.method=="POST":
-        try:
+    return render_template("equations.html")
+
+
+@view.route("/equations2",methods=["GET","POST"])
+def equations_2_view():
+    try:
+        if request.method=="POST":
             number=int(request.form.get("number"))
+            if number==1:
+                formula_1=request.form.get("formula_1")
+                Formula=[formula_1]
+                anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=number)
+            elif number==2:
+                formula_1=request.form.get("formula_1")
+                formula_2=request.form.get("formula_2")
+                Formula=[formula_1,formula_2]
+                anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=number)
+            elif number==3:
+                formula_1=request.form.get("formula_1")
+                formula_2=request.form.get("formula_2")
+                formula_3=request.form.get("formula_3")
+                Formula=[formula_1,formula_2,formula_3]
+                anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
+            else:
+                flash("エラー")
+                return redirect(url_for("view.equations_view"))
+        elif request.method=="GET":
+            number=int(request.args.get("number"))
             if number>=1 and number<=3:
                 return render_template("equations_2.html",number=number)
             else:
                 flash("エラー:3以下の自然数を入力してください")
-                return render_template("equations.html")
-        except:
-            flash("エラー：もう一度入力してください")
-            return render_template("equations.html")
-    else:
-        return render_template("equations.html")
-
-
-@view.route("/equations_2",methods=["GET","POST"])
-def equations_2_view():
-    if request.method=="POST":
-        number=int(request.form.get("number"))
-        if number==1:
-            formula_1=request.form.get("formula_1")
-            Formula=[formula_1]
-            anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=number)
-        elif number==2:
-            formula_1=request.form.get("formula_1")
-            formula_2=request.form.get("formula_2")
-            Formula=[formula_1,formula_2]
-            anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=number)
-        elif number==3:
-            formula_1=request.form.get("formula_1")
-            formula_2=request.form.get("formula_2")
-            formula_3=request.form.get("formula_3")
-            Formula=[formula_1,formula_2,formula_3]
-            anser=equations.equations(Formula)
-            return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
-    else:
-        return render_template("equations_2.html")
+                return redirect(url_for("view.equations_view"))
+    except:
+        flash("エラー:もう一度入力してください")
+        return redirect(url_for("view.equations_view"))
 
 
 @view.route("/Expand",methods=["GET","POST"])
