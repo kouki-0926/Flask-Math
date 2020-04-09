@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for, render_template, flash, session
+from flask import request, redirect, url_for, render_template, flash
 from flask_math.calculation import *
 from flask import Blueprint
 from sympy import *
@@ -57,7 +57,8 @@ def derivative_view():
         formula=request.form.get("formula")
         type=request.form.get("type")
         anser=derivative.derivative(formula,type)
-        return render_template("derivative.html",formula=formula,type=type,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2],anser_3=anser[3])
+        return render_template("derivative.html",
+        formula=formula,type=type,anser_0=anser[0],anser_1=anser[1],anser_2=anser[2],anser_3=anser[3])
     else:
         return render_template("derivative.html",type="x")
 
@@ -77,10 +78,18 @@ def equations_view():
     return render_template("equations.html")
 
 
-@view.route("/equations2",methods=["GET","POST"])
+@view.route("/equations_2",methods=["GET","POST"])
 def equations_2_view():
     try:
-        if request.method=="POST":
+        if request.method=="GET":
+            number=int(request.args.get("number"))
+            if number>=1 and number<=3:
+                return render_template("equations_2.html",number=number)
+            else:
+                flash("エラー:3以下の自然数を入力してください")
+                return redirect(url_for("view.equations_view"))
+
+        elif request.method=="POST":
             number=int(request.form.get("number"))
             if number==1:
                 formula_1=request.form.get("formula_1")
@@ -99,16 +108,10 @@ def equations_2_view():
                 formula_3=request.form.get("formula_3")
                 Formula=[formula_1,formula_2,formula_3]
                 anser=equations.equations(Formula)
-                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
+                return render_template("equations_2.html",
+                formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
             else:
                 flash("エラー")
-                return redirect(url_for("view.equations_view"))
-        elif request.method=="GET":
-            number=int(request.args.get("number"))
-            if number>=1 and number<=3:
-                return render_template("equations_2.html",number=number)
-            else:
-                flash("エラー:3以下の自然数を入力してください")
                 return redirect(url_for("view.equations_view"))
     except:
         flash("エラー:もう一度入力してください")
@@ -152,8 +155,10 @@ def integral_view():
         upper_end=request.form.get("upper_end")
         lower_end=request.form.get("lower_end")
         type=request.form.get("type")
-        anser=integral.integral(formula,upper_end,lower_end,type)
-        return render_template("integral.html",formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,anser=anser)
+        Anser=integral.integral(formula,upper_end,lower_end,type)
+        return render_template("integral.html",
+        formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,
+        anser=Anser[0],anser_upper_end=Anser[1],anser_lower_end=Anser[2],integ=Anser[3])
     else:
         return render_template("integral.html",type="definite_integral")
 
@@ -164,7 +169,7 @@ def lim_view():
         formula=request.form.get("formula")
         a=request.form.get("a")
         anser=lim.lim(formula,a)
-        return render_template("lim.html",formula=formula,a=a,anser_1=anser[0],anser_2=anser[1])
+        return render_template("lim.html",formula=formula,a=a,anser_1=anser[0],anser_2=anser[1],lim=anser[2])
     else:
         return render_template("lim.html",a=0)
 
@@ -217,7 +222,9 @@ def  matrix_2_view():
                 A=str(Anser[0].row(i))
                 A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
                 anser.append(A)
-            return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,anser_0=anser,anser_1=Anser[1])
+            return render_template("matrix_2.html",
+            matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,
+            anser_0=anser,anser_1=Anser[1])
         except:
             flash("エラー：もう一度入力してください")
             return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=2,Ac=2,Br=2,Bc=2,type=type,k=2,l=2)

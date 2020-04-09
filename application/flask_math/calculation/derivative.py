@@ -21,7 +21,7 @@ def derivative(formula,type):
 
         formula=str(formula)
         A=str(A)
-        formula="f = "+formula.replace("**","A").replace("*","").replace("A","^")
+        formula=" = "+formula.replace("**","A").replace("*","").replace("A","^")
         A=" = "+A.replace("**","A").replace("*","").replace("A","^")
 
         anser=[formula,"f",type,A]

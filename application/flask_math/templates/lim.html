@@ -4,7 +4,7 @@
 <h2><a href="{{url_for('view.lim_view')}}" class="heading">極限</a></h2>
 <br>
 
-<form  action='{{url_for("view.lim_view")}}' method="post" enctype="multipart/form-data">
+<form action='{{url_for("view.lim_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="InputFormula">関数を入力してください</label>
     <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="function">
@@ -19,7 +19,13 @@
 </form>
 
 <br><br><br>
-<h1>{{anser_1}}</h1>
-<h5>{{anser_2}}</h5>
-
+<h1>
+  <math>
+    <munder>
+      <mo>{{lim}}</mo>
+      <mn>{{anser_2}}</mn>
+    </munder>
+    <mo>{{anser_1}}</mo>
+  </math>
+</h1>
 {% endblock %}

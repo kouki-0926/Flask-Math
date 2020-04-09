@@ -62,6 +62,15 @@
 </form>
 
 <br><br><br>
-<h1>{{anser}}</h1>
+<h1>
+  <math>
+    <msubsup>
+      <mo>{{integ}}</mo>
+      <mn>{{anser_lower_end}}</mn>
+      <mn>{{anser_upper_end}}</mn>
+    </msubsup>
+    <mn>{{anser}}</mn>
+  </math>
+</h1>
 
 {% endblock %}
