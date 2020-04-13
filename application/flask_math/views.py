@@ -1,6 +1,5 @@
-from flask import request, redirect, url_for, render_template, flash
+from flask import request, redirect, url_for, render_template, flash, Blueprint
 from flask_math.calculation import *
-from flask import Blueprint
 from sympy import *
 
 view=Blueprint("view",__name__)
@@ -34,7 +33,7 @@ def base_conversion_view():
             anser=base_conversion.base_conversion(base,before_conversion)
         except:
             anser=["Error","Error","Error","Error"]
-            flash("エラー：もう一度入力してください")
+            flash("エラー：もう一度入力してくださいｔ")
         return render_template("base_conversion.html",bin=anser[0],oct=anser[1],dec=anser[2],hex=anser[3])
     else:
         return render_template("base_conversion.html")
@@ -94,22 +93,22 @@ def equations_2_view():
             if number==1:
                 formula_1=request.form.get("formula_1")
                 Formula=[formula_1]
-                anser=equations.equations(Formula)
-                return render_template("equations_2.html",formula_1=formula_1,anser=anser,number=number)
+                Anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,Anser=Anser,number=number)
             elif number==2:
                 formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
                 Formula=[formula_1,formula_2]
-                anser=equations.equations(Formula)
-                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,anser=anser,number=number)
+                Anser=equations.equations(Formula)
+                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,Anser=Anser,number=number)
             elif number==3:
                 formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
                 formula_3=request.form.get("formula_3")
                 Formula=[formula_1,formula_2,formula_3]
-                anser=equations.equations(Formula)
+                Anser=equations.equations(Formula)
                 return render_template("equations_2.html",
-                formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,anser=anser,number=number)
+                formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,Anser=Anser,number=number)
             else:
                 flash("エラー")
                 return redirect(url_for("view.equations_view"))
@@ -177,26 +176,22 @@ def lim_view():
 @view.route("/matrix",methods=["GET","POST"])
 def matrix_view():
     if request.method=="POST":
-        try:
-            matrixA=str(request.form.get("matrix"))
-            Ar=int(request.form.get("Ar"))
-            Ac=int(request.form.get("Ac"))
-            type=request.form.get("type")
+        matrixA=request.form.get("matrix")
+        Ar=request.form.get("Ar")
+        Ac=request.form.get("Ac")
+        type=request.form.get("type")
 
-            Anser=matrix.calculation(matrixA,Ar,Ac,type)
+        Anser=matrix.calculation(matrixA,Ar,Ac,type)
 
-            if Anser[4]==0:
-                anser=[]
-                for i in range(Anser[1]):
-                    A=str(Anser[0].row(i))
-                    A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
-                    anser.append(A)
-            elif Anser[4]==1:
-                anser=[Anser[0]]
-            return render_template("matrix.html",matrix=matrixA,Ar=Ar,Ac=Ac,type=type,anser_0=anser,anser_3=Anser[3])
-        except:
-            flash("エラー：もう一度入力してください")
-            return render_template("matrix.html",matrix=matrixA,type=type,Ar=2,Ac=2)
+        if Anser[4]==0:
+            anser=[]
+            for i in range(Anser[1]):
+                A=str(Anser[0].row(i))
+                A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
+                anser.append(A)
+        elif Anser[4]==1:
+            anser=[Anser[0]]
+        return render_template("matrix.html",matrix=matrixA,Ar=Ar,Ac=Ac,type=type,anser_0=anser,anser_3=Anser[3])
     else:
         return render_template("matrix.html",Ar=2,Ac=2,type="A")
 
@@ -204,30 +199,29 @@ def matrix_view():
 @view.route("/matrix_2",methods=["GET","POST"])
 def  matrix_2_view():
     if request.method=="POST":
-        try:
-            matrixA=str(request.form.get("matrixA"))
-            matrixB=str(request.form.get("matrixB"))
-            Ar=int(request.form.get("Ar"))
-            Ac=int(request.form.get("Ac"))
-            Br=int(request.form.get("Br"))
-            Bc=int(request.form.get("Bc"))
-            type=request.form.get("type")
-            k=int(request.form.get("k"))
-            l=int(request.form.get("l"))
+        matrixA=request.form.get("matrixA")
+        matrixB=request.form.get("matrixB")
+        Ar=request.form.get("Ar")
+        Ac=request.form.get("Ac")
+        Br=request.form.get("Br")
+        Bc=request.form.get("Bc")
+        type=request.form.get("type")
+        k=request.form.get("k")
+        l=request.form.get("l")
 
-            Anser=matrix_2.calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l)
+        Anser=matrix_2.calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l)
 
-            anser=[]
+        anser=[]
+        if Anser[0]=="Error":
+            anser=[Anser[0]]
+        else:
             for i in range(Anser[2]):
                 A=str(Anser[0].row(i))
                 A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
                 anser.append(A)
-            return render_template("matrix_2.html",
-            matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,
-            anser_0=anser,anser_1=Anser[1])
-        except:
-            flash("エラー：もう一度入力してください")
-            return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=2,Ac=2,Br=2,Bc=2,type=type,k=2,l=2)
+        return render_template("matrix_2.html",
+        matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,
+        anser_0=anser,anser_1=Anser[1])
     else:
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
 

@@ -1,19 +1,11 @@
 from sympy import *
 from flask import flash
+from flask_math.calculation.generate.MATRIX import MATRIX
 
 def calculation(matrixA,Ar,Ac,type):
     try:
-        matrixA_list=list(matrixA)
-        List=[]
-        for j in range(Ar):
-            List.append([])
-            for i in range(j*(3*Ac+1),(j+1)*(3*Ac+1)-3,3):
-                if matrixA_list[i]==" ":
-                    m=int(matrixA_list[i+1])
-                else:
-                    m=-int(matrixA_list[i+1])
-                List[j].append(m)
-        A=Matrix(List)
+        Ar,Ac=[int(Ar),int(Ac)]
+        A=MATRIX(matrixA,Ar,Ac)
 
         if type=="A":
             anser=A

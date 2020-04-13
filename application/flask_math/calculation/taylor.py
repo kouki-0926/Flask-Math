@@ -1,5 +1,6 @@
 from sympy import *
 from flask import flash
+from flask_math.calculation.generate.STR import STR
 
 x = Symbol('x')
 
@@ -15,12 +16,7 @@ def taylor(formula,dimension,center):
 
             A=D*(x-center)**number+A
 
-        A=str(A)
-        formula=str(formula)
-        A=A.replace("**","B").replace("*","").replace("B","^")
-        formula=formula.replace("**","B").replace("*","").replace("B","^")
-
-        anser=formula+"≒"+A
+        anser=STR(formula)+"≒"+STR(A)
     except:
         anser="Error"
         flash("エラー：もう一度入力してください")

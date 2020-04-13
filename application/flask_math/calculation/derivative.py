@@ -1,5 +1,6 @@
 from sympy import *
 from flask import flash
+from flask_math.calculation.generate.STR import STR
 
 x = Symbol('x')
 y = Symbol('y')
@@ -19,11 +20,8 @@ def derivative(formula,type):
         elif type=="yy":
             A = diff(formula,y,y)
 
-        formula=str(formula)
-        A=str(A)
-        formula=" = "+formula.replace("**","A").replace("*","").replace("A","^")
-        A=" = "+A.replace("**","A").replace("*","").replace("A","^")
-
+        formula=" = "+STR(formula)
+        A=" = "+STR(A)
         anser=[formula,"f",type,A]
     except:
         anser=["Error","","",""]
