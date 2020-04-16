@@ -13,7 +13,6 @@ def taylor(formula,dimension,center):
         for number in range(1,int(dimension)+1,1):
             f=diff(f)
             D=f.subs(x,center)/factorial(number)
-
             A=D*(x-center)**number+A
 
         anser=STR(formula)+"≒"+STR(A)
