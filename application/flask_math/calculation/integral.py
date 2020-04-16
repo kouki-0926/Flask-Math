@@ -1,5 +1,6 @@
 from sympy import *
 from flask import flash
+from flask_math.calculation.generate.STR import STR
 
 x = Symbol('x')
 
@@ -9,13 +10,16 @@ def integral(formula,upper_end,lower_end,type):
         A=g.subs(x,upper_end)-g.subs(x,lower_end)
 
         if type=="definite_integral":
-            anser="∫["+str(lower_end)+"→"+str(upper_end)+"]"+formula+" = "+str(A)
+            anser=STR(formula)+"dx = "+str(A)
         elif type=="indefinite_integral_1":
-            anser="∫["+str(lower_end)+"→"+str(upper_end)+"]"+formula+" = "+str(A.evalf())
+            anser=STR(formula)+"dx = "+str(A.evalf())
         elif type=="indefinite_integral_2":
-            g=str(g)
-            anser="∫"+formula+" = "+g.replace("**","A").replace("*","").replace("A","^")+"+C"
+            anser=STR(formula)+"dx = "+STR(g)+"+c"
+            upper_end=""
+            lower_end=""
+
+        Anser=[anser,upper_end,lower_end,"∫"]
     except:
-        anser="Error"
+        Anser=["Error","","",""]
         flash("エラー:もう一度入力してください")
-    return anser
+    return Anser

@@ -21,7 +21,7 @@ def base_conversion(base,before_conversion):
             hex = before_conversion
             bin = format(int(hex,16),"b")
             oct = format(int(hex,16),"o")
-            dec = int(oct,8)
+            dec = int(hex,16)
         anser=[bin,oct,dec,hex]
     except:
         anser=["Error","Error","Error","Error"]

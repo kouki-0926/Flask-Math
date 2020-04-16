@@ -8,7 +8,7 @@
   <div class="form-group">
     <label for="InputFormula">方程式を入力してください</label><br>
     <div class="input-group">
-      <input type="text" name="formula" value="{{formula}}" placeholder="equation" class="form-control"  aria-describedby="basic-addon2">
+      <input type="text" name="formula" value="{{formula}}" placeholder="equation" class="form-control" aria-describedby="basic-addon2">
       <div class="input-group-append">
         <span class="input-group-text" id="basic-addon2">=0</span>
       </div>
@@ -21,7 +21,11 @@
 
 <br><br><br>
 {% for anser in Anser %}
-<h2>{{ anser }}</h2>
+<h2>
+  <math>
+    <mn>{{anser}}</mn>
+  </math>
+</h2>
 {% endfor %}
 
 {% endblock %}

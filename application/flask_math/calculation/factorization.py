@@ -1,16 +1,11 @@
 from sympy import *
 from flask import flash
+from flask_math.calculation.generate.STR import STR
 
 def factorization(formula):
     try:
         A=factor(formula)
-
-        A=str(A)
-        formula=str(formula)
-        A=A.replace("**","C").replace("*","").replace("C","^")
-        formula=formula.replace("**","C").replace("*","").replace("C","^")
-
-        anser=formula+" = "+A
+        anser=STR(formula)+" = "+STR(A)
     except:
         anser="Error"
         flash("エラー：もう一度入力してください")
