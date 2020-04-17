@@ -226,6 +226,16 @@ def  matrix_2_view():
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
 
 
+@view.route("/newton_method",methods=["GET","POST"])
+def  newton_method_view():
+    if request.method=="POST":
+        number=request.form.get("number")
+        Anser=newton_method.newton_method(number)
+        return render_template("newton_method.html",number=number,anser_0=Anser[0],anser_1=Anser[1])
+    else:
+        return render_template("newton_method.html",anser_0="initial")
+
+
 @view.route("/prime_factorization",methods=["GET","POST"])
 def  prime_factorization_view():
     if request.method=="POST":
