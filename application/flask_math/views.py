@@ -117,6 +117,17 @@ def equations_2_view():
         return redirect(url_for("view.equations_view"))
 
 
+@view.route("/Euclidean_Algorithm",methods=["GET","POST"])
+def Euclidean_Algorithm_view():
+    if request.method=="POST":
+        number_x=request.form.get("number_x")
+        number_y=request.form.get("number_y")
+        anser=Euclidean_Algorithm.Euclidean_Algorithm(number_x,number_y)
+        return render_template("Euclidean_Algorithm.html",number_x=number_x,number_y=number_y,anser=anser)
+    else:
+        return render_template("Euclidean_Algorithm.html")
+
+
 @view.route("/Expand",methods=["GET","POST"])
 def Expand_view():
     if request.method=="POST":
@@ -159,7 +170,7 @@ def integral_view():
         formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,
         anser=Anser[0],anser_upper_end=Anser[1],anser_lower_end=Anser[2],integ=Anser[3])
     else:
-        return render_template("integral.html",type="definite_integral")
+        return render_template("integral.html",type="definite_integral_1")
 
 
 @view.route("/lim",methods=["GET","POST"])

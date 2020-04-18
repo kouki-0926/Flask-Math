@@ -20,38 +20,38 @@
   </div>
   <!-- 演算の選択 -->
   <div align="center">
-    {%  if type=="definite_integral" %}
+    {%  if type=="definite_integral_1" %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="definite_integral" checked="checked">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="definite_integral_1" checked="checked">
       <label class="form-check-label" for="inlineRadio0">定積分　　</label>
     </div>
     {% else %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="definite_integral">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="definite_integral_1">
       <label class="form-check-label" for="inlineRadio0">定積分　　</label>
     </div>
     {% endif %}
 
-    {% if type=="indefinite_integral_1" %}
+    {% if type=="definite_integral_2" %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="indefinite_integral_1" checked="checked">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="definite_integral_2" checked="checked">
       <label class="form-check-label" for="inlineRadio1">定積分(浮動小数点数)　　</label>
     </div>
     {% else %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="indefinite_integral_1">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="definite_integral_2">
       <label class="form-check-label" for="inlineRadio1">定積分(浮動小数点数)　　</label>
     </div>
     {% endif %}
 
-    {% if type=="indefinite_integral_2" %}
+    {% if type=="indefinite_integral" %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="indefinite_integral_2" checked="checked">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="indefinite_integral" checked="checked">
       <label class="form-check-label" for="inlineRadio2">不定積分　　</label>
     </div>
     {% else %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="indefinite_integral_2">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="indefinite_integral">
       <label class="form-check-label" for="inlineRadio2">不定積分　　</label>
     </div>
     {% endif %}

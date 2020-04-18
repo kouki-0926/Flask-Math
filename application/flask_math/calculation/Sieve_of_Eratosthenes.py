@@ -15,9 +15,8 @@ def Sieve_of_Eratosthenes(N):
 
         prime_List=prime_List+List
 
-
-        prime_List_List=[str(N)+"以下の素数"]
-        n=15
+        n=10
+        prime_List_List=[str(N)+"未満の素数"]
         for i in range(len(prime_List)//n+1):
             prime_List_List.append(prime_List[n*i:n*i+n])
     except:
