@@ -13,3 +13,4 @@ from . import factorization
 from . import newton_method
 from . import base_conversion
 from . import prime_factorization
+from . import Sieve_of_Eratosthenes

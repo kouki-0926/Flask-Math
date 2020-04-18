@@ -1,6 +1,6 @@
 from sympy import *
 from flask import flash
-from flask_math.calculation.generate.STR import STR
+from flask_math.calculation.common.STR import STR
 
 def equations(formula):
     try:

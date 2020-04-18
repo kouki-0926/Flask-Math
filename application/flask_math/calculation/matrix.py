@@ -1,6 +1,6 @@
 from sympy import *
 from flask import flash
-from flask_math.calculation.generate.MATRIX import MATRIX
+from flask_math.calculation.common.MATRIX import MATRIX
 
 def calculation(matrixA,Ar,Ac,type):
     try:

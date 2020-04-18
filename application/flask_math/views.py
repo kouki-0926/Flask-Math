@@ -246,6 +246,16 @@ def  prime_factorization_view():
         return render_template("prime_factorization.html")
 
 
+@view.route("/Sieve_of_Eratosthenes",methods=["GET","POST"])
+def  Sieve_of_Eratosthenes_view():
+    if request.method=="POST":
+        number=request.form.get("number")
+        Anser=Sieve_of_Eratosthenes.Sieve_of_Eratosthenes(number)
+        return render_template("Sieve_of_Eratosthenes.html",number=number,Anser=Anser)
+    else:
+        return render_template("Sieve_of_Eratosthenes.html")
+
+
 @view.route("/taylor",methods=["GET","POST"])
 def  taylor_view():
     if request.method=="POST":
