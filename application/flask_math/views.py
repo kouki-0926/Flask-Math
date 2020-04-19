@@ -194,14 +194,14 @@ def matrix_view():
 
         Anser=matrix.calculation(matrixA,Ar,Ac,type)
 
-        if Anser[4]==0:
+        if Anser[4]=="MATRIX":
             anser=[]
             for i in range(Anser[1]):
                 A=str(Anser[0].row(i))
                 A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
                 anser.append(A)
-        elif Anser[4]==1:
-            anser=[Anser[0]]
+        elif Anser[4]=="NUMBER":
+            anser=Anser[0]
         return render_template("matrix.html",matrix=matrixA,Ar=Ar,Ac=Ac,type=type,anser_0=anser,anser_3=Anser[3])
     else:
         return render_template("matrix.html",Ar=2,Ac=2,type="A")

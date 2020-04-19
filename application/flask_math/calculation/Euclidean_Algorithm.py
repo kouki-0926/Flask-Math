@@ -11,7 +11,7 @@ def Euclidean_Algorithm(number_x,number_y):
             r=x%y
         else:
             gcd=y
-        anser=str(number_x)+"と"+str(number_y)+"の"+"最大公約数は"+str(gcd)
+        anser=str(number_x)+"と"+str(number_y)+"の最大公約数は"+str(gcd)
     except:
         anser="Error"
         flash("エラー：もう一度入力してください")
