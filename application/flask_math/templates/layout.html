@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <title>Flask Math</title>
   <!-- bootstrapのインポート -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <!-- スタイルシート -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/mplus1p.css">
   <link rel=stylesheet href="static/css/style.css">
@@ -44,6 +44,9 @@
               <a class="dropdown-item" href="{{ url_for('view.factorization_view') }}">因数分解</a>
               <a class="dropdown-item" href="{{ url_for('view.prime_factorization_view') }}">素因数分解</a>
               <a class="dropdown-item" href="{{ url_for('view.taylor_view') }}">テイラー展開</a>
+              <a class="dropdown-item" href="{{ url_for('view.newton_method_view') }}">ニュートン法</a>
+              <a class="dropdown-item" href="{{ url_for('view.Sieve_of_Eratosthenes_view') }}">ソクラテスのふるい</a>
+              <a class="dropdown-item" href="{{ url_for('view.Euclidean_Algorithm_view') }}">ユークリッドの互除法</a>
               <a class="dropdown-item" href="{{ url_for('view.BMI_view') }}">BMI</a>
               <a class="dropdown-item" href="{{ url_for('view.instructions_view') }}">入力上の注意</a>
             </div>

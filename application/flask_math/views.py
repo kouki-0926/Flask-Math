@@ -117,6 +117,17 @@ def equations_2_view():
         return redirect(url_for("view.equations_view"))
 
 
+@view.route("/Euclidean_Algorithm",methods=["GET","POST"])
+def Euclidean_Algorithm_view():
+    if request.method=="POST":
+        number_x=request.form.get("number_x")
+        number_y=request.form.get("number_y")
+        anser=Euclidean_Algorithm.Euclidean_Algorithm(number_x,number_y)
+        return render_template("Euclidean_Algorithm.html",number_x=number_x,number_y=number_y,anser=anser)
+    else:
+        return render_template("Euclidean_Algorithm.html")
+
+
 @view.route("/Expand",methods=["GET","POST"])
 def Expand_view():
     if request.method=="POST":
@@ -159,7 +170,7 @@ def integral_view():
         formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,
         anser=Anser[0],anser_upper_end=Anser[1],anser_lower_end=Anser[2],integ=Anser[3])
     else:
-        return render_template("integral.html",type="definite_integral")
+        return render_template("integral.html",type="definite_integral_1")
 
 
 @view.route("/lim",methods=["GET","POST"])
@@ -183,14 +194,14 @@ def matrix_view():
 
         Anser=matrix.calculation(matrixA,Ar,Ac,type)
 
-        if Anser[4]==0:
+        if Anser[4]=="MATRIX":
             anser=[]
             for i in range(Anser[1]):
                 A=str(Anser[0].row(i))
                 A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
                 anser.append(A)
-        elif Anser[4]==1:
-            anser=[Anser[0]]
+        elif Anser[4]=="NUMBER":
+            anser=Anser[0]
         return render_template("matrix.html",matrix=matrixA,Ar=Ar,Ac=Ac,type=type,anser_0=anser,anser_3=Anser[3])
     else:
         return render_template("matrix.html",Ar=2,Ac=2,type="A")
@@ -226,6 +237,16 @@ def  matrix_2_view():
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
 
 
+@view.route("/newton_method",methods=["GET","POST"])
+def  newton_method_view():
+    if request.method=="POST":
+        number=request.form.get("number")
+        Anser=newton_method.newton_method(number)
+        return render_template("newton_method.html",number=number,anser_0=Anser[0],anser_1=Anser[1])
+    else:
+        return render_template("newton_method.html",anser_0="initial")
+
+
 @view.route("/prime_factorization",methods=["GET","POST"])
 def  prime_factorization_view():
     if request.method=="POST":
@@ -234,6 +255,16 @@ def  prime_factorization_view():
         return render_template("prime_factorization.html",number=number,anser=anser)
     else:
         return render_template("prime_factorization.html")
+
+
+@view.route("/Sieve_of_Eratosthenes",methods=["GET","POST"])
+def  Sieve_of_Eratosthenes_view():
+    if request.method=="POST":
+        number=request.form.get("number")
+        Anser=Sieve_of_Eratosthenes.Sieve_of_Eratosthenes(number)
+        return render_template("Sieve_of_Eratosthenes.html",number=number,Anser=Anser)
+    else:
+        return render_template("Sieve_of_Eratosthenes.html")
 
 
 @view.route("/taylor",methods=["GET","POST"])
