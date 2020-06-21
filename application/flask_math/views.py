@@ -164,9 +164,8 @@ def graph_view():
         formula=request.form.get("formula")
         lower_end=request.form.get("lower_end")
         upper_end=request.form.get("upper_end")
-        title=request.form.get("title")
-        graph.graph(formula,lower_end,upper_end,title)
-        return render_template("graph.html",formula=formula,lower_end=lower_end,upper_end=upper_end,title=title)
+        graph.graph(formula,lower_end,upper_end)
+        return render_template("graph.html",formula=formula,lower_end=lower_end,upper_end=upper_end)
     else:
         return render_template("graph.html")
 
