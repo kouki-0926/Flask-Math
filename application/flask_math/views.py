@@ -158,6 +158,18 @@ def factorization_view():
         return render_template("factorization.html")
 
 
+@view.route("/graph",methods=["GET","POST"])
+def graph_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        lower_end=request.form.get("lower_end")
+        upper_end=request.form.get("upper_end")
+        graph.graph(formula,lower_end,upper_end)
+        return render_template("graph.html",formula=formula,lower_end=lower_end,upper_end=upper_end)
+    else:
+        return render_template("graph.html")
+
+
 @view.route("/integral",methods=["GET","POST"])
 def integral_view():
     if request.method=="POST":

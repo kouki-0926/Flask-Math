@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2><a href="{{url_for('view.graph_view')}}" class="heading">グラフ</a></h2>
+<br>
+
+<form action='{{url_for("view.graph_view")}}' method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="InputFormula">式を入力してください</label>
+    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="formula">
+  </div>
+
+  <p>定義域を入力してください</p>
+
+  <div class="form-row align-items-center">
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="lower_end" class="form-control" value="{{lower_end}}" placeholder="lower_end" aria-describedby="basic-addon2">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="upper_end" class="form-control" value="{{upper_end}}" placeholder="upper_end" aria-describedby="basic-addon2">
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary btn-block">描画</button>
+</form>
+
+{% endblock %}
