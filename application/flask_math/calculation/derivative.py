@@ -21,7 +21,7 @@ def derivative(formula,type):
             A = diff(formula,y,y)
 
         formula=" = "+STR(formula)
-        A=" = "+STR(A)
+        A=" = "+STR(factor(A))
         anser=[formula,"f",type,A]
     except:
         anser=["Error","","",""]
