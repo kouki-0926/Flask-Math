@@ -21,3 +21,11 @@
 .heading2:link {
   text-decoration: none;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
