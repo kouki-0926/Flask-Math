@@ -9,6 +9,11 @@ def index_view():
     return render_template("index.html")
 
 
+@view.route("/index_2")
+def index_2_view():
+    return render_template("index_2.html")
+
+
 @view.route("/instructions")
 def instructions_view():
     return render_template("instructions.html")
@@ -80,20 +85,20 @@ def equations_view():
             if number==1:
                 formula_1=request.form.get("formula_1")
                 Formula=[formula_1]
-                Anser=equations.equations(Formula)
+                Anser=equations.equations(Formula,number)
                 return render_template("equations.html",formula_1=formula_1,Anser=Anser,number=number)
             elif number==2:
                 formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
                 Formula=[formula_1,formula_2]
-                Anser=equations.equations(Formula)
+                Anser=equations.equations(Formula,number)
                 return render_template("equations.html",formula_1=formula_1,formula_2=formula_2,Anser=Anser,number=number)
             elif number==3:
                 formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
                 formula_3=request.form.get("formula_3")
                 Formula=[formula_1,formula_2,formula_3]
-                Anser=equations.equations(Formula)
+                Anser=equations.equations(Formula,number)
                 return render_template("equations.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,Anser=Anser,number=number)
         else:
             number=int(request.args.get("number"))

@@ -5,7 +5,14 @@ x = Symbol('x')
 
 def equation(formula):
     try:
-        Anser=solve(formula, dict = True)
+        A=solve(formula, dict = True)
+
+        Anser=[]
+        for i in range(len(A)):
+            a=A[i]
+            for B in a.items():
+                anser=str(B[0])+"="+str(B[1])
+                Anser.append(anser)
     except:
         Anser=["Error"]
         flash("エラー：もう一度入力してください")
