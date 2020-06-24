@@ -153,6 +153,7 @@ def factorization_view():
 def graph_view():
     if request.method=="POST":
         dimension=request.form.get("dimension")
+        number=request.form.get("number")
         formula=request.form.get("formula")
         lower_end_x=request.form.get("lower_end_x")
         upper_end_x=request.form.get("upper_end_x")
@@ -160,7 +161,8 @@ def graph_view():
             Lower_end=[lower_end_x]
             Upper_end=[upper_end_x]
             graph.graph(formula,Lower_end,Upper_end,"2D")
-            return render_template("graph.html",formula=formula,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D")
+            return render_template("graph.html",formula=formula,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
+            dimension="2D",number=number)
         elif dimension=="3D":
             lower_end_y=request.form.get("lower_end_y")
             upper_end_y=request.form.get("upper_end_y")
@@ -168,13 +170,18 @@ def graph_view():
             Upper_end=[upper_end_x,upper_end_y]
             graph.graph(formula,Lower_end,Upper_end,"3D")
             return render_template("graph.html",formula=formula,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
-            lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D")
+            lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number=number)
+        else:
+            return redirect(url_for("view.graph_view",dimension="2D",number="1"))
     else:
         dimension=request.args.get("dimension")
+        number=request.args.get("number")
         if dimension=="2D":
-            return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D")
+            return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D",number=number)
         elif dimension=="3D":
-            return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D")
+            return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D",number=number)
+        else:
+            return redirect(url_for("view.graph_view",dimension="2D",number="1"))
 
 
 @view.route("/integral",methods=["GET","POST"])

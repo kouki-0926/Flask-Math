@@ -2,16 +2,40 @@
 
 {% block body %}
 <h2 class="left">
-  <a href="{{url_for('view.graph_view',dimension='2D')}}" class="heading">グラフ</a>
+  <a href="{{url_for('view.graph_view',dimension='2D',number='1')}}" class="heading">グラフ</a>
 </h2>
+<div class="right">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      関数の数を選択してください
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% if dimension=="2D" %}
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='2D',number='1')}}">1</a>
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='2D',number='2')}}">2</a>
+      {% else %}
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='2D',number='1')}}">1</a>
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='2D',number='2')}}">2</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="right">　　　</div>
+
 <div class="right">
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       次元を選択してください
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='2D')}}">平面</a>
-      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='3D')}}">立体</a>
+      {% if number==1 %}
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='2D',number='1')}}">2次元</a>
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='3D',number='1')}}">3次元</a>
+      {% else %}
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='2D',number='2')}}">2次元</a>
+      <a class="dropdown-item" href="{{url_for('view.graph_view',dimension='3D',number='2')}}">3次元</a>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -23,6 +47,12 @@
     <label for="InputFormula">式を入力してください</label>
     <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="formula">
   </div>
+  {% if number=="2" %}
+  <div class="form-group">
+    <label for="InputFormula_2">式を入力してください</label>
+    <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}" placeholder="formula_2">
+  </div>
+  {% endif %}
 
   <p>xの定義域を入力してください</p>
   <div class="form-row align-items-center">
@@ -54,7 +84,9 @@
   {% endif %}
 
   <br>
-  <input type="text" name="dimension" value="{{dimension}}" hidden>
+  <input type="text" name="dimension" value="{{dimension}}">
+  <input type="text" name="number" value="{{number}}">
+
   <button type="submit" class="btn btn-primary btn-block">描画</button>
 </form>
 
