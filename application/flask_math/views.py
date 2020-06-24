@@ -152,13 +152,29 @@ def factorization_view():
 @view.route("/graph",methods=["GET","POST"])
 def graph_view():
     if request.method=="POST":
+        dimension=request.form.get("dimension")
         formula=request.form.get("formula")
-        lower_end=request.form.get("lower_end")
-        upper_end=request.form.get("upper_end")
-        graph.graph(formula,lower_end,upper_end)
-        return render_template("graph.html",formula=formula,lower_end=lower_end,upper_end=upper_end)
+        lower_end_x=request.form.get("lower_end_x")
+        upper_end_x=request.form.get("upper_end_x")
+        if dimension=="2D":
+            Lower_end=[lower_end_x]
+            Upper_end=[upper_end_x]
+            graph.graph(formula,Lower_end,Upper_end,"2D")
+            return render_template("graph.html",formula=formula,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D")
+        elif dimension=="3D":
+            lower_end_y=request.form.get("lower_end_y")
+            upper_end_y=request.form.get("upper_end_y")
+            Lower_end=[lower_end_x,lower_end_y]
+            Upper_end=[upper_end_x,upper_end_y]
+            graph.graph(formula,Lower_end,Upper_end,"3D")
+            return render_template("graph.html",formula=formula,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
+            lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D")
     else:
-        return render_template("graph.html")
+        dimension=request.args.get("dimension")
+        if dimension=="2D":
+            return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D")
+        elif dimension=="3D":
+            return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D")
 
 
 @view.route("/integral",methods=["GET","POST"])
