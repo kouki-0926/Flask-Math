@@ -44,8 +44,8 @@
 
 <form action='{{url_for("view.graph_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
-    <label for="InputFormula">式を入力してください</label>
-    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="formula">
+    <label for="InputFormula_1">式を入力してください</label>
+    <input type="text" name="formula_1" class="form-control" id="InputFormula_1" value="{{formula_1}}" placeholder="formula_1">
   </div>
   {% if number=="2" %}
   <div class="form-group">
@@ -84,8 +84,8 @@
   {% endif %}
 
   <br>
-  <input type="text" name="dimension" value="{{dimension}}">
-  <input type="text" name="number" value="{{number}}">
+  <input type="text" name="dimension" value="{{dimension}}" hidden>
+  <input type="text" name="number" value="{{number}}" hidden>
 
   <button type="submit" class="btn btn-primary btn-block">描画</button>
 </form>
