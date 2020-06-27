@@ -9,6 +9,11 @@ def index_view():
     return render_template("index.html")
 
 
+@view.route("/index_2")
+def index_2_view():
+    return render_template("index_2.html")
+
+
 @view.route("/instructions")
 def instructions_view():
     return render_template("instructions.html")
@@ -74,47 +79,38 @@ def equation_view():
 
 @view.route("/equations",methods=["GET","POST"])
 def equations_view():
-    return render_template("equations.html")
-
-
-@view.route("/equations_2",methods=["GET","POST"])
-def equations_2_view():
     try:
-        if request.method=="GET":
-            number=int(request.args.get("number"))
-            if number>=1 and number<=3:
-                return render_template("equations_2.html",number=number)
-            else:
-                flash("エラー:3以下の自然数を入力してください")
-                return redirect(url_for("view.equations_view"))
-
-        elif request.method=="POST":
+        if request.method=="POST":
             number=int(request.form.get("number"))
             if number==1:
                 formula_1=request.form.get("formula_1")
                 Formula=[formula_1]
-                Anser=equations.equations(Formula)
-                return render_template("equations_2.html",formula_1=formula_1,Anser=Anser,number=number)
+                Anser=equations.equations(Formula,number)
+                return render_template("equations.html",formula_1=formula_1,Anser=Anser,number=number)
             elif number==2:
                 formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
                 Formula=[formula_1,formula_2]
-                Anser=equations.equations(Formula)
-                return render_template("equations_2.html",formula_1=formula_1,formula_2=formula_2,Anser=Anser,number=number)
+                Anser=equations.equations(Formula,number)
+                return render_template("equations.html",formula_1=formula_1,formula_2=formula_2,Anser=Anser,number=number)
             elif number==3:
                 formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
                 formula_3=request.form.get("formula_3")
                 Formula=[formula_1,formula_2,formula_3]
-                Anser=equations.equations(Formula)
-                return render_template("equations_2.html",
-                formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,Anser=Anser,number=number)
+                Anser=equations.equations(Formula,number)
+                return render_template("equations.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,Anser=Anser,number=number)
             else:
-                flash("エラー")
-                return redirect(url_for("view.equations_view"))
+                return render_template("equations.html",number=1)
+        else:
+            number=int(request.args.get("number"))
+            if number>=1 and number<=3:
+                return render_template("equations.html",number=number)
+            else:
+                return redirect(url_for("view.equations_view",number=1))
     except:
-        flash("エラー:もう一度入力してください")
-        return redirect(url_for("view.equations_view"))
+        flash("エラー：もう一度入力してください")
+        return render_template("equations.html",number=1)
 
 
 @view.route("/Euclidean_Algorithm",methods=["GET","POST"])
@@ -160,29 +156,107 @@ def factorization_view():
 
 @view.route("/graph",methods=["GET","POST"])
 def graph_view():
-    if request.method=="POST":
-        formula=request.form.get("formula")
-        lower_end=request.form.get("lower_end")
-        upper_end=request.form.get("upper_end")
-        graph.graph(formula,lower_end,upper_end)
-        return render_template("graph.html",formula=formula,lower_end=lower_end,upper_end=upper_end)
-    else:
-        return render_template("graph.html")
+    try:
+        if request.method=="POST":
+            number=request.form.get("number")
+            dimension=request.form.get("dimension")
+            if number=="1":
+                formula_1=request.form.get("formula_1")
+                Formula=[formula_1]
+                lower_end_x=request.form.get("lower_end_x")
+                upper_end_x=request.form.get("upper_end_x")
+                Lower_end=[lower_end_x]
+                Upper_end=[upper_end_x]
+                if dimension=="2D":
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
+                    return render_template("graph.html",formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D",number="1")
+                elif dimension=="3D":
+                    lower_end_y=request.form.get("lower_end_y")
+                    upper_end_y=request.form.get("upper_end_y")
+                    Lower_end.append(lower_end_y)
+                    Upper_end.append(upper_end_y)
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
+                    return render_template("graph.html",formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
+                    lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="1")
+                else:
+                    flash("エラー:dimension")
+                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+            elif number=="2":
+                formula_1=request.form.get("formula_1")
+                formula_2=request.form.get("formula_2")
+                Formula=[formula_1,formula_2]
+                lower_end_x=request.form.get("lower_end_x")
+                upper_end_x=request.form.get("upper_end_x")
+                Lower_end=[lower_end_x]
+                Upper_end=[upper_end_x]
+                if dimension=="2D":
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
+                    return render_template("graph.html",formula_1=formula_1,formula_2=formula_2,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D",number="2")
+                elif dimension=="3D":
+                    lower_end_y=request.form.get("lower_end_y")
+                    upper_end_y=request.form.get("upper_end_y")
+                    Lower_end.append(lower_end_y)
+                    Upper_end.append(upper_end_y)
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
+                    return render_template("graph.html",formula_1=formula_1,formula_2=formula_2,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
+                    lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="2")
+                else:
+                    flash("エラー:dimension")
+                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+            else:
+                flash("エラー:number")
+                return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+        elif request.method=="GET":
+            dimension=request.args.get("dimension")
+            number=request.args.get("number")
+            if number=="1" or number=="2":
+                if dimension=="2D":
+                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D",number=number)
+                elif dimension=="3D":
+                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D",number=number)
+                else:
+                    flash("エラー:dimension")
+                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+            else:
+                flash("エラー:number")
+                return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+    except:
+        flash("エラー")
+        return redirect(url_for("view.graph_view",dimension="2D",number="1"))
 
 
 @view.route("/integral",methods=["GET","POST"])
 def integral_view():
     if request.method=="POST":
         formula=request.form.get("formula")
-        upper_end=request.form.get("upper_end")
-        lower_end=request.form.get("lower_end")
+        upper_end_x=request.form.get("upper_end_x")
+        lower_end_x=request.form.get("lower_end_x")
+        Upper_end=[upper_end_x]
+        Lower_end=[lower_end_x]
+        dimension=request.form.get("dimension")
         type=request.form.get("type")
-        Anser=integral.integral(formula,upper_end,lower_end,type)
-        return render_template("integral.html",
-        formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,
-        anser=Anser[0],anser_upper_end=Anser[1],anser_lower_end=Anser[2],integ=Anser[3])
-    else:
-        return render_template("integral.html",type="definite_integral_1")
+        if dimension=="2D":
+            Anser=integral.integral(formula,Upper_end,Lower_end,type)
+            return render_template("integral.html",formula=formula,upper_end_x=upper_end_x,lower_end_x=lower_end_x,
+            dimension=dimension,type=type,integ=Anser[0],anser=Anser[1],upper_end_ax=Anser[2][0],lower_end_ax=Anser[3][0])
+        else:
+            upper_end_y=request.form.get("upper_end_y")
+            lower_end_y=request.form.get("lower_end_y")
+            Upper_end.append(upper_end_y)
+            Lower_end.append(lower_end_y)
+            Anser=integral.integral(formula,Upper_end,Lower_end,type)
+            return render_template("integral.html",formula=formula,upper_end_x=upper_end_x,lower_end_x=lower_end_x,
+            upper_end_y=upper_end_y,lower_end_y=lower_end_y,dimension=dimension,type=type,integ=Anser[0],anser=Anser[1],
+            upper_end_ax=Anser[2][0],lower_end_ax=Anser[3][0],upper_end_ay=Anser[2][1],lower_end_ay=Anser[3][1])
+    elif request.method=="GET":
+        dimension=request.args.get("dimension")
+        if dimension=="2D":
+            return render_template("integral.html",dimension=dimension,type="definite_integral_1")
+        elif dimension=="3D":
+            return render_template("integral.html",dimension=dimension,type="multiple_integral_1")
+        else:
+            flash("エラー:dimension")
+            return redirect(url_for("view.integral_view",dimension="2D"))
 
 
 @view.route("/lim",methods=["GET","POST"])
