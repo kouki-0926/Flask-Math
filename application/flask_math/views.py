@@ -295,15 +295,14 @@ def  matrix_2_view():
         Anser=matrix_2.calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l)
 
         anser=[]
-        if Anser[0]=="Error":
+        if Anser[4]=="NUMBER":
             anser=[Anser[0]]
-        else:
+        elif Anser[4]=="MATRIX":
             for i in range(Anser[2]):
                 A=str(Anser[0].row(i))
                 A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
                 anser.append(A)
-        return render_template("matrix_2.html",
-        matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,
+        return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,
         anser_0=anser,anser_1=Anser[1])
     else:
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)

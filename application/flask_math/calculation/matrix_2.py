@@ -8,6 +8,7 @@ def calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l):
         A=MATRIX(matrixA,Ar,Ac)
         B=MATRIX(matrixB,Br,Bc)
         type=type+" = "
+        output_type="MATRIX"
 
         if type=="A = ":
             anser=A
@@ -34,11 +35,28 @@ def calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l):
             anser=B*A
             anser_r=Br
             anser_c=Ac
+
+        elif type=="A・B(内積) = ":
+            anser=B.dot(A)
+            anser_r=""
+            anser_c=""
+            output_type="NUMBER"
+
+        elif type=="A×B(外積) = ":
+            anser=A.cross(B)
+            anser_r=Ar
+            anser_c=Ac
+
+        elif type=="B×A(外積) = ":
+            anser=B.cross(A)
+            anser_r=Ar
+            anser_c=Ac
     except:
         anser="Error"
         type=""
         anser_r=""
         anser_c=""
+        output_type="NUMBER"
         flash("エラー：もう一度入力してください")
-    Anser=[anser,type,anser_r,anser_c]
+    Anser=[anser,type,anser_r,anser_c,output_type]
     return Anser
