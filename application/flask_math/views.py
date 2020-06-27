@@ -100,9 +100,14 @@ def equations_view():
                 Formula=[formula_1,formula_2,formula_3]
                 Anser=equations.equations(Formula,number)
                 return render_template("equations.html",formula_1=formula_1,formula_2=formula_2,formula_3=formula_3,Anser=Anser,number=number)
+            else:
+                return render_template("equations.html",number=1)
         else:
             number=int(request.args.get("number"))
-            return render_template("equations.html",number=number)
+            if number>=1 and number<=3:
+                return render_template("equations.html",number=number)
+            else:
+                return redirect(url_for("view.equations_view",number=1))
     except:
         flash("エラー：もう一度入力してください")
         return render_template("equations.html",number=1)
@@ -174,6 +179,7 @@ def graph_view():
                     return render_template("graph.html",formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
                     lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="1")
                 else:
+                    flash("エラー:dimension")
                     return redirect(url_for("view.graph_view",dimension="2D",number="1"))
             elif number=="2":
                 formula_1=request.form.get("formula_1")
@@ -195,8 +201,10 @@ def graph_view():
                     return render_template("graph.html",formula_1=formula_1,formula_2=formula_2,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
                     lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="2")
                 else:
+                    flash("エラー:dimension")
                     return redirect(url_for("view.graph_view",dimension="2D",number="1"))
             else:
+                flash("エラー:number")
                 return redirect(url_for("view.graph_view",dimension="2D",number="1"))
         elif request.method=="GET":
             dimension=request.args.get("dimension")
@@ -207,10 +215,13 @@ def graph_view():
                 elif dimension=="3D":
                     return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D",number=number)
                 else:
+                    flash("エラー:dimension")
                     return redirect(url_for("view.graph_view",dimension="2D",number="1"))
             else:
+                flash("エラー:number")
                 return redirect(url_for("view.graph_view",dimension="2D",number="1"))
     except:
+        flash("エラー")
         return redirect(url_for("view.graph_view",dimension="2D",number="1"))
 
 
@@ -218,15 +229,34 @@ def graph_view():
 def integral_view():
     if request.method=="POST":
         formula=request.form.get("formula")
-        upper_end=request.form.get("upper_end")
-        lower_end=request.form.get("lower_end")
+        upper_end_x=request.form.get("upper_end_x")
+        lower_end_x=request.form.get("lower_end_x")
+        Upper_end=[upper_end_x]
+        Lower_end=[lower_end_x]
+        dimension=request.form.get("dimension")
         type=request.form.get("type")
-        Anser=integral.integral(formula,upper_end,lower_end,type)
-        return render_template("integral.html",
-        formula=formula,upper_end=upper_end,lower_end=lower_end,type=type,
-        anser=Anser[0],anser_upper_end=Anser[1],anser_lower_end=Anser[2],integ=Anser[3])
-    else:
-        return render_template("integral.html",type="definite_integral_1")
+        if dimension=="2D":
+            Anser=integral.integral(formula,Upper_end,Lower_end,type)
+            return render_template("integral.html",formula=formula,upper_end_x=upper_end_x,lower_end_x=lower_end_x,
+            dimension=dimension,type=type,integ=Anser[0],anser=Anser[1],upper_end_ax=Anser[2][0],lower_end_ax=Anser[3][0])
+        else:
+            upper_end_y=request.form.get("upper_end_y")
+            lower_end_y=request.form.get("lower_end_y")
+            Upper_end.append(upper_end_y)
+            Lower_end.append(lower_end_y)
+            Anser=integral.integral(formula,Upper_end,Lower_end,type)
+            return render_template("integral.html",formula=formula,upper_end_x=upper_end_x,lower_end_x=lower_end_x,
+            upper_end_y=upper_end_y,lower_end_y=lower_end_y,dimension=dimension,type=type,integ=Anser[0],anser=Anser[1],
+            upper_end_ax=Anser[2][0],lower_end_ax=Anser[3][0],upper_end_ay=Anser[2][1],lower_end_ay=Anser[3][1])
+    elif request.method=="GET":
+        dimension=request.args.get("dimension")
+        if dimension=="2D":
+            return render_template("integral.html",dimension=dimension,type="definite_integral_1")
+        elif dimension=="3D":
+            return render_template("integral.html",dimension=dimension,type="multiple_integral_1")
+        else:
+            flash("エラー:dimension")
+            return redirect(url_for("view.integral_view",dimension="2D"))
 
 
 @view.route("/lim",methods=["GET","POST"])

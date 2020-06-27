@@ -3,7 +3,7 @@
 {% block body %}
 <br>
 <div class="list-group">
-  <a class="list-group-item list-group-item-action" href="{{url_for('view.integral_view')}}">積分</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.integral_view',dimension='2D')}}">積分</a>
   <a class="list-group-item list-group-item-action" href="{{url_for('view.derivative_view')}}">微分</a>
   <a class="list-group-item list-group-item-action" href="{{url_for('view.lim_view')}}">極限</a>
   <a class="list-group-item list-group-item-action" href="{{url_for('view.Factorial_view')}}">階乗</a>
