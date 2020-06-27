@@ -155,7 +155,27 @@ def graph_view():
         if request.method=="POST":
             number=request.form.get("number")
             dimension=request.form.get("dimension")
-            if number=="2":
+            if number=="1":
+                formula_1=request.form.get("formula_1")
+                Formula=[formula_1]
+                lower_end_x=request.form.get("lower_end_x")
+                upper_end_x=request.form.get("upper_end_x")
+                Lower_end=[lower_end_x]
+                Upper_end=[upper_end_x]
+                if dimension=="2D":
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
+                    return render_template("graph.html",formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D",number="1")
+                elif dimension=="3D":
+                    lower_end_y=request.form.get("lower_end_y")
+                    upper_end_y=request.form.get("upper_end_y")
+                    Lower_end.append(lower_end_y)
+                    Upper_end.append(upper_end_y)
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
+                    return render_template("graph.html",formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
+                    lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="1")
+                else:
+                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+            elif number=="2":
                 formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
                 Formula=[formula_1,formula_2]
@@ -164,23 +184,32 @@ def graph_view():
                 Lower_end=[lower_end_x]
                 Upper_end=[upper_end_x]
                 if dimension=="2D":
-                    graph.graph(Formula,Lower_end,Upper_end,"2D")
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
                     return render_template("graph.html",formula_1=formula_1,formula_2=formula_2,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D",number="2")
                 elif dimension=="3D":
                     lower_end_y=request.form.get("lower_end_y")
                     upper_end_y=request.form.get("upper_end_y")
                     Lower_end.append(lower_end_y)
                     Upper_end.append(upper_end_y)
-                    graph.graph(Formula,Lower_end,Upper_end,"3D")
+                    graph.graph(Formula,Lower_end,Upper_end,dimension,number)
                     return render_template("graph.html",formula_1=formula_1,formula_2=formula_2,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
                     lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="2")
-        elif request.method=-"GET":
+                else:
+                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+            else:
+                return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+        elif request.method=="GET":
             dimension=request.args.get("dimension")
             number=request.args.get("number")
-            if dimension=="2D":
-                return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D",number=number)
-            elif dimension=="3D":
-                return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D",number=number)
+            if number=="1" or number=="2":
+                if dimension=="2D":
+                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D",number=number)
+                elif dimension=="3D":
+                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D",number=number)
+                else:
+                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
+            else:
+                return redirect(url_for("view.graph_view",dimension="2D",number="1"))
     except:
         return redirect(url_for("view.graph_view",dimension="2D",number="1"))
 
