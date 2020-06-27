@@ -38,7 +38,7 @@ def base_conversion_view():
             anser=base_conversion.base_conversion(base,before_conversion)
         except:
             anser=["Error","Error","Error","Error"]
-            flash("エラー：もう一度入力してくださいｔ")
+            flash("エラー：もう一度入力してください")
         return render_template("base_conversion.html",bin=anser[0],oct=anser[1],dec=anser[2],hex=anser[3])
     else:
         return render_template("base_conversion.html")
@@ -160,13 +160,13 @@ def graph_view():
         if request.method=="POST":
             number=request.form.get("number")
             dimension=request.form.get("dimension")
+            formula_1=request.form.get("formula_1")
+            Formula=[formula_1]
+            lower_end_x=request.form.get("lower_end_x")
+            upper_end_x=request.form.get("upper_end_x")
+            Lower_end=[lower_end_x]
+            Upper_end=[upper_end_x]
             if number=="1":
-                formula_1=request.form.get("formula_1")
-                Formula=[formula_1]
-                lower_end_x=request.form.get("lower_end_x")
-                upper_end_x=request.form.get("upper_end_x")
-                Lower_end=[lower_end_x]
-                Upper_end=[upper_end_x]
                 if dimension=="2D":
                     graph.graph(Formula,Lower_end,Upper_end,dimension,number)
                     return render_template("graph.html",formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D",number="1")
@@ -178,17 +178,9 @@ def graph_view():
                     graph.graph(Formula,Lower_end,Upper_end,dimension,number)
                     return render_template("graph.html",formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
                     lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="1")
-                else:
-                    flash("エラー:dimension")
-                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
             elif number=="2":
-                formula_1=request.form.get("formula_1")
                 formula_2=request.form.get("formula_2")
-                Formula=[formula_1,formula_2]
-                lower_end_x=request.form.get("lower_end_x")
-                upper_end_x=request.form.get("upper_end_x")
-                Lower_end=[lower_end_x]
-                Upper_end=[upper_end_x]
+                Formula.append(formula_2)
                 if dimension=="2D":
                     graph.graph(Formula,Lower_end,Upper_end,dimension,number)
                     return render_template("graph.html",formula_1=formula_1,formula_2=formula_2,lower_end_x=lower_end_x,upper_end_x=upper_end_x,dimension="2D",number="2")
@@ -200,12 +192,6 @@ def graph_view():
                     graph.graph(Formula,Lower_end,Upper_end,dimension,number)
                     return render_template("graph.html",formula_1=formula_1,formula_2=formula_2,lower_end_x=lower_end_x,upper_end_x=upper_end_x,
                     lower_end_y=lower_end_y,upper_end_y=upper_end_y,dimension="3D",number="2")
-                else:
-                    flash("エラー:dimension")
-                    return redirect(url_for("view.graph_view",dimension="2D",number="1"))
-            else:
-                flash("エラー:number")
-                return redirect(url_for("view.graph_view",dimension="2D",number="1"))
         elif request.method=="GET":
             dimension=request.args.get("dimension")
             number=request.args.get("number")

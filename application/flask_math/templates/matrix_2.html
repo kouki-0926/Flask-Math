@@ -149,23 +149,19 @@
 
 <br><br><br>
 <div style="display:inline-flex">
-  <div style="display:inline-flex">
-    <div>
-      <h1>
-        <math>
-          <mn>{{anser_1}}</mn>
-        </math>
-      </h1>
-    </div>
-    <div>
-      {% for anser in anser_0 %}
-      <h1>
-        <math>
-          <mn>{{anser}}</mn>
-        </math>
-      </h1>
-      {% endfor %}
-    </div>
+  <h1>
+    <math>
+      <mn>{{anser_1}}</mn>
+    </math>
+  </h1>
+  {% for anser in anser_0 %}
+  <div>
+    <h1>
+      <math>
+        <mn>{{anser}}</mn>
+      </math>
+    </h1>
+    {% endfor %}
   </div>
 </div>
 

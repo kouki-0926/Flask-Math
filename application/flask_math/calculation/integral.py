@@ -8,7 +8,6 @@ def integral(formula,Upper_end,Lower_end,type):
     try:
         if type=="multiple_integral_1" or type=="multiple_integral_2":
             A=integrate(formula,(x,Lower_end[0],Upper_end[0]),(y,Lower_end[1],Upper_end[1]))
-            print(A)
             if type=="multiple_integral_1":
                 anser=STR(formula)+"dxdy = "+STR(A)
             elif type=="multiple_integral_2":
@@ -26,7 +25,6 @@ def integral(formula,Upper_end,Lower_end,type):
                 elif type=="definite_integral_2":
                     anser=STR(formula)+"dx = "+str(A.evalf())
         Anser=["∫",anser,Upper_end,Lower_end]
-        print(Anser)
     except:
         Anser=["","Error",["",""],["",""]]
         flash("エラー:もう一度入力してください")
