@@ -18,6 +18,7 @@
 ### 5. パッケージ,ライブラリをインストールする
         pipenv install Flask
         pipenv install sympy
+        pipenv install matplotlib
 
 ### 6. アプリケーションを立ち上げる
         python server.py

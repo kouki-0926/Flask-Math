@@ -2,8 +2,7 @@ from sympy import *
 from flask import flash
 from flask_math.calculation.common.STR import STR
 
-x = Symbol('x')
-y = Symbol('y')
+x,y,z=symbols('x y z')
 
 def derivative(formula,type):
     try:
@@ -19,6 +18,10 @@ def derivative(formula,type):
             A = diff(formula,y,x)
         elif type=="yy":
             A = diff(formula,y,y)
+        elif type=="grad":
+            A = (diff(formula,x),diff(formula,y),diff(formula,z))
+        elif type=="∆":
+            A = (diff(formula,x,x),diff(formula,y,y),diff(formula,z,z))
 
         formula=" = "+STR(formula)
         A=" = "+STR(factor(A))

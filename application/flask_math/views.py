@@ -197,9 +197,9 @@ def graph_view():
             number=request.args.get("number")
             if number=="1" or number=="2":
                 if dimension=="2D":
-                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D",number=number)
+                    return render_template("graph.html",lower_end_x=-5,upper_end_x=5,dimension="2D",number=number)
                 elif dimension=="3D":
-                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D",number=number)
+                    return render_template("graph.html",lower_end_x=-5,upper_end_x=5,lower_end_y=-5,upper_end_y=5,dimension="3D",number=number)
                 else:
                     flash("エラー:dimension")
                     return redirect(url_for("view.graph_view",dimension="2D",number="1"))

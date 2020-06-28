@@ -1,8 +1,64 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>入力上の注意</h2>
-<br>
+<h2 class="left"><a href="{{url_for('view.instructions_view')}}" class="heading">入力上の注意</a></h2>
+
+<div class="right">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+    Documents
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Documents</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="https://github.com/kouki7910/Flask-Math" target="_blank">
+              <img src="static/images/GitHub-Mark-64px.png" width="30" height="30" alt="GitHub">　GitHub
+            </a>
+          </nav>
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="https://www.python.org" target="_blank">
+              <img src="static/images/book-half.svg" width="30" height="30" alt="flask">　Python
+            </a>
+          </nav>
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="https://www.sympy.org/en/index.html" target="_blank">
+              <img src="static/images/calculator-fill.svg" width="30" height="30" alt="sympy">　SymPy
+            </a>
+          </nav>
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="https://getbootstrap.com/" target="_blank">
+              <img src="static/images/bootstrap-fill.svg" width="30" height="30" alt="bootstrap">　Bootstrap
+            </a>
+          </nav>
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="https://palletsprojects.com/p/flask/" target="_blank">
+              <img src="static/images/book.svg" width="30" height="30" alt="flask">　Flask
+            </a>
+          </nav>
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="https://palletsprojects.com/p/jinja/" target="_blank">
+              <img src="static/images/file-earmark-spreadsheet-fill.svg" width="30" height="30" alt="jinja2">　jinja2
+            </a>
+          </nav>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
 
 <h4>1.式の入力</h4>
 <ul>
