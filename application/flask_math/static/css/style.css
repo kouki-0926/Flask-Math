@@ -29,3 +29,11 @@
 .right {
   float: right;
 }
+
+.inline {
+  display: inline-flex;
+}
+
+.center {
+  text-align: center;
+}

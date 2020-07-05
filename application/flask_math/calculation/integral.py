@@ -13,7 +13,7 @@ def integral(formula,Upper_end,Lower_end,type):
             elif type=="multiple_integral_2":
                 anser=STR(formula)+"dxdy = "+str(A.evalf())
         else:
-            g=integrate(formula)
+            g=integrate(formula,x)
             if type=="indefinite_integral":
                 anser=STR(formula)+"dx = "+STR(g)+"+c"
                 Upper_end=[""]

@@ -67,6 +67,16 @@ def derivative_view():
         return render_template("derivative.html",type="x")
 
 
+@view.route("/diff_equation",methods=["GET","POST"])
+def diff_equation_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        Anser=diff_equation.diff_equation(formula)
+        return render_template("diff_equation.html",formula=formula,Anser=Anser)
+    else:
+        return render_template("diff_equation.html")
+
+
 @view.route("/equation",methods=["GET","POST"])
 def equation_view():
     if request.method=="POST":

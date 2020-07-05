@@ -66,11 +66,36 @@
   <li>変数には()をつけてください</li>
   <li>積は*、指数は**を用いて入力</li>
 </ul>
-<h6>例　sin(xy<sup>2</sup>)を入力するとき</h6>
+<h6>例　
+  <math>
+    <mfrac>
+      <mrow>
+        <msup>
+          <mi>d</mi>
+          <mn>2</mn>
+        </msup>
+        <mi>y</mi>
+      </mrow>
+      <mrow>
+        <mi>d</mi>
+        <msup>
+          <mi>x</mi>
+          <mn>2</mn>
+      </mrow>
+    </mfrac>
+    <mo>+</mo>
+    <mi>sin</mi>
+    <mi>x</mi>
+    <msup>
+      <mi>y</mi>
+      <mn>2</mn>
+    </msup>
+  </math>
+</h6>
 <div class="form-control">
   <div class="form-group">
     <label for="InputFormula">関数を入力してください</label>
-    <input type="text" class="form-control" id="InputFormula" placeholder="sin(x*y**2)" disabled>
+    <input type="text" class="form-control" id="InputFormula" placeholder="y(x).diff(x,2)-sin(x*y**2)" disabled>
   </div>
 </div>
 
