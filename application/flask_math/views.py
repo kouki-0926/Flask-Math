@@ -318,6 +318,16 @@ def  matrix_2_view():
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
 
 
+@view.route("/max_min",methods=["GET","POST"])
+def max_min_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        Anser=max_min.max_min(formula)
+        return render_template("max_min.html",formula=formula,Anser=Anser)
+    else:
+        return render_template("max_min.html")
+
+
 @view.route("/newton_method",methods=["GET","POST"])
 def  newton_method_view():
     if request.method=="POST":
