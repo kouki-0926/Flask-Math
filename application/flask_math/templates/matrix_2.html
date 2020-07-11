@@ -81,7 +81,7 @@
 
   <br>
   <!-- 演算の選択 -->
-  <div align="center">
+  <div class="center">
     {% if type=="A" %}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio0" value="A" checked="checked">
@@ -141,6 +141,42 @@
       <label class="form-check-label" for="inlineRadio4">BA　　</label>
     </div>
     {% endif %}
+
+    {% if type=="A・B(内積)" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="A・B(内積)" checked="checked">
+      <label class="form-check-label" for="inlineRadio5">A・B(内積)　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="A・B(内積)">
+      <label class="form-check-label" for="inlineRadio5">A・B(内積)　　</label>
+    </div>
+    {% endif %}
+
+    {% if type=="A×B(外積)" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio6" value="A×B(外積)" checked="checked">
+      <label class="form-check-label" for="inlineRadio6">A×B(外積)　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio6" value="A×B(外積)">
+      <label class="form-check-label" for="inlineRadio6">A×B(外積)　　</label>
+    </div>
+    {% endif %}
+
+    {% if type=="B×A(外積)" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio7" value="B×A(外積)" checked="checked">
+      <label class="form-check-label" for="inlineRadio7">B×A(外積)　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio7" value="B×A(外積)">
+      <label class="form-check-label" for="inlineRadio7">B×A(外積)　　</label>
+    </div>
+    {% endif %}
   </div>
 
   <br>
@@ -148,7 +184,7 @@
 </form>
 
 <br><br><br>
-<div style="display:inline-flex">
+<div class="inline">
   <h1>
     <math>
       <mn>{{anser_1}}</mn>

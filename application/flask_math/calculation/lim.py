@@ -6,7 +6,7 @@ x = Symbol('x')
 
 def lim(formula,a):
     try:
-        a=float(a)
+        a=sympify(a)
         A=limit(formula, x, a)
 
         a=str(a)

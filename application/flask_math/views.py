@@ -67,6 +67,16 @@ def derivative_view():
         return render_template("derivative.html",type="x")
 
 
+@view.route("/diff_equation",methods=["GET","POST"])
+def diff_equation_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        Anser=diff_equation.diff_equation(formula)
+        return render_template("diff_equation.html",formula=formula,Anser=Anser)
+    else:
+        return render_template("diff_equation.html")
+
+
 @view.route("/equation",methods=["GET","POST"])
 def equation_view():
     if request.method=="POST":
@@ -197,9 +207,9 @@ def graph_view():
             number=request.args.get("number")
             if number=="1" or number=="2":
                 if dimension=="2D":
-                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,dimension="2D",number=number)
+                    return render_template("graph.html",lower_end_x=-5,upper_end_x=5,dimension="2D",number=number)
                 elif dimension=="3D":
-                    return render_template("graph.html",lower_end_x=-10,upper_end_x=10,lower_end_y=-10,upper_end_y=10,dimension="3D",number=number)
+                    return render_template("graph.html",lower_end_x=-5,upper_end_x=5,lower_end_y=-5,upper_end_y=5,dimension="3D",number=number)
                 else:
                     flash("エラー:dimension")
                     return redirect(url_for("view.graph_view",dimension="2D",number="1"))
@@ -295,18 +305,27 @@ def  matrix_2_view():
         Anser=matrix_2.calculation(matrixA,matrixB,Ar,Ac,Br,Bc,type,k,l)
 
         anser=[]
-        if Anser[0]=="Error":
+        if Anser[4]=="NUMBER":
             anser=[Anser[0]]
-        else:
+        elif Anser[4]=="MATRIX":
             for i in range(Anser[2]):
                 A=str(Anser[0].row(i))
                 A=A.replace("Matrix","").replace("**","^").replace("*","").replace("([[","[").replace("]])","]")
                 anser.append(A)
-        return render_template("matrix_2.html",
-        matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,
+        return render_template("matrix_2.html",matrixA=matrixA,matrixB=matrixB,Ar=Ar,Ac=Ac,Br=Br,Bc=Bc,type=type,k=k,l=l,
         anser_0=anser,anser_1=Anser[1])
     else:
         return render_template("matrix_2.html",Ar=2,Ac=2,Br=2,Bc=2,type="A",k=2,l=2)
+
+
+@view.route("/max_min",methods=["GET","POST"])
+def max_min_view():
+    if request.method=="POST":
+        formula=request.form.get("formula")
+        Anser=max_min.max_min(formula)
+        return render_template("max_min.html",formula=formula,Anser=Anser)
+    else:
+        return render_template("max_min.html")
 
 
 @view.route("/newton_method",methods=["GET","POST"])
@@ -345,8 +364,8 @@ def  taylor_view():
         formula=request.form.get("formula")
         dimension=request.form.get("dimension")
         center=request.form.get("center")
-        anser=taylor.taylor(formula,dimension,center)
-        return render_template("taylor.html",formula=formula,dimension=dimension,center=center,anser=anser)
+        Anser=taylor.taylor(formula,dimension,center)
+        return render_template("taylor.html",formula=formula,dimension=dimension,center=center,Anser=Anser)
     else:
         return render_template("taylor.html",dimension=10,center=0)
 

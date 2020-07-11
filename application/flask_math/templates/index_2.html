@@ -3,6 +3,8 @@
 {% block body %}
 <br>
 <div class="list-group">
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.max_min_view')}}">極大値極小値</a>
+  <a class="list-group-item list-group-item-action" href="{{url_for('view.taylor_view')}}">テイラー展開</a>
   <a class="list-group-item list-group-item-action" href="{{url_for('view.newton_method_view')}}">ニュートン法</a>
   <a class="list-group-item list-group-item-action" href="{{url_for('view.Sieve_of_Eratosthenes_view')}}">ソクラテスのふるい</a>
   <a class="list-group-item list-group-item-action" href="{{url_for('view.Euclidean_Algorithm_view')}}">ユークリッドの互除法</a>
@@ -19,7 +21,7 @@
     <li class="page-item">
       <a class="page-link" href="{{url_for('view.index_view')}}">1</a>
     </li>
-    <li class="page-item active">
+    <li class="page-item">
       <a class="page-link" href="{{url_for('view.index_2_view')}}">2</a>
     </li>
     <li class="page-item disabled">
@@ -27,4 +29,5 @@
     </li>
   </ul>
 </nav>
+
 {% endblock %}
