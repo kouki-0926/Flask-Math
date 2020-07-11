@@ -10,14 +10,20 @@ def derivative(formula,type):
             A = diff(formula,x)
         elif type=="y":
             A = diff(formula,y)
+        elif type=="z":
+            A = diff(formula,z)
         elif type=="xx":
             A = diff(formula,x,x)
-        elif type=="xy":
-            A = diff(formula,x,y)
-        elif type=="yx":
-            A = diff(formula,y,x)
         elif type=="yy":
             A = diff(formula,y,y)
+        elif type=="zz":
+            A = diff(formula,z,z)
+        elif type=="xy":
+            A = diff(formula,x,y)
+        elif type=="yz":
+            A = diff(formula,y,x)
+        elif type=="zx":
+            A = diff(formula,z,x)
         elif type=="grad":
             A = (diff(formula,x),diff(formula,y),diff(formula,z))
         elif type=="∆":
@@ -25,8 +31,8 @@ def derivative(formula,type):
 
         formula=" = "+STR(formula)
         A=" = "+STR(factor(A))
-        anser=[formula,"f",type,A]
+        Anser=[formula,"f",type,A]
     except:
-        anser=["Error","","",""]
+        Anser=["Error","","",""]
         flash("エラー：もう一度入力してください")
-    return anser
+    return Anser

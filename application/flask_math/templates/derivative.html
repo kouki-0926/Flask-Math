@@ -8,7 +8,12 @@
   <!-- 関数の入力 -->
   <div class="form-group">
     <label for="InputFormula">関数<math><mi>f</mi></math>を入力してください</label>
-    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="function">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">f(x,y,z)=</span>
+      </div>
+      <input type="text" name="formula" class="form-control" value="{{formula}}" aria-describedby="basic-addon1"  placeholder="function">
+    </div>
   </div>
   <!-- 演算の選択 -->
   <div class="center">
@@ -36,6 +41,18 @@
     </div>
     {% endif %}
 
+    {% if type=="z" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="z" checked="checked">
+      <label class="form-check-label" for="inlineRadio1"><math><msub><mi>f</mi><mi>z</mi></msub></math>　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="z">
+      <label class="form-check-label" for="inlineRadio1"><math><msub><mi>f</mi><mi>z</mi></msub></math>　　</label>
+    </div>
+    {% endif %}
+
     {% if type=="xx"%}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="xx" checked="checked">
@@ -48,63 +65,87 @@
     </div>
     {% endif %}
 
-    {% if type=="xy" %}
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="xy" checked="checked">
-      <label class="form-check-label" for="inlineRadio3"><math><msub><mi>f</mi><mi>xy</mi></msub></math>　　</label>
-    </div>
-    {% else %}
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="xy">
-      <label class="form-check-label" for="inlineRadio3"><math><msub><mi>f</mi><mi>xy</mi></msub></math>　　</label>
-    </div>
-    {% endif %}
-
-    {% if type=="yx" %}
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yx" checked="checked">
-      <label class="form-check-label" for="inlineRadio4"><math><msub><mi>f</mi><mi>yx</mi></msub></math>　　</label>
-    </div>
-    {% else %}
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="yx">
-      <label class="form-check-label" for="inlineRadio4"><math><msub><mi>f</mi><mi>yx</mi></msub></math>　　</label>
-    </div>
-    {% endif %}
-
     {% if type=="yy" %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="yy" checked="checked">
-      <label class="form-check-label" for="inlineRadio4"><math><msub><mi>f</mi><mi>yy</mi></msub></math>　　</label>
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="yy" checked="checked">
+      <label class="form-check-label" for="inlineRadio3"><math><msub><mi>f</mi><mi>yy</mi></msub></math>　　</label>
     </div>
     {% else %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="yy">
-      <label class="form-check-label" for="inlineRadio5"><math><msub><mi>f</mi><mi>yy</mi></msub></math>　　</label>
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio3" value="yy">
+      <label class="form-check-label" for="inlineRadio3"><math><msub><mi>f</mi><mi>yy</mi></msub></math>　　</label>
+    </div>
+    {% endif %}
+
+    {% if type=="zz" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="zz" checked="checked">
+      <label class="form-check-label" for="inlineRadio4"><math><msub><mi>f</mi><mi>zz</mi></msub></math>　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio4" value="zz">
+      <label class="form-check-label" for="inlineRadio4"><math><msub><mi>f</mi><mi>zz</mi></msub></math>　　</label>
+    </div>
+    {% endif %}
+
+    {% if type=="xy" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="xy" checked="checked">
+      <label class="form-check-label" for="inlineRadio4"><math><msub><mi>f</mi><mi>xy</mi></msub></math>　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio5" value="xy">
+      <label class="form-check-label" for="inlineRadio5"><math><msub><mi>f</mi><mi>xy</mi></msub></math>　　</label>
+    </div>
+    {% endif %}
+
+    {% if type=="yz" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio6" value="yz" checked="checked">
+      <label class="form-check-label" for="inlineRadio6"><math><msub><mi>f</mi><mi>yz</mi></msub></math>　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio6" value="yz">
+      <label class="form-check-label" for="inlineRadio6"><math><msub><mi>f</mi><mi>yz</mi></msub></math>　　</label>
+    </div>
+    {% endif %}
+
+    {% if type=="zx" %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio7" value="zx" checked="checked">
+      <label class="form-check-label" for="inlineRadio7"><math><msub><mi>f</mi><mi>zx</mi></msub></math>　　</label>
+    </div>
+    {% else %}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio7" value="zx">
+      <label class="form-check-label" for="inlineRadio7"><math><msub><mi>f</mi><mi>zx</mi></msub></math>　　</label>
     </div>
     {% endif %}
 
     {% if type=="grad" %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio6" value="grad" checked="checked">
-      <label class="form-check-label" for="inlineRadio6"><math><mi>grad</mi><mi>f</mi></math>　　</label>
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio8" value="grad" checked="checked">
+      <label class="form-check-label" for="inlineRadio8"><math><mi>grad</mi><mi>f</mi></math>　　</label>
     </div>
     {% else %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio6" value="grad">
-      <label class="form-check-label" for="inlineRadio6"><math><mi>grad</mi><mi>f</mi></math>　　</label>
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio8" value="grad">
+      <label class="form-check-label" for="inlineRadio8"><math><mi>grad</mi><mi>f</mi></math>　　</label>
     </div>
     {% endif %}
 
     {% if type=="∆" %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio7" value="∆" checked="checked">
-      <label class="form-check-label" for="inlineRadio7"><math><mi>∆</mi><mi>f</mi></math>　　</label>
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio9" value="∆" checked="checked">
+      <label class="form-check-label" for="inlineRadio9"><math><mi>∆</mi><mi>f</mi></math>　　</label>
     </div>
     {% else %}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="type" id="inlineRadio7" value="∆">
-      <label class="form-check-label" for="inlineRadio7"><math><mi>∆</mi><mi>f</mi></math>　　</label>
+      <input class="form-check-input" type="radio" name="type" id="inlineRadio10" value="∆">
+      <label class="form-check-label" for="inlineRadio10"><math><mi>∆</mi><mi>f</mi></math>　　</label>
     </div>
     {% endif %}
   </div>

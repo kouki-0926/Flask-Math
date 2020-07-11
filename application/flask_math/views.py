@@ -364,8 +364,8 @@ def  taylor_view():
         formula=request.form.get("formula")
         dimension=request.form.get("dimension")
         center=request.form.get("center")
-        anser=taylor.taylor(formula,dimension,center)
-        return render_template("taylor.html",formula=formula,dimension=dimension,center=center,anser=anser)
+        Anser=taylor.taylor(formula,dimension,center)
+        return render_template("taylor.html",formula=formula,dimension=dimension,center=center,Anser=Anser)
     else:
         return render_template("taylor.html",dimension=10,center=0)
 

@@ -111,12 +111,22 @@
 <form action='{{url_for("view.graph_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="InputFormula_1">式を入力してください</label>
-    <input type="text" name="formula_1" class="form-control" id="InputFormula_1" value="{{formula_1}}" placeholder="formula_1">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">f(x)=</span>
+      </div>
+      <input type="text" name="formula_1" class="form-control" id="InputFormula_1" value="{{formula_1}}" placeholder="formula_1">
+    </div>
   </div>
   {% if number=="2" %}
   <div class="form-group">
     <label for="InputFormula_2">式を入力してください</label>
-    <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}" placeholder="formula_2">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">f(x)=</span>
+      </div>
+      <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}" placeholder="formula_2">
+    </div>
   </div>
   {% endif %}
 

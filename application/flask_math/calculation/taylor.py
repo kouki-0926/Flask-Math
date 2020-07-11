@@ -15,8 +15,11 @@ def taylor(formula,dimension,center):
             D=f.subs(x,center)/factorial(number)
             A=D*(x-center)**number+A
 
-        anser=STR(formula)+"≒"+STR(A)
+        anser_1="f(x)="+STR(formula)
+        anser_2="f(x)≒"+STR(A)
+        Anser=[anser_1,anser_2]
+        print(Anser)
     except:
-        anser="Error"
+        Anser=["Error",""]
         flash("エラー：もう一度入力してください")
-    return anser
+    return Anser

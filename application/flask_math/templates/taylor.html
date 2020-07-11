@@ -7,7 +7,12 @@
 <form action='{{url_for("view.taylor_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="InputFormula">テイラー展開したい関数を入力してください</label>
-    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="function">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">f(x)=</span>
+      </div>
+      <input type="text" name="formula" class="form-control" value="{{formula}}" aria-describedby="basic-addon1"  placeholder="function">
+    </div>
   </div>
   <div class="form-group">
     <label for="InputDimension">次数</label>
@@ -23,9 +28,12 @@
 </form>
 
 <br><br><br>
+{% for anser in Anser %}
 <h1>
   <math>
     <mn>{{anser}}</mn>
   </math>
 </h1>
+{% endfor %}
+
 {% endblock %}

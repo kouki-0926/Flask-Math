@@ -5,25 +5,64 @@ x,y=symbols('x y')
 
 def max_min(formula):
     try:
-        f=sympify(formula)
-        f_x=diff(f,x)
-        f_xx=diff(f,x,2)
-        A=solve(f_x, dict = True)
+        formula=sympify(formula)
+        f_x=diff(formula,x)
+        f_y=diff(formula,y)
+        f_xx=diff(formula,x,x)
+        f_yy=diff(formula,y,y)
+        f_xy=diff(formula,x,y)
 
-        Max_Anser=[]
-        Min_Anser=[]
-        for i in range(len(A)):
-            a=A[i]
-            for B in a.items():
-                b=f_xx.subs(x,B[1])
-                c=f.subs(x,B[1])
-                if b>=0:
-                    anser="極小値　f("+str(B[1])+") = "+str(c)
-                    Min_Anser.append(anser)
+        if f_x==0 or f_y==0:
+            A=solve(f_x, dict = True)
+
+            Max_Anser=[]
+            Min_Anser=[]
+            for i in range(len(A)):
+                a=A[i]
+                for B in a.items():
+                    b=f_xx.subs(x,B[1])
+                    c=formula.subs(x,B[1])
+                    if b>=0:
+                        anser="極小値　f("+str(B[1])+") = "+str(c)
+                        Min_Anser.append(anser)
+                    else:
+                        anser="極大値　f("+str(B[1])+") = "+str(c)
+                        Max_Anser.append(anser)
+            Anser=["f(x)="+str(formula)]+Max_Anser+[""]+Min_Anser
+        else:
+            A=solve([f_x,f_y])
+            B=[]
+            if type(A)==list:
+                for i in range(len(A)):
+                    a=A[i]
+                    D=[]
+                    for C in a.items():
+                        D.append(C[1])
+                    B.append(D)
+            else:
+                D=[]
+                for C in A.items():
+                    D.append(C[1])
+                B.append(D)
+
+            Anser=["f(x,y)="+str(formula)]
+            for j in range(len(B)):
+                a=B[j][0]
+                b=B[j][1]
+
+                D=f_xx*f_yy-(f_xy)**2
+                D=D.subs([(x,a),(y,b)])
+                f_xx=f_xx.subs([(x,a),(y,b)])
+                if D>0:
+                    if f_xx>0:
+                        anser="極小値 f("+str(a)+","+str(b)+")="+str(formula.subs([(x,a),(y,b)]))
+                    else:
+                        anser="極大値 f("+str(a)+","+str(b)+")="+str(formula.subs([(x,a),(y,b)]))
+                elif D<0:
+                    anser="点("+str(a)+","+str(b)+")で極値をとらない"
                 else:
-                    anser="極大値　f("+str(B[1])+") = "+str(c)
-                    Max_Anser.append(anser)
-        Anser=Max_Anser+[""]+Min_Anser
+                    anser="点("+str(a)+","+str(b)+")での極値は判別できない"
+                Anser.append(anser)
     except:
         Anser=["Error"]
         flash("エラー：もう一度入力してください")
