@@ -1,5 +1,6 @@
 from sympy import *
 from flask import flash
+from flask_math.calculation.common.STR import STR
 
 x,y=symbols('x y')
 
@@ -23,12 +24,12 @@ def max_min(formula):
                     b=f_xx.subs(x,B[1])
                     c=formula.subs(x,B[1])
                     if b>=0:
-                        anser="極小値　f("+str(B[1])+") = "+str(c)
+                        anser="極小値　f("+STR(B[1])+") = "+STR(c)
                         Min_Anser.append(anser)
                     else:
-                        anser="極大値　f("+str(B[1])+") = "+str(c)
+                        anser="極大値　f("+STR(B[1])+") = "+STR(c)
                         Max_Anser.append(anser)
-            Anser=["f(x)="+str(formula)]+Max_Anser+[""]+Min_Anser
+            Anser=["f(x)="+STR(formula)]+Max_Anser+Min_Anser
         else:
             A=solve([f_x,f_y])
             B=[]
@@ -45,7 +46,7 @@ def max_min(formula):
                     D.append(C[1])
                 B.append(D)
 
-            Anser=["f(x,y)="+str(formula)]
+            Anser=["f(x,y)="+STR(formula)]
             for j in range(len(B)):
                 a=B[j][0]
                 b=B[j][1]
@@ -55,13 +56,13 @@ def max_min(formula):
                 f_xx=f_xx.subs([(x,a),(y,b)])
                 if D>0:
                     if f_xx>0:
-                        anser="極小値 f("+str(a)+","+str(b)+")="+str(formula.subs([(x,a),(y,b)]))
+                        anser="極小値 f("+STR(a)+","+STR(b)+")="+STR(formula.subs([(x,a),(y,b)]))
                     else:
-                        anser="極大値 f("+str(a)+","+str(b)+")="+str(formula.subs([(x,a),(y,b)]))
+                        anser="極大値 f("+STR(a)+","+STR(b)+")="+STR(formula.subs([(x,a),(y,b)]))
                 elif D<0:
-                    anser="点("+str(a)+","+str(b)+")で極値をとらない"
+                    anser="点("+STR(a)+","+STR(b)+")で極値をとらない"
                 else:
-                    anser="点("+str(a)+","+str(b)+")での極値は判別できない"
+                    anser="点("+STR(a)+","+STR(b)+")での極値は判別できない"
                 Anser.append(anser)
     except:
         Anser=["Error"]
