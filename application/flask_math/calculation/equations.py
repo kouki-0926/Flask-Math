@@ -11,7 +11,7 @@ def equations(formula,number):
             for i in range(len(A)):
                 a=A[i]
                 for B in a.items():
-                    anser=str(B[0])+"="+str(B[1])
+                    anser=STR(B[0])+"="+STR(B[1])
                     Anser.append(anser)
         else:
             for B in A.items():

@@ -247,7 +247,7 @@ def integral_view():
     elif request.method=="GET":
         dimension=request.args.get("dimension")
         if dimension=="2D":
-            return render_template("integral.html",dimension=dimension,type="definite_integral_1")
+            return render_template("integral.html",dimension=dimension,type="indefinite_integral")
         elif dimension=="3D":
             return render_template("integral.html",dimension=dimension,type="multiple_integral_1")
         else:
