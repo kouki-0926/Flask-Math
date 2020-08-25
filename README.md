@@ -1,26 +1,19 @@
 # FLASK MATH  ver.1.12
 
-## 利用方法
+## FLASK MATH is a web application that can perform various calculations such as calculus and matrix.
 
-### 1.  下の[URL](https://github.com/kouki7910/Flask-Math/archive/v1.12.zip)からコードをダウンロード、展開する
-        https://github.com/kouki7910/Flask-Math/archive/v1.12.zip
+[![Github issues](https://img.shields.io/github/issues/kouki-0926/Flask-Math)](https://github.com/kouki-0926/Flask-Math/issues)
+[![Github forks](https://img.shields.io/github/forks/kouki-0926/Flask-Math)](https://github.com/kouki-0926/Flask-Math/network/members)
+[![Github stars](https://img.shields.io/github/stars/kouki-0926/Flask-Math)](https://github.com/kouki-0926/Flask-Math/stargazers)
+[![Github license](https://img.shields.io/github/license/kouki-0926/Flask-Math)](https://github.com/kouki-0926/Flask-Math/)
 
-### 2. コマンドプロンプトを開き、applicationフォルダに移動する
-        cd Downloads\Flask-Math-1.12\Flask-Math-1.12\application
+## How to use
+1. Make sure you have python3.8.x installed.
+1. Download the source code from [FLASK MATH ver.1.12](https://github.com/kouki7910/Flask-Math/archive/v1.12.zip) and unzip it.
+1. If you have not installed the Flask, sympy, matplotlib libraries, install them.
+1. Run server.py. The server.py file is located at Flask-Math-1.12\Flask-Math-1.12\application
+1. Please access http://127.0.0.1:5000/
 
-### 3. pipenvをインストールする
-        pip install pipenv
+## Contributors
 
-### 4. 仮想環境に入る
-        pipenv --three
-        pipenv shell
-
-### 5. パッケージ,ライブラリをインストールする
-        pipenv install Flask
-        pipenv install sympy
-        pipenv install matplotlib
-
-### 6. アプリケーションを立ち上げる
-        python server.py
-
-### 7.  http://127.0.0.1:5000/ にアクセスする
+- [kouki-0926](https://github.com/kouki-0926)

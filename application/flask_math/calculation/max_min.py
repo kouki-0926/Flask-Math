@@ -14,22 +14,29 @@ def max_min(formula):
         f_xy=diff(formula,x,y)
 
         if f_x==0 or f_y==0:
-            A=solve(f_x, dict = True)
+            if f_x==0:
+                var=y
+                det=f_yy
+                A=solve(f_y, dict = True)
+            else:
+                var=x
+                det=f_xx
+                A=solve(f_x, dict = True)
 
             Max_Anser=[]
             Min_Anser=[]
             for i in range(len(A)):
                 a=A[i]
                 for B in a.items():
-                    b=f_xx.subs(x,B[1])
-                    c=formula.subs(x,B[1])
+                    b=det.subs(var,B[1])
+                    c=formula.subs(var,B[1])
                     if b>=0:
                         anser="極小値　f("+STR(B[1])+") = "+STR(c)
                         Min_Anser.append(anser)
                     else:
                         anser="極大値　f("+STR(B[1])+") = "+STR(c)
                         Max_Anser.append(anser)
-            Anser=["f(x)="+STR(formula)]+Max_Anser+Min_Anser
+            Anser=["f("+str(var)+")="+STR(formula)]+Max_Anser+Min_Anser
         else:
             A=solve([f_x,f_y])
             B=[]
@@ -64,6 +71,8 @@ def max_min(formula):
                 else:
                     anser="点("+STR(a)+","+STR(b)+")での極値は判別できない"
                 Anser.append(anser)
+        if len(Anser)==1:
+            Anser.append("極値をとらない")
     except:
         Anser=["Error"]
         flash("エラー：もう一度入力してください")
