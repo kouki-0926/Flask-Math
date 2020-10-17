@@ -368,9 +368,3 @@ def  taylor_view():
         return render_template("taylor.html",formula=formula,dimension=dimension,center=center,Anser=Anser)
     else:
         return render_template("taylor.html",dimension=10,center=0)
-
-
-@Math.app_errorhandler(404)
-def non_existant_route(error):
-    flash("エラーコード：404　申し訳ございませんが、アクセスしたページは表示できません。")
-    return redirect(url_for("Math.index_view"))
