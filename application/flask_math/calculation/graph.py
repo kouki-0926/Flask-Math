@@ -16,13 +16,18 @@ def graph(formula_1,lower_end_x,upper_end_x):
             flash("下端に上端よりも大きい値が入力されています. もう一度入力してください.")
 
         # データ作成
-        dx=1/50
+        num=300
         t,y=[],[]
+        if(lower_end_x==-num):
+            dx=(upper_end_x-lower_end_x)/(num+1+lower_end_x)
+        else:    
+            dx=(upper_end_x-lower_end_x)/(num+lower_end_x)
+
         for i in range(int(lower_end_x),int((upper_end_x-lower_end_x)/dx),1):
             t.append(lower_end_x+dx*i)
             y.append(formula_1.subs(x,lower_end_x+dx*i))
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(7,4))
         plt.plot(t,y)
         plt.title("f(x)="+str(formula_1)+" ("+str(lower_end_x)+"<x<"+str(upper_end_x)+")")
         # canvasにプロットした画像を出力

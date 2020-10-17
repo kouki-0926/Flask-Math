@@ -12,8 +12,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">f(x)=</span>
       </div>
-      <input type="text" name="formula_1" class="form-control" id="InputFormula_1" value="{{formula_1}}"
-        placeholder="formula_1">
+      <input type="text" name="formula_1" class="form-control" id="InputFormula_1" value="{{formula_1}}" placeholder="formula_1">
     </div>
   </div>
 
@@ -21,14 +20,12 @@
   <div class="form-row align-items-center">
     <div class="col-6">
       <div class="input-group">
-        <input type="text" name="lower_end_x" class="form-control" value="{{lower_end_x}}" placeholder="lower_end_x"
-          aria-describedby="basic-addon2">
+        <input type="text" name="lower_end_x" class="form-control" value="{{lower_end_x}}" placeholder="lower_end_x" aria-describedby="basic-addon2">
       </div>
     </div>
     <div class="col-6">
       <div class="input-group">
-        <input type="text" name="upper_end_x" class="form-control" value="{{upper_end_x}}" placeholder="upper_end_x"
-          aria-describedby="basic-addon2">
+        <input type="text" name="upper_end_x" class="form-control" value="{{upper_end_x}}" placeholder="upper_end_x" aria-describedby="basic-addon2">
       </div>
     </div>
   </div>
@@ -37,5 +34,8 @@
   <button type="submit" class="btn btn-primary btn-block">描画</button>
 </form>
 
-<img src="{{url_for('Math.graph_png',formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x)}}" width="500" height="300"></img>
+{% if formula_1 %}
+<img src="{{url_for('Math.graph_png',formula_1=formula_1,lower_end_x=lower_end_x,upper_end_x=upper_end_x)}}" class="graph"></img>
+{% endif %}
+
 {% endblock %}
