@@ -1,7 +1,6 @@
 from flask import render_template, flash, Blueprint, redirect, url_for
 
-main = Blueprint("main", __name__, template_folder='templates_main', static_folder="static")
-
+main = Blueprint("main", __name__, template_folder='templates_main', static_folder="static_main")
 
 @main.route("/")
 def index_view():
