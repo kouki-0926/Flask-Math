@@ -1,4 +1,4 @@
-# FLASK MATH  ver.1.14
+# FLASK MATH  ver.1.15
 
 ## FLASK MATH is a web application that can perform various calculations such as calculus and matrix.
 
@@ -9,9 +9,9 @@
 
 ## How to use
 1. Make sure you have python3.8.x installed.
-1. Download the source code from [FLASK MATH ver.1.14](https://github.com/kouki7910/Flask-Math/archive/v1.14.zip) and unzip it.
+1. Download the source code from [FLASK MATH ver.1.15](https://github.com/kouki7910/Flask-Math/archive/v1.15.zip) and unzip it.
 1. If you have not installed the Flask, sympy, matplotlib libraries, install them.
-1. Run server.py. The server.py file is located at Flask-Math-1.14\Flask-Math-1.14\application
+1. Run server.py. The server.py file is located at Flask-Math-1.15\Flask-Math-1.15\application
 1. Please access http://127.0.0.1:5000/
 
 ## Contributors
