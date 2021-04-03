@@ -1,12 +1,41 @@
 from flask import request, redirect, url_for, render_template, flash, Blueprint, make_response
 from flask_math.calculation import *
 
-Math = Blueprint("Math", __name__, template_folder="templates_math", static_folder="static_math")
+Math = Blueprint("Math", __name__,
+                 template_folder="templates_math", static_folder="static_math")
 
 
 @Math.route("/index")
 def index_view():
     return render_template("index.html")
+
+
+@Math.route("/bode", methods=["GET", "POST"])
+def bode_view():
+    if request.method == "POST":
+        formula = request.form.get("formula")
+        try:
+            lower_end = int(request.form.get("lower_end"))
+            upper_end = int(request.form.get("upper_end"))
+            if(lower_end >= upper_end):
+                tmp = upper_end
+                upper_end = lower_end
+                lower_end = tmp
+        except:
+            lower_end = -5
+            upper_end = 5
+        return render_template("bode.html", formula=formula, lower_end=lower_end, upper_end=upper_end, init_flag=0)
+    else:
+        return render_template("bode.html", lower_end=-5, upper_end=-5, init_flag=1)
+
+
+@Math.route('/bode.png')
+def bode_png():
+    formula = request.args.get("formula")
+    lower_end = request.args.get("lower_end")
+    upper_end = request.args.get("upper_end")
+    response = bode.bode(formula, lower_end, upper_end)
+    return response
 
 
 @Math.route("/index_2")
