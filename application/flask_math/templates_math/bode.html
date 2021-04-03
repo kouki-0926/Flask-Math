@@ -38,7 +38,9 @@
 
 
 {% if init_flag==0 %}
-<img src="{{url_for('Math.bode_png',formula=formula,lower_end=lower_end,upper_end=upper_end,width=width)}}" class="graph"></img>
+<div class="center">
+  <img src="{{url_for('Math.bode_png',formula=formula,lower_end=lower_end,upper_end=upper_end,width=width)}}" class="graph"></img>
+</div>
 {% endif %}
 
 {% endblock %}

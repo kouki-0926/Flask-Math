@@ -1,8 +1,7 @@
 from flask import request, redirect, url_for, render_template, flash, Blueprint, make_response
 from flask_math.calculation import *
 
-Math = Blueprint("Math", __name__,
-                 template_folder="templates_math", static_folder="static_math")
+Math = Blueprint("Math", __name__, template_folder="templates_math", static_folder="static_math")
 
 
 @Math.route("/index")
@@ -10,6 +9,7 @@ def index_view():
     return render_template("index.html")
 
 
+boad_num = 3
 @Math.route("/bode", methods=["GET", "POST"])
 def bode_view():
     if request.method == "POST":
@@ -23,12 +23,12 @@ def bode_view():
                 upper_end = lower_end
                 lower_end = tmp
         except:
-            lower_end = -5
-            upper_end = 5
+            lower_end = -boad_num
+            upper_end = boad_num
             width = 10
         return render_template("bode.html", formula=formula, lower_end=lower_end, upper_end=upper_end, width=width, init_flag=0)
     else:
-        return render_template("bode.html", lower_end=-5, upper_end=5, width=10, init_flag=1)
+        return render_template("bode.html", lower_end=-boad_num, upper_end=boad_num, width=10, init_flag=1)
 
 
 @Math.route('/bode.png')
@@ -39,8 +39,8 @@ def bode_png():
         upper_end = int(request.args.get("upper_end"))
         width = int(request.args.get("width"))
     except:
-        lower_end = -5
-        upper_end = 5
+        lower_end = -boad_num
+        upper_end = boad_num
         width = 10
     response = bode.bode(formula, lower_end, upper_end, width)
     return response
