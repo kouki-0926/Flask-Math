@@ -17,6 +17,7 @@ def bode_view():
         try:
             lower_end = int(request.form.get("lower_end"))
             upper_end = int(request.form.get("upper_end"))
+            width = int(request.form.get("width"))
             if(lower_end >= upper_end):
                 tmp = upper_end
                 upper_end = lower_end
@@ -24,17 +25,24 @@ def bode_view():
         except:
             lower_end = -5
             upper_end = 5
-        return render_template("bode.html", formula=formula, lower_end=lower_end, upper_end=upper_end, init_flag=0)
+            width = 10
+        return render_template("bode.html", formula=formula, lower_end=lower_end, upper_end=upper_end, width=width, init_flag=0)
     else:
-        return render_template("bode.html", lower_end=-5, upper_end=-5, init_flag=1)
+        return render_template("bode.html", lower_end=-5, upper_end=5, width=10, init_flag=1)
 
 
 @Math.route('/bode.png')
 def bode_png():
     formula = request.args.get("formula")
-    lower_end = request.args.get("lower_end")
-    upper_end = request.args.get("upper_end")
-    response = bode.bode(formula, lower_end, upper_end)
+    try:
+        lower_end = int(request.args.get("lower_end"))
+        upper_end = int(request.args.get("upper_end"))
+        width = int(request.args.get("width"))
+    except:
+        lower_end = -5
+        upper_end = 5
+        width = 10
+    response = bode.bode(formula, lower_end, upper_end, width)
     return response
 
 
