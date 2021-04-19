@@ -20,6 +20,24 @@ def laplace_view():
             return redirect(url_for('Math.laplace_view', type='lap'))
 
 
+@Math.route("/sysio", methods=["GET", "POST"])
+def sysio_view():
+    if request.method == "POST":
+        formula = request.form.get("formula")
+        formula_2 = request.form.get("formula_2")
+        return render_template("sysio.html", formula=formula, formula_2=formula_2, init_flag=0)
+    else:
+        return render_template("sysio.html", init_flag=1)
+
+
+@Math.route("/sysio_graph", methods=["GET", "POST"])
+def sysio_graph_png():
+    formula = request.args.get("formula")
+    formula_2 = request.args.get("formula_2")
+    response = sysio.sysio(formula, formula_2)
+    return response
+
+
 @Math.route("/index")
 def index_view():
     return render_template("index.html")
