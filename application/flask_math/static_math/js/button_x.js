@@ -22,7 +22,8 @@ window.onload = function () {
   var child = document.createElement("div");
   child.style.border = "2px solid #6091d3";
   child.style.borderRadius = "10px";
-  child.classList.add("center", "SPOnly");
+  child.classList.add("center");
+  // child.classList.add("center", "SPOnly");
 
   var child1 = document.createElement("div");
   for (var i = 0; i < 10; i++) {
@@ -39,21 +40,22 @@ window.onload = function () {
   }
   child.appendChild(child1);
 
+  var child2InnerText = ["+", "-", "*", "**", "/", "(", ")"];
   var child2 = document.createElement("div");
-  for (var i = 1; i < 6; i++) {
+  for (var i = 0; i < 7; i++) {
     var element = document.createElement("button");
-    element.innerText = "*x**" + i;
+    element.innerText = child2InnerText[i];
     element.addEventListener("click", clickBtn1, false);
-    element.eventParam = "*x**" + String(i);
+    element.eventParam = child2InnerText[i];
     element.classList.add("btn", "btn-outline-info");
-    element.style.marginRight = "5px";
     element.style.marginBottom = "5px";
-    element.style.padding = "5px 10px 5px 10px";
+    element.style.marginRight = "5px";
+    element.style.padding = "5px 15px 5px 15px";
     child2.appendChild(element);
   }
   child.appendChild(child2);
 
-  var child3InnerText = ["+", "-", "/", "(", ")"];
+  var child3InnerText = ["x", "t", "s", "Heaviside(", "DiracDelta("];
   var child3 = document.createElement("div");
   for (var i = 0; i < 5; i++) {
     var element = document.createElement("button");
@@ -61,9 +63,9 @@ window.onload = function () {
     element.addEventListener("click", clickBtn1, false);
     element.eventParam = child3InnerText[i];
     element.classList.add("btn", "btn-outline-info");
-    element.style.marginRight = "5px";
     element.style.marginBottom = "5px";
-    element.style.padding = "5px 25px 5px 25px";
+    element.style.marginRight = "5px";
+    element.style.padding = "5px 10px 5px 10px";
     child3.appendChild(element);
   }
   child.appendChild(child3);
@@ -76,9 +78,9 @@ window.onload = function () {
     element.addEventListener("click", clickdel, false);
     element.eventParam = i;
     element.classList.add("btn", "btn-outline-danger");
-    element.style.marginRight = "5px";
     element.style.marginBottom = "5px";
-    element.style.padding = "5px 7px 5px 7px";
+    element.style.marginRight = "5px";
+    element.style.padding = "5px 6px 5px 6px";
     child4.appendChild(element);
   }
   child.appendChild(child4);

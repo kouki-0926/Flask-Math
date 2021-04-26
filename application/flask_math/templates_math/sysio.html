@@ -10,7 +10,8 @@
 </h2>
 <div class="right">
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
       選択してください
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -28,7 +29,8 @@
       <div class="input-group-prepend">
         <span class="input-group-text"><small>\(G(s)=\)</small></span>
       </div>
-      <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="TransferFunction">
+      <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}"
+        placeholder="TransferFunction">
     </div>
   </div>
   <div class="form-group">
@@ -37,7 +39,8 @@
       <div class="input-group-prepend">
         <span class="input-group-text"><small>\(U(s)=\)</small></span>
       </div>
-      <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}" placeholder="InputSignal">
+      <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}"
+        placeholder="InputSignal">
     </div>
   </div>
   {% elif type=="t" %}
@@ -47,7 +50,8 @@
       <div class="input-group-prepend">
         <span class="input-group-text"><small>\(g(t)=\)</small></span>
       </div>
-      <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="ImpulseResponse">
+      <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}"
+        placeholder="ImpulseResponse">
     </div>
   </div>
   <div class="form-group">
@@ -56,7 +60,8 @@
       <div class="input-group-prepend">
         <span class="input-group-text"><small>\(u(t)=\)</small></span>
       </div>
-      <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}" placeholder="InputSignal">
+      <input type="text" name="formula_2" class="form-control" id="InputFormula_2" value="{{formula_2}}"
+        placeholder="InputSignal">
     </div>
   </div>
   {% endif %}
@@ -65,7 +70,8 @@
     <div class="form-row align-items-center">
       <div class="col-6">
         <div class="input-group">
-          <input type="text" name="lower_end" class="form-control" id="LowerEnd" value="{{lower_end}}" placeholder="lower_end">
+          <input type="text" name="lower_end" class="form-control" id="LowerEnd" value="{{lower_end}}"
+            placeholder="lower_end">
         </div>
       </div>
       <div class="col-6">
@@ -74,16 +80,34 @@
         </div>
       </div>
     </div>
-  </div><br>
+  </div>
   <button type="submit" class="btn btn-primary btn-block">計算</button>
 </form><br>
 
-<div id="parent"></div>
-<script type="text/javascript" src="static_math/js/button_x.js"></script>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <button class="btn btn-outline-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">伝達関数</button>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <div id="parent"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <button class="btn btn-outline-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">入力</button>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <div id="parent_2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="static_math/js/button_x_2.js"></script>
 
 {% if init_flag==0 %}
 <div class="center">
-  <img src="{{url_for('Math.sysio_graph_png',formula=formula,formula_2=formula_2,lower_end=lower_end,upper_end=upper_end,type=type)}}" class="graph"></img>
+  <img　src="{{url_for('Math.sysio_graph_png',formula=formula,formula_2=formula_2,lower_end=lower_end,upper_end=upper_end,type=type)}}"　class="graph"></img>
 </div>
 {% endif %}
 
