@@ -42,7 +42,6 @@ window.onload = function () {
 
     var child = document.createElement("div");
     child.style.border = "2px solid #6091d3";
-    child.style.borderRadius = "10px";
     child.classList.add("center");
 
     var child1 = document.createElement("div");
@@ -56,10 +55,10 @@ window.onload = function () {
       }
       element.eventParam = String(i);
       element.classList.add("btn", "btn-outline-info");
-      element.style.marginTop = "4px";
-      element.style.marginBottom = "4px";
-      element.style.marginRight = "4px";
-      element.style.padding = "4px 7px 4px 7px";
+      element.style.marginTop = "1px";
+      element.style.marginBottom = "2px";
+      element.style.marginRight = "1px";
+      element.style.padding = "5px 10px 5px 10px";
       child1.appendChild(element);
     }
     child.appendChild(child1);
@@ -76,9 +75,9 @@ window.onload = function () {
       }
       element.eventParam = child2InnerText[i];
       element.classList.add("btn", "btn-outline-info");
-      element.style.marginBottom = "4px";
-      element.style.marginRight = "4px";
-      element.style.padding = "4px 14px 4px 14px";
+      element.style.marginBottom = "2px";
+      element.style.marginRight = "1px";
+      element.style.padding = "5px 18px 5px 18px";
       child2.appendChild(element);
     }
     child.appendChild(child2);
@@ -95,9 +94,9 @@ window.onload = function () {
       }
       element.eventParam = child3InnerText[i];
       element.classList.add("btn", "btn-outline-info");
-      element.style.marginBottom = "4px";
-      element.style.marginRight = "4px";
-      element.style.padding = "4px 8px 4px 8px";
+      element.style.marginBottom = "2px";
+      element.style.marginRight = "1px";
+      element.style.padding = "5px 13px 5px 12px";
       child3.appendChild(element);
     }
     child.appendChild(child3);
@@ -114,9 +113,9 @@ window.onload = function () {
       }
       element.eventParam = i;
       element.classList.add("btn", "btn-outline-danger");
-      element.style.marginBottom = "4px";
-      element.style.marginRight = "4px";
-      element.style.padding = "4px 6px 4px 6px";
+      element.style.marginBottom = "2px";
+      element.style.marginRight = "1px";
+      element.style.padding = "5px 11px 5px 11px";
       child4.appendChild(element);
     }
     child.appendChild(child4);
