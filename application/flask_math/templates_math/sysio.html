@@ -81,7 +81,11 @@
 <div class="accordion" id="accordionExample">
   <div class="card">
     <button class="btn btn-outline-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">伝達関数</button>
+    {% if init_flag==1 %}
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    {% else %}
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+    {% endif %}
       <div id="parent"></div>
     </div>
   </div>
@@ -97,7 +101,7 @@
 
 {% if init_flag==0 %}
 <div class="center">
-  <img　src="{{url_for('Math.sysio_graph_png',formula=formula,formula_2=formula_2,lower_end=lower_end,upper_end=upper_end,type=type)}}"　class="graph"></img>
+  <img src="{{url_for('Math.sysio_graph_png',formula=formula,formula_2=formula_2,lower_end=lower_end,upper_end=upper_end,type=type)}}" class="graph"></img>
 </div>
 {% endif %}
 

@@ -42,6 +42,7 @@ window.onload = function () {
 
     var child = document.createElement("div");
     child.style.border = "2px solid #6091d3";
+    // child.style.borderRadius = "10px";
     child.classList.add("center");
 
     var child1 = document.createElement("div");
@@ -63,9 +64,9 @@ window.onload = function () {
     }
     child.appendChild(child1);
 
-    var child2InnerText = ["+", "-", "*", "**", "/", "(", ")"];
+    var child2InnerText = ["x", "t", "s", "Heaviside(", "DiracDelta("];
     var child2 = document.createElement("div");
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 5; i++) {
       var element = document.createElement("button");
       element.innerText = child2InnerText[i];
       if (j == 1) {
@@ -77,14 +78,14 @@ window.onload = function () {
       element.classList.add("btn", "btn-outline-info");
       element.style.marginBottom = "2px";
       element.style.marginRight = "1px";
-      element.style.padding = "5px 18px 5px 18px";
+      element.style.padding = "5px 13px 5px 12px";
       child2.appendChild(element);
     }
     child.appendChild(child2);
 
-    var child3InnerText = ["x", "t", "s", "Heaviside(", "DiracDelta("];
+    var child3InnerText = ["+", "-", "*", "**", "/", "(", ")"];
     var child3 = document.createElement("div");
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 7; i++) {
       var element = document.createElement("button");
       element.innerText = child3InnerText[i];
       if (j == 1) {
@@ -96,7 +97,7 @@ window.onload = function () {
       element.classList.add("btn", "btn-outline-info");
       element.style.marginBottom = "2px";
       element.style.marginRight = "1px";
-      element.style.padding = "5px 13px 5px 12px";
+      element.style.padding = "5px 18px 5px 18px";
       child3.appendChild(element);
     }
     child.appendChild(child3);
