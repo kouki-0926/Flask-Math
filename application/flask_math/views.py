@@ -1,7 +1,7 @@
 from flask import request, redirect, url_for, render_template, flash, Blueprint, make_response
 from flask_math.calculation import *
 
-Math = Blueprint("Math", __name__, template_folder="templates", static_folder="static")
+Math = Blueprint("Math", __name__, template_folder="templates_math", static_folder="static_math")
 
 
 @Math.route("/index")
@@ -64,10 +64,42 @@ def BMI_view():
     if request.method == "POST":
         height = request.form.get("height")
         weight = request.form.get("weight")
-        anser = BMI.BMI(height, weight)
-        return render_template("BMI.html", height=height, weight=weight, anser_0=anser[0], anser_1=anser[1])
+        Anser = BMI.BMI(height, weight)
+        return render_template("BMI.html", height=height, weight=weight, Anser=Anser, init_flag=0)
     else:
-        return render_template("BMI.html")
+        return render_template("BMI.html", init_flag=1)
+
+
+@Math.route("/bode", methods=["GET", "POST"])
+def bode_view():
+    if request.method == "POST":
+        formula = request.form.get("formula")
+        try:
+            lower_end = int(request.form.get("lower_end"))
+            upper_end = int(request.form.get("upper_end"))
+            if(lower_end >= upper_end):
+                tmp = upper_end
+                upper_end = lower_end
+                lower_end = tmp
+        except:
+            lower_end = -3
+            upper_end = 3
+        return render_template("bode.html", formula=formula, lower_end=lower_end, upper_end=upper_end, init_flag=0)
+    else:
+        return render_template("bode.html", lower_end=-3, upper_end=3, init_flag=1)
+
+
+@Math.route('/bode.png')
+def bode_png():
+    formula = request.args.get("formula")
+    try:
+        lower_end = int(request.args.get("lower_end"))
+        upper_end = int(request.args.get("upper_end"))
+    except:
+        lower_end = -3
+        upper_end = 3
+    response = bode.bode(formula, lower_end, upper_end)
+    return response
 
 
 @Math.route("/derivative", methods=["GET", "POST"])
@@ -186,15 +218,19 @@ def factorization_view():
 def graph_view():
     if request.method == "POST":
         formula_1 = request.form.get("formula_1")
-        lower_end_x = request.form.get("lower_end_x")
-        upper_end_x = request.form.get("upper_end_x")
-        type = request.args.get("type")
-        return render_template("graph.html", formula_1=formula_1, lower_end_x=lower_end_x, upper_end_x=upper_end_x, type=type, init_flag=0)
+        try:
+            lower_end_x = float(request.form.get("lower_end_x"))
+            upper_end_x = float(request.form.get("upper_end_x"))
+            if(lower_end_x >= upper_end_x):
+                tmp = upper_end_x
+                upper_end_x = lower_end_x
+                lower_end_x = tmp
+        except:
+            lower_end_x = -10
+            upper_end_x = 10
+        return render_template("graph.html", formula_1=formula_1, lower_end_x=lower_end_x, upper_end_x=upper_end_x, init_flag=0)
     else:
-        type = request.args.get("type")
-        if(type is None):
-            return redirect(url_for("Math.graph_view", type='re'))
-        return render_template("graph.html", lower_end_x=-10, upper_end_x=10, type=type, init_flag=1)
+        return render_template("graph.html", lower_end_x=-10, upper_end_x=10, init_flag=1)
 
 
 @Math.route('/graph.png')
@@ -202,8 +238,7 @@ def graph_png():
     formula_1 = request.args.get("formula_1")
     lower_end_x = request.args.get("lower_end_x")
     upper_end_x = request.args.get("upper_end_x")
-    type = request.args.get("type")
-    response = graph.graph(formula_1, lower_end_x, upper_end_x, type)
+    response = graph.graph(formula_1, lower_end_x, upper_end_x)
     return response
 
 
@@ -234,6 +269,21 @@ def integral_view():
         else:
             flash("エラー:dimension")
             return redirect(url_for("Math.integral_view", dimension="2D"))
+
+
+@Math.route("/laplace", methods=["GET", "POST"])
+def laplace_view():
+    if request.method == "POST":
+        formula = request.form.get("formula")
+        type = request.args.get("type")
+        anser = laplace.laplace(formula, type=type)
+        return render_template("laplace.html", formula=formula, type=type, anser=anser, init_flag=0)
+    else:
+        type = request.args.get("type")
+        if(type == "lap" or type == "inv"):
+            return render_template("laplace.html", type=type, init_flag=1)
+        else:
+            return redirect(url_for('Math.laplace_view', type='lap'))
 
 
 @Math.route("/latex", methods=["GET", "POST"])
@@ -291,8 +341,7 @@ def matrix_2_view():
         k = request.form.get("k")
         l = request.form.get("l")
 
-        anser = matrix_2.calculation(
-            matrixA, matrixB, Ar, Ac, Br, Bc, type, k, l)
+        anser = matrix_2.calculation(matrixA, matrixB, Ar, Ac, Br, Bc, type, k, l)
         return render_template("matrix_2.html", matrixA=matrixA, matrixB=matrixB, Ar=Ar, Ac=Ac, Br=Br, Bc=Bc, type=type, k=k, l=l, anser=anser, init_flag=0)
     else:
         return render_template("matrix_2.html", Ar=2, Ac=2, Br=2, Bc=2, type="A", k=2, l=2, init_flag=1)
@@ -318,6 +367,22 @@ def newton_method_view():
         return render_template("newton_method.html", init_flag=1)
 
 
+@Math.route("/nyquist", methods=["GET", "POST"])
+def nyquist_view():
+    if request.method == "POST":
+        formula = request.form.get("formula")
+        return render_template("nyquist.html", formula=formula, init_flag=0)
+    else:
+        return render_template("nyquist.html", init_flag=1)
+
+
+@Math.route('/nyquist.png')
+def nyquist_png():
+    formula = request.args.get("formula")
+    response = nyquist.nyquist(formula)
+    return response
+
+
 @Math.route("/prime_factorization", methods=["GET", "POST"])
 def prime_factorization_view():
     if request.method == "POST":
@@ -336,6 +401,39 @@ def Sieve_of_Eratosthenes_view():
         return render_template("Sieve_of_Eratosthenes.html", number=number, Anser=Anser, init_flag=0)
     else:
         return render_template("Sieve_of_Eratosthenes.html", init_flag=1)
+
+
+@Math.route("/sysio", methods=["GET", "POST"])
+def sysio_view():
+    if request.method == "POST":
+        formula = request.form.get("formula")
+        formula_2 = request.form.get("formula_2")
+        lower_end = request.form.get("lower_end")
+        upper_end = request.form.get("upper_end")
+        type = request.args.get("type")
+        return render_template("sysio.html", formula=formula, formula_2=formula_2, lower_end=lower_end, upper_end=upper_end, type=type, init_flag=0)
+    else:
+        type = request.args.get("type")
+        if(type == "s" or type == "t"):
+            return render_template("sysio.html", lower_end=-2, upper_end=5, type=type, init_flag=1)
+        else:
+            return redirect(url_for('Math.sysio_view', type='s'))
+
+
+@Math.route("/sysio_graph", methods=["GET", "POST"])
+def sysio_graph_png():
+    formula = request.args.get("formula")
+    formula_2 = request.args.get("formula_2")
+    lower_end = request.args.get("lower_end")
+    upper_end = request.args.get("upper_end")
+    type = request.args.get("type")
+    try:
+        response = sysio.sysio(
+            formula, formula_2, lower_end, upper_end, type=type)
+        return response
+    except:
+        flash("Error")
+        return "Error"
 
 
 @Math.route("/taylor", methods=["GET", "POST"])

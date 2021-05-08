@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="../static_main/images/icon.png">
-  <link rel="apple-touch-icon" href="../static_main/images/icon.png">
+  <link rel="icon" type="image/x-icon" href="static_math/images/icon.png">
+  <link rel="apple-touch-icon" href="static_math/images/icon.png">
   <title>Flask Math</title>
   <!-- bootstrapのインポート -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
   <!-- スタイルシート -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/mplus1p.css">
-  <link rel=stylesheet href="../static_main/css/style.css">
+  <link rel=stylesheet href="static_math/css/style.css">
   <!-- MathJaxの導入 -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -36,7 +36,7 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="https://github.com/kouki-0926/Flask-Math" target="_blank">
-            <img src="../static_main/images/GitHub-Mark-64px.png" width="30" height="30" alt="GitHub">
+            <img src="static_math/images/GitHub-Mark-64px.png" width="30" height="30" alt="GitHub">
           </a>
         </li>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -62,10 +62,12 @@
               <a class="dropdown-item" href="{{ url_for('Math.newton_method_view') }}">ニュートン法</a>
               <a class="dropdown-item" href="{{ url_for('Math.Sieve_of_Eratosthenes_view') }}">ソクラテスのふるい</a>
               <a class="dropdown-item" href="{{ url_for('Math.Euclidean_Algorithm_view') }}">ユークリッドの互除法</a>
-              <a class="dropdown-item" href="{{ url_for('Math.graph_view',type='re') }}">グラフ</a>
+              <a class="dropdown-item" href="{{ url_for('Math.graph_view') }}">グラフ</a>
               <a class="dropdown-item" href="{{ url_for('Math.Factorial_view') }}">階乗</a>
               <a class="dropdown-item" href="{{url_for('Math.bode_view')}}">ボード線図</a>
               <a class="dropdown-item" href="{{url_for('Math.nyquist_view')}}">ナイキスト線図</a>
+              <a class="dropdown-item" href="{{url_for('Math.laplace_view',type='lap')}}">ラプラス変換</a>
+              <a class="dropdown-item" href="{{url_for('Math.sysio_view')}}">システム入出力</a>
               <a class="dropdown-item" href="{{ url_for('Math.latex_view',input_type='python') }}">\(\LaTeX\)</a>
               <a class="dropdown-item" href="{{ url_for('Math.BMI_view') }}">BMI</a>
               <a class="dropdown-item" href="{{ url_for('Math.instructions_view') }}">入力上の注意</a>
@@ -116,10 +118,12 @@
         <a style="display: block;" class="heading" href="{{ url_for('Math.newton_method_view') }}"><small>ニュートン法</small></a>
         <a style="display: block;" class="heading" href="{{ url_for('Math.Sieve_of_Eratosthenes_view') }}"><small>ソクラテスのふるい</small></a>
         <a style="display: block;" class="heading" href="{{ url_for('Math.Euclidean_Algorithm_view') }}"><small>ユークリッドの互除法</small></a>
-        <a style="display: block;" class="heading" href="{{ url_for('Math.graph_view',type='re') }}"><small>グラフ</small></a>
+        <a style="display: block;" class="heading" href="{{ url_for('Math.graph_view') }}"><small>グラフ</small></a>
         <a style="display: block;" class="heading" href="{{ url_for('Math.Factorial_view') }}"><small>階乗</small></a>
         <a style="display: block;" class="heading" href="{{url_for('Math.bode_view')}}"><small>ボード線図</small></a>
         <a style="display: block;" class="heading" href="{{url_for('Math.nyquist_view')}}"><small>ナイキスト線図</small></a>
+        <a style="display: block;" class="heading" href="{{url_for('Math.laplace_view',type='lap')}}"><small>ラプラス変換</small></a>
+        <a style="display: block;" class="heading" href="{{url_for('Math.sysio_view')}}"><small>システム入出力</small></a>
         <a style="display: block;" class="heading" href="{{ url_for('Math.latex_view',input_type='python') }}"><small>\(\LaTeX\)</small></a>
         <a style="display: block;" class="heading" href="{{ url_for('Math.BMI_view') }}"><small>BMI</small></a>
         <a style="display: block;" class="heading" href="{{ url_for('Math.instructions_view') }}"><small>入力上の注意</small></a>
@@ -133,7 +137,7 @@
           document.getElementById("thisYear").innerHTML = thisYear;
         </script>
         <a class="heading" href="https://github.com/kouki-0926" target="_blank">
-          <img src="../static_main/images/GitHub-Mark-64px.png" width="25" height="25" alt="GitHub">
+          <img src="static_math/images/GitHub-Mark-64px.png" width="25" height="25" alt="GitHub">
         </a>
       </div>
 
