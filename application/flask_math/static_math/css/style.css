@@ -10,7 +10,7 @@
 
 .heading:link,
 .heading:visited {
-  color: #000000;
+  color: #191970;
   text-decoration: none;
 }
 
@@ -156,7 +156,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #2196f3;
+  background-color: #000000;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -174,11 +174,11 @@
 }
 
 input:checked + .slider {
-  background-color: #000000;
+  background-color: #ccc;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #000000;
+  box-shadow: 0 0 1px #ccc;
 }
 
 input:checked + .slider:before {
