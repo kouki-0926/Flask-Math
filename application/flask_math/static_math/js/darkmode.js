@@ -36,4 +36,15 @@ function classToggle(mydata) {
     target.classList.remove("bootstrap-dark");
     checkbox.checked = true;
   }
+
+  const result = document.getElementsByClassName("heading");
+  if (mydata == "dark") {
+    for (let i = 0; i < result.length; i++) {
+      result[i].classList.add("heading_dark");
+    }
+  } else {
+    for (let i = 0; i < result.length; i++) {
+      result[i].classList.remove("heading_dark");
+    }
+  }
 }
