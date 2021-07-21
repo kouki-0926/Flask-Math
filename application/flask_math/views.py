@@ -5,6 +5,16 @@ Math = Blueprint("Math", __name__,
                  template_folder="templates_math", static_folder="static_math")
 
 
+@Math.route("/Homogeneous", methods=["GET", "POST"])
+def Homogeneous_view():
+    if request.method == "POST":
+        matrixA = request.form.get("matrixA")
+        anser = Homogeneous.Homogeneous(matrixA)
+        return render_template("Homogeneous.html", matrixA=matrixA, anser=anser, init_flag=0)
+    else:
+        return render_template("Homogeneous.html", init_flag=1)
+
+
 @Math.route("/test")
 def test_view():
     return render_template("test.html")
@@ -440,10 +450,12 @@ def sysio_graph_png():
             matrix_C = request.args.get("matrix_C")
             matrix_D = request.args.get("matrix_D")
             matrix_X = request.args.get("matrix_X")
-            response = sysio_matrix.sysio_matrix(matrix_A, matrix_B, matrix_C, matrix_D, matrix_X, formula, lower_end, upper_end, type)
+            response = sysio_matrix.sysio_matrix(
+                matrix_A, matrix_B, matrix_C, matrix_D, matrix_X, formula, lower_end, upper_end, type)
         else:
             formula_2 = request.args.get("formula_2")
-            response = sysio.sysio(formula, formula_2, lower_end, upper_end, type)
+            response = sysio.sysio(
+                formula, formula_2, lower_end, upper_end, type)
         return response
     except:
         flash("Error")
