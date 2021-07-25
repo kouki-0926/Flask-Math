@@ -15,11 +15,6 @@ def Homogeneous_view():
         return render_template("Homogeneous.html", init_flag=1)
 
 
-@Math.route("/test")
-def test_view():
-    return render_template("test.html")
-
-
 @Math.route("/index")
 def index_view():
     return render_template("index.html")
