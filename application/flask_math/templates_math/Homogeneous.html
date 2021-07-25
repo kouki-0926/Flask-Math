@@ -1,13 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2><a href="{{url_for('Math.factorization_view')}}" class="heading">因数分解</a></h2>
+<h2><a href="{{url_for('Math.Homogeneous_view')}}" class="heading">同次変換行列</a></h2>
 <br>
 
-<form action="{{url_for('Math.factorization_view')}}" method="post" enctype="multipart/form-data">
+<form action='{{url_for("Math.Homogeneous_view")}}' method="post" enctype="multipart/form-data">
+  <!-- リンクパラメータの入力 -->
   <div class="form-group">
-    <label for="InputFormula">式を入力してください</label>
-    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="formula">
+    <label for="InputMatrix">リンクパラメータを入力してください</label>
+    <textarea class="form-control" id="InputMatrix" name=matrixA rows="4">{{matrixA}}</textarea>
   </div>
   <div class="btn_calc">
     <button type="submit" class="btn btn-primary btn-block">計算</button>
@@ -16,7 +17,7 @@
 
 <div class="accordion" id="accordion_1">
   <div class="card">
-    <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" aria-controls="collapse_1">式入力</button>
+    <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" aria-controls="collapse_1">関数入力</button>
     {% if init_flag==1 %}
     <div id="collapse_1" class="collapse show" aria-labelledby="heading_1" data-parent="#accordion_1">
       <div id="parent"></div>
@@ -28,12 +29,12 @@
     {% endif %}
   </div>
 </div><br>
-<script type="text/javascript" src="static_math/js/button_x.js"></script>
+<script type="text/javascript" src="static_math/js/button_x_homogeneous.jss"></script>
 
 
 {% if init_flag==0 %}
 <div class="center">
-  <h4 class="latex">\({{anser}}\)</h4><br>
+  <h4 class="latex">\[{{anser}}\]</h4><br>
   <h5>\(\LaTeX\)</h5>
   <h5 class="latex" id="targetID">
       {{anser}}
