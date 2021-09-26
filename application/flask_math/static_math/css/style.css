@@ -110,7 +110,7 @@
   /* labelの角丸 */
   border-radius: 5px;
   /* lebelの背景 */
-  background: rgba(10, 10, 10, 0.2);
+  background: white;
   /* カーソル設定 */
   cursor: pointer;
   /* なめらか変化 */
@@ -126,9 +126,9 @@
 
 /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
 .radioArea input[type="radio"]:not(:checked) + label:hover {
-  color: white;
+  color: black;
   /* lebelの背景 */
-  background: rgba(108, 117, 125, 0.4);
+  background: rgba(108, 117, 125, 0.5);
 }
 
 @media only screen and (min-width: 768px) {

@@ -6,13 +6,43 @@
 
 <form action='{{url_for("Math.lim_view")}}' method="post" enctype="multipart/form-data">
   <div class="form-group">
-    <label for="InputFormula">関数を入力してください</label>
-    <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="function">
+    <label for="InputFormula">関数\(f(x)\)を入力してください</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><small>\(f(x)=\)</small></span>
+      </div>
+      <input type="text" name="formula" class="form-control" id="InputFormula" value="{{formula}}" placeholder="function">
+    </div>
   </div>
   <div class="form-group">
     <label for="Input_a">ｘが近づく値</label>
     <input type="text" name="a" class="form-control" id="Input_a" value="{{a}}" placeholder="x">
   </div>
+
+  <!-- 演算の選択 -->
+  <div class="center">
+    <div class="radioArea" id="makeImg">
+      {% if type=="left" %}
+      <input type="radio" name="type" id="r1" value="left" checked><label for="r1">　左側極限　</label>
+      {% else %}
+      <input type="radio" name="type" id="r1" value="left"><label for="r1">　左側極限　</label>
+      {% endif %}
+
+      {% if type=="both" %}
+      <input type="radio" name="type" id="r2" value="both" checked><label for="r2">　両極限　</label>
+      {% else %}
+      <input type="radio" name="type" id="r2" value="both"><label for="r2">　両極限　</label>
+      {% endif %}
+
+      {% if type=="right" %}
+      <input type="radio" name="type" id="r3" value="right" checked><label for="r3">　右側極限　</label>
+      {% else %}
+      <input type="radio" name="type" id="r3" value="right"><label for="r3">　右側極限　</label>
+      {% endif %}
+
+    </div>
+  </div>
+
   <div class="btn_calc">
     <button type="submit" class="btn btn-primary btn-block">計算</button>
   </div>
