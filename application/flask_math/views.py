@@ -307,7 +307,7 @@ def lim_view():
         a = request.form.get("a")
         type = request.form.get("type")
         anser = lim.lim(formula, a, type)
-        return render_template("lim.html", formula=formula, a=a, type="left", anser=anser, init_flag=0)
+        return render_template("lim.html", formula=formula, a=a, type=type, anser=anser, init_flag=0)
     else:
         return render_template("lim.html", a=0, type="left", init_flag=1)
 

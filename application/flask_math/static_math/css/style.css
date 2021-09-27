@@ -137,6 +137,12 @@
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .PCOnly {
+    display: none;
+  }
+}
+
 .btn_calc {
   padding-bottom: 5px;
 }
